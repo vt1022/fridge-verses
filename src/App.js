@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import HomeLeft from './HomeLeft.js';
-import MagnetBoard from './MagnetBoard.js'
+import MagnetBoard from './MagnetBoard.js';
+import ModalStart from './ModalStart.js';
 
 import firebase from './firebase.js';
 import './App.css';
@@ -10,6 +11,7 @@ class App extends Component {
     super()
     this.state = {
       currentPage : 'home',
+      modalStart: false,
       // push each word into poem array when dragged into staging area
       poem : []
     }
@@ -40,10 +42,15 @@ class App extends Component {
     }
   }
 
+  showModal = (modalShow) => this.setState({modalStart: modalShow})
+
   render() {
-    const {currentPage} = this.state
+    const {currentPage, modalStart} = this.state
     return (
       <div className="App">
+        <ModalStart show={modalStart} showModal={this.showModal} />
+        {/* move this button logic to search SUBMIT button */}
+        <button onClick={() => this.showModal(true)}>test modal</button>
         <div className="wrapper">
           <section className="pageLeft">
             {
