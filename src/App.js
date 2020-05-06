@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import HomeLeft from './HomeLeft.js';
-import MagnetBoard from './MagnetBoard.js'
+import MagnetBoard from './MagnetBoard.js';
+import ModalStart from './ModalStart.js';
 
 import firebase from './firebase.js';
 import './App.css';

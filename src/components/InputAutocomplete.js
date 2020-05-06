@@ -20,7 +20,6 @@ render() {
         onChange={this.props.onAutoCompleteItemSelected}
             options={this.props.words}
             getOptionLabel={option => option.word}
-            // defaultValue={{word:"", score:-1}}
             renderInput={params => (
                 <TextField
                 {...params}

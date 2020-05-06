@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import InputAutocomplete from './InputAutocomplete.js' 
+import ModalStart from '../ModalStart.js'
 
 export class Search extends Component {
     constructor() {
         super()
         this.state = {
             userInput: "",
-            words: []
-
-            
+            words: [],
+            modalStart: false
         }
     }
 
@@ -43,18 +42,24 @@ export class Search extends Component {
         }
     }
 
-
     handleSubmit = (event) => {
         event.preventDefault();
     }    
 
+    showModal = (e, modalShow) => {
+        e.preventDefault()
+        this.setState({modalStart: modalShow})
+        // load next page here also.
+    }
+    
     render() {
         const { userInput } = this.state
-
+        const { modalStart } = this.state
         return (
             <div>
-                <form action="" onSubmit={this.handleSubmit}>
-                    < InputAutocomplete onTextChange={this.onTextChange} words={this.state.words} onAutoCompleteItemSelected={this.onAutoCompleteItemSelected}/>
+                <ModalStart show={modalStart} showModal={this.showModal} />
+                <form action="" onSubmit={(e) => this.showModal(e, true)}>
+                    <InputAutocomplete onTextChange={this.onTextChange} words={this.state.words} onAutoCompleteItemSelected={this.onAutoCompleteItemSelected} />
                     <button type="submit">Get Started ➡</button>
                 </form>
                 <button>Generate Word ⚡</button>
