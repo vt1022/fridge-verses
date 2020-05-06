@@ -1,20 +1,27 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import InputAutocomplete from './InputAutocomplete.js' 
+import ModalStart from '../ModalStart.js'
 
 export class Search extends Component {
     constructor() {
         super()
         this.state = {
+            modalStart: false
         }
     }
 
-    render() {
-        const { userInput } = this.state
+    showModal = (e, modalShow) => {
+        e.preventDefault()
+        this.setState({modalStart: modalShow})
+        // load next page here also.
+    }
 
+    render() {
+        const { modalStart } = this.state
         return (
             <div>
-                <form action="" onSubmit={this.handleSubmit}>
+                <ModalStart show={modalStart} showModal={this.showModal} />
+                <form action="" onSubmit={(e) => this.showModal(e, true)}>
                     < InputAutocomplete />
                     <button type="submit">Get Started ➡</button>
                 </form>

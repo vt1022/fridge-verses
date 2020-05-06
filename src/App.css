@@ -31,14 +31,17 @@ h1 {
   display: flex;
   max-width: 1000px;
   width: 80%;
+  margin: 0 auto;
 }
 
 .pageLeft {
   width: 40%;
+  border: 1px solid red;
 }
 
 .pageRight {
   width: 60%;
+  border: 1px solid red;
 }
 /* global styles ----- */
 
@@ -74,7 +77,10 @@ h1 {
 
 
 /* HomeLeft.js ----*/
-
+input[id="mui-77075"] {
+  /* select search input and fix width */
+  width: 100%;
+}
 /* HomeLeft.js ----*/
 
 /* Modals ---- */
@@ -84,6 +90,7 @@ h1 {
   left: 0;
   bottom: 0;
   right: 0;
+  z-index: 10;
   
   display: flex;
   justify-content: center;
@@ -103,9 +110,14 @@ h1 {
   background: #fff;
 }
 
+.modalInner img {
+  margin: 0 auto;
+  width: 60%;
+}
+
 .modalInner h2 {
   margin: 0;
-  margin-top: 20px;
+  margin-top: 5px;
 }
 
 .modalInner button {

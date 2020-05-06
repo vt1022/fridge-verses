@@ -8,9 +8,9 @@ class ModalStart extends Component {
 
   hideModal = () => this.setState({hide: true})
 
-  animationEnd = () => {
+  animationEnd = (e) => {
     if (this.state.hide) {
-      this.props.showModal(false)
+      this.props.showModal(e, false)
     }
     this.setState({hide: false})
   }
@@ -23,10 +23,10 @@ class ModalStart extends Component {
         className={`modal 
           ${hide ? "slideLeft" : ""} 
           ${show ? "slideRight" : ""}`}
-        onAnimationEnd={() => this.animationEnd()}
+        onAnimationEnd={(e) => this.animationEnd(e)}
       >
         <div className="modalInner">
-          <img src="" alt="illustration of a person deep in thought"/>
+          <img src="./assets/illustrations--instruct.png" alt="illustration of a person deep in thought"/>
           <h2>How it works</h2>
           <p>We've generated a bunch of words for you on the left. Simply drag and drop them into your canvas on the right!</p>
           <button onClick={this.hideModal}>Start <span>🧲</span></button>
