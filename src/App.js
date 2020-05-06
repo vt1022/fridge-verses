@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import HomeLeft from './HomeLeft.js';
-import MagnetBoard from './MagnetBoard.js'
+import { DndProvider } from 'react-dnd'
+import Backend from 'react-dnd-html5-backend'
+import GameContainer from './components/GameContainer'
+
+import MagnetBoard from './components/MagnetBoard.js'
 
 import firebase from './firebase.js';
 import './App.css';
+import Magnets from './components/Magnets.js';
 
 class App extends Component {
   constructor() {
@@ -55,9 +60,16 @@ class App extends Component {
           <section className="pageRight">
             {
               currentPage === 'home' 
+
                 ? <p>HomeRight</p> 
                 : <p>Nothing yet</p>
             }
+          </section>
+          {/* THIS IS THE GAME BOARD FOR TESTING, IM NOT SURE WHERE TO PUT IT */}
+          <section>
+            <DndProvider backend={Backend}>
+              <GameContainer />
+            </DndProvider>
           </section>
         </div>
       </div>
