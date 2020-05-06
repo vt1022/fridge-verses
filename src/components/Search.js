@@ -8,7 +8,7 @@ export class Search extends Component {
         super()
         this.state = {
             userInput: "",
-            words: [],
+            autoCompleteWords: [],
             modalStart: false
         }
     }
@@ -40,19 +40,34 @@ export class Search extends Component {
                     }
 
                     this.setState({
-                        words: singleWords
+                        autoCompleteWords: singleWords
                     })
                 });
         }
         else {
             this.setState({
-                words: []
+                autoCompleteWords: []
             })
         }
     }
 
+
     handleSubmit = (event) => {
         event.preventDefault();
+        this.showModal(event, true)
+//////////////////////////////////////////////////////////////////////////////
+        axios({
+            method: 'GET',
+            url: `https://api.datamuse.com/words`,
+            params: {
+                rel_trg: this.state.userInput,
+                max: 30
+            }
+        })
+        .then((res) => {
+            console.log(res)
+            
+        })
     }    
 
     showModal = (e, modalShow) => {
@@ -62,19 +77,20 @@ export class Search extends Component {
     }
 
     render() {
-        const { userInput } = this.state
-        const { modalStart } = this.state
+        const { userInput } = this.state;
+        const { modalStart } = this.state;
         return (
             <div>
                 <ModalStart show={modalStart} showModal={this.showModal} />
-                <form action="" onSubmit={(e) => this.showModal(e, true)}>
-                    <InputAutocomplete onTextChange={this.onTextChange} words={this.state.words} onAutoCompleteItemSelected={this.onAutoCompleteItemSelected} />
+                <form action="" onSubmit={this.handleSubmit}>
+                    <InputAutocomplete onTextChange={this.onTextChange} autoCompleteWords={this.state.autoCompleteWords} onAutoCompleteItemSelected={this.onAutoCompleteItemSelected} />
                     <button type="submit">Get Started ➡</button>
                 </form>
                 <button>Generate Word ⚡</button>
             </div>
         )
     }
-}
+}  
+
 
 export default Search
