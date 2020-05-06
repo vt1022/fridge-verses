@@ -61,12 +61,15 @@ export class Search extends Component {
             url: `https://api.datamuse.com/words`,
             params: {
                 rel_trg: this.state.userInput,
-                max: 30
+                max: 50
             }
         })
         .then((res) => {
-            console.log(res)
+            const generatedWords = res.data.map((value) => {
+                return value.word
+            })
             
+            this.props.setGeneratedWords(generatedWords)
         })
     }    
 

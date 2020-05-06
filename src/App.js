@@ -11,10 +11,12 @@ class App extends Component {
     super()
     this.state = {
       currentPage : 'home',
+      generatedWords: [] ,
       // push each word into poem array when dragged into staging area
       poem : []
     }
   }
+
   componentDidMount() {
     // firebase stuff and poemSubmit will probably be moved to a gallery component later?
     // firebase:
@@ -25,6 +27,13 @@ class App extends Component {
     })
     // firebase ---
   }
+
+  setGeneratedWords = (generatedWords) => {
+    this.setState({
+      generatedWords: generatedWords
+    })
+  }
+
 
   poemSubmit = () => {
     const {poem} = this.state // destructuring state for clean code
@@ -49,7 +58,7 @@ class App extends Component {
           <section className="pageLeft">
             {
               currentPage === 'home' 
-                ? <HomeLeft /> 
+                ? <HomeLeft setGeneratedWords={this.setGeneratedWords} /> 
                 : <p>Nothing yet</p>
             }
           </section>

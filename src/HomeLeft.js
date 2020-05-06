@@ -14,7 +14,7 @@ class HomeLeft extends Component {
     return(
       <div className="homeLeft">
         <h1>Recreate the IRL fun of magnetic poetry</h1>
-        <Search />
+        <Search setGeneratedWords={this.props.setGeneratedWords}/>
         <p>Give us your own promt to kick things off or let us generate a word for you.</p>
       </div>
     )
