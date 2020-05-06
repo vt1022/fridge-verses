@@ -6,9 +6,11 @@ import GameContainer from './components/GameContainer'
 
 import MagnetBoard from './components/MagnetBoard.js'
 
+import ModalStart from './ModalStart.js';
+
+
 import firebase from './firebase.js';
 import './App.css';
-import Magnets from './components/Magnets.js';
 
 class App extends Component {
   constructor() {
