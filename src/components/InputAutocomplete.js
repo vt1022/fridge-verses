@@ -7,44 +7,24 @@ export default class InputAutocomplete extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            userInput: "",
-            words: []
+
         };
-
-        this.onTextChange = this.onTextChange.bind(this);
     }
 
-onTextChange = (event) => {
-    this.setState({
-        userInput: event.target.value
-    });
-
-    if (this.state.userInput.trim() !== "") {
-        axios("https://api.datamuse.com/sug?s=" + this.state.userInput)
-        .then(result => {
-            this.setState({
-                words: result.data
-            })
-        });
-    }
-    else {
-        this.setState({
-            words: []
-        })
-    }
-}
+    
 
 render() {
     return (
     <div style={{ width: 500 }}>
         <Autocomplete
-            options={this.state.words}
+        onChange={this.props.onAutoCompleteItemSelected}
+            options={this.props.words}
             getOptionLabel={option => option.word}
-            defaultValue={""}
+            // defaultValue={{word:"", score:-1}}
             renderInput={params => (
                 <TextField
                 {...params}
-                onChange={this.onTextChange}
+                onChange={this.props.onTextChange}
                 variant="standard"
                 label="Type in a word"
                 placeholder=""
