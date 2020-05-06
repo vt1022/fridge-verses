@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import InputAutocomplete from './InputAutocomplete.js' 
 import ModalStart from '../ModalStart.js'
+import axios from 'axios'
 
 export class Search extends Component {
     constructor() {
@@ -51,7 +52,7 @@ export class Search extends Component {
         this.setState({modalStart: modalShow})
         // load next page here also.
     }
-    
+
     render() {
         const { userInput } = this.state
         const { modalStart } = this.state

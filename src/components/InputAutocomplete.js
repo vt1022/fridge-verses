@@ -15,7 +15,7 @@ export default class InputAutocomplete extends React.Component {
 
 render() {
     return (
-    <div style={{ width: 500 }}>
+    <div>
         <Autocomplete
         onChange={this.props.onAutoCompleteItemSelected}
             options={this.props.words}
