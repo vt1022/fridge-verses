@@ -31,8 +31,16 @@ export class Search extends Component {
         if (this.state.userInput.trim() !== "") {
             axios("https://api.datamuse.com/sug?s=" + this.state.userInput)
                 .then(result => {
+                    //for loop to ensure only single words are suggested
+                    let singleWords = []
+                    for (let i=0; i < result.data.length; i++) {
+                        if (! result.data[i]['word'].includes(" ")) {
+                            singleWords.push(result.data[i])
+                        }
+                    }
+
                     this.setState({
-                        words: result.data
+                        words: singleWords
                     })
                 });
         }
