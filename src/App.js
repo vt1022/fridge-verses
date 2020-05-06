@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import HomeLeft from './HomeLeft.js';
-import MagnetBoard from './MagnetBoard.js';
-import ModalStart from './ModalStart.js';
+import Landing from './components/Landing.js';
+import MagnetBoard from './components/MagnetBoard.js';
 
 import firebase from './firebase.js';
 import './App.css';
@@ -10,7 +9,7 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      currentPage : 'home',
+      currentPage : 'landing',
       // push each word into poem array when dragged into staging area
       poem : []
     }
@@ -40,26 +39,17 @@ class App extends Component {
       alert(`Your poem is too long! Nothing longer than ${maxWordsInPoem} please.`)
     }
   }
-
+  
   render() {
     const {currentPage} = this.state
     return (
       <div className="App">
         <div className="wrapper">
-          <section className="pageLeft">
             {
-              currentPage === 'home' 
-                ? <HomeLeft /> 
+              currentPage === 'landing' 
+                ? <Landing /> 
                 : <p>Nothing yet</p>
             }
-          </section>
-          <section className="pageRight">
-            {
-              currentPage === 'home' 
-                ? <p>HomeRight</p> 
-                : <p>Nothing yet</p>
-            }
-          </section>
         </div>
       </div>
     );

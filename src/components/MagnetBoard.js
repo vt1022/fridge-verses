@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Board from './components/Board';
-import Magnet from './components/Magnets';
+import Board from './Board';
+import Magnet from './Magnets';
 
 class MagnetBoard extends Component {
   render() {
