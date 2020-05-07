@@ -9,6 +9,7 @@ import MagnetBoard from './components/MagnetBoard.js'
 
 import firebase from './firebase.js';
 import './styles/styles.scss';
+import Gallery from './components/Gallery.js';
 
 class App extends Component {
     constructor() {
@@ -38,6 +39,7 @@ class App extends Component {
         })
     }
 
+    changePage = (targetPage) => this.setState({currentPage: targetPage})
 
     poemSubmit = () => {
         const {poem} = this.state // destructuring state for clean code
@@ -60,15 +62,25 @@ class App extends Component {
             <div className="app wrapper">
                 <nav className="app__nav">
                     <ul>
-                        <li className="nav__branding">Project Name</li>
-                        <li className="nav__link">Gallery</li>
+                        <li className="nav__branding"
+                            onClick={() => this.changePage('landing')}
+                        >
+                            Project Name
+                        </li>
+                        <li className="nav__link" 
+                            onClick={() => this.changePage('gallery')}
+                        >
+                            Gallery
+                        </li>
                     </ul>
                 </nav>
                 <div className="app__container">
                     {
-                        currentPage === 'landing' 
-                            ? <Landing /> 
-                            : <p>Nothing yet</p>
+                        currentPage === 'landing' &&
+                            <Landing /> 
+                        || 
+                        currentPage === 'gallery' &&
+                            <Gallery changePage={this.changePage}/>
                     }
                 {/* THIS IS THE GAME BOARD FOR TESTING, IM NOT SURE WHERE TO PUT IT */}
                     <section>
