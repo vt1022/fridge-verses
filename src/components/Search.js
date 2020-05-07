@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import InputAutocomplete from './InputAutocomplete.js' 
-import ModalStart from '../ModalStart.js'
+import Modal from './Modal.js'
 import axios from 'axios'
 let badwordsArray = require('badwords/array');
 badwordsArray.push("fuckup", "bitchy", "bitchery", "bitchiness", "bitched", "bitchen", "shittah", "shittim", "shitfaced", "shittle", "nigget", "niggerhead", "niggerheads", "niggerling", "nigged", "niggery", "niggle", "faggy", "fagged", "faggots", "faggoty", "faggotry", "faggoting", "faggoted", "cunty", "cunted", "cunting")
@@ -11,8 +11,8 @@ export class Search extends Component {
         super()
         this.state = {
             userInput: "",
+            modal: false,
             autoCompleteWords: [],
-            modalStart: false
         }
     }
 
@@ -24,7 +24,7 @@ export class Search extends Component {
             userInput: event.target.innerText
         });
     }   
-
+    
     onTextChange = (event) => {
 
         this.setState({
@@ -53,8 +53,7 @@ export class Search extends Component {
             })
         }
     }
-
-
+    
     handleSubmit = (event) => {
         event.preventDefault();
         this.showModal(event, true)
@@ -78,25 +77,24 @@ export class Search extends Component {
 
     showModal = (e, modalShow) => {
         e.preventDefault()
-        this.setState({modalStart: modalShow})
+        this.setState({modal: modalShow})
         // load next page here also.
     }
 
     render() {
-        const { userInput } = this.state;
-        const { modalStart } = this.state;
+        const { userInput } = this.state
+        const { modal } = this.state
         return (
-            <div>
-                <ModalStart show={modalStart} showModal={this.showModal} />
-                <form action="" onSubmit={this.handleSubmit}>
-                    <InputAutocomplete onTextChange={this.onTextChange} autoCompleteWords={this.state.autoCompleteWords} onAutoCompleteItemSelected={this.onAutoCompleteItemSelected} />
-                    <button className="main-button" type="submit">Get Started</button>
+            <>
+                <Modal show={modal} showModal={this.showModal} whichModal="start" />
+                <form action="" onSubmit={(e) => this.showModal(e, true)}>
+                    <InputAutocomplete onTextChange={this.onTextChange} words={this.state.words} onAutoCompleteItemSelected={this.onAutoCompleteItemSelected} />
+                    <button className="main-button" type="submit">Get Started ➡</button>
                 </form>
-                <button className="secondary-button">Generate Word</button>
-            </div>
+                <button className="secondary-button">Generate Word ⚡</button>
+            </>
         )
     }
 }  
-
 
 export default Search
