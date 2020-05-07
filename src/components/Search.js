@@ -8,8 +8,8 @@ export class Search extends Component {
         super()
         this.state = {
             userInput: "",
-            words: [],
-            modal: false
+            modal: false,
+            autoCompleteWords: [],
         }
     }
 
@@ -40,19 +40,36 @@ export class Search extends Component {
                     }
 
                     this.setState({
-                        words: singleWords
+                        autoCompleteWords: singleWords
                     })
                 });
         }
         else {
             this.setState({
-                words: []
+                autoCompleteWords: []
             })
         }
     }
     
     handleSubmit = (event) => {
         event.preventDefault();
+        this.showModal(event, true)
+//////////////////////////////////////////////////////////////////////////////
+        axios({
+            method: 'GET',
+            url: `https://api.datamuse.com/words`,
+            params: {
+                rel_trg: this.state.userInput,
+                max: 50
+            }
+        })
+        .then((res) => {
+            const generatedWords = res.data.map((value) => {
+                return value.word
+            })
+            
+            this.props.setGeneratedWords(generatedWords)
+        })
     }    
 
     showModal = (e, modalShow) => {
@@ -69,12 +86,12 @@ export class Search extends Component {
                 <Modal show={modal} showModal={this.showModal} whichModal="start" />
                 <form action="" onSubmit={(e) => this.showModal(e, true)}>
                     <InputAutocomplete onTextChange={this.onTextChange} words={this.state.words} onAutoCompleteItemSelected={this.onAutoCompleteItemSelected} />
-                    <button type="submit">Get Started ➡</button>
+                    <button className="main-button" type="submit">Get Started ➡</button>
                 </form>
-                <button>Generate Word ⚡</button>
+                <button className="secondary-button">Generate Word ⚡</button>
             </>
         )
     }
-}
+}  
 
 export default Search

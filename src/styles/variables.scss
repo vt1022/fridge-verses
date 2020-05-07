@@ -1,0 +1,91 @@
+// Font Import
+@font-face {
+    font-family: 'Kanit', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    src: url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap');
+}
+
+// Black, White, Greys
+$black: #001021;
+$white: #fff;
+$darkGrey: #4D5864;
+$lightGrey: #E6E7E9;
+
+// Main Palette
+$darkGreen: #1A4542;
+$lightGreen: #85FB83;
+$darkYellow: #FFC15E;
+$lightYellow: #FFFEB9;
+
+// Secondary Palette
+$offsetDarkGreen: #E8ECEC;
+$offsetLightGreen: #E4FFE3;
+
+// Type
+@mixin headingType($sizeValue) {
+    font-family: 'Kanit', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: $sizeValue;
+    font-weight: 700;
+    color: $black;
+    letter-spacing: 0.05rem;
+    line-height: 1;
+    margin-bottom: 100px;
+}
+
+@mixin bodyType($sizeValue, $weightValue, $colorValue: $darkGrey, $opacityValue: 1) {
+    font-family: 'Kanit', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: $sizeValue;
+    font-weight: $weightValue;
+    color: rgba($colorValue, $opacityValue);
+    letter-spacing: 0.05rem;
+    line-height: 1.4;
+    // Make this a variable later
+    // margin-bottom: 30px;
+}
+
+// Buttons
+@mixin mainButton($fontSizeValue: calc(2rem + 0.59vw), $heightValue: calc(56px + 1.19vw), $widthValue: calc(234px + 2.5vw)) {
+    font-family: 'Kanit', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: $fontSizeValue;
+    //Max at 3rem for main-button
+    font-weight: 400;
+    letter-spacing: 0.12rem;
+    line-height: 1;
+    color: $lightGrey;
+    height: $heightValue;
+    // max at 76px for main-button
+    width: $widthValue;
+    // max at 275px for main-button
+    background-color: $darkGreen;
+    border: none;
+    cursor: pointer;
+    transition: background-color 250ms ease;
+    border-radius: 8px;
+    
+    &:hover {
+        background-color: darken($darkGreen, 4%);
+    }
+}
+
+@mixin secondaryButton($fontSizeValue: calc(2rem + 0.59vw), $heightValue: calc(56px + 1.19vw), $widthValue: calc(234px + 2.5vw)) {
+    font-family: 'Kanit', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: $fontSizeValue;
+    //Max at 3rem for main-button
+    font-weight: 400;
+    letter-spacing: 0.12rem;
+    line-height: 1;
+    color: $darkGreen;
+    height: $heightValue;
+    // max at 76px for main-button
+    width: $widthValue;
+    // max at 275px for main-button
+    background-color: $offsetDarkGreen;
+    border: none;
+    cursor: pointer;
+    transition: background-color 250ms ease;
+    border-radius: 8px;
+    border: 2px solid $darkGreen;
+    
+    &:hover {
+        background-color: darken($darkGreen, 4%);
+    }
+}
