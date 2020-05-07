@@ -67,8 +67,9 @@ export class Search extends Component {
             }
         })
         .then((res) => {
+            
             const generatedWords = res.data.map((value) => {
-                return value.word
+                return {word: value.word, id: JSON.stringify(value.score)}
             })
             
             this.props.setGeneratedWords(generatedWords)
@@ -87,7 +88,7 @@ export class Search extends Component {
         return (
             <>
                 <Modal show={modal} showModal={this.showModal} whichModal="start" />
-                <form action="" onSubmit={(e) => this.showModal(e, true)}>
+                <form action="" onSubmit={this.handleSubmit}>
                     <InputAutocomplete onTextChange={this.onTextChange} autoCompleteWords={this.state.autoCompleteWords} onAutoCompleteItemSelected={this.onAutoCompleteItemSelected} />
                     <button className="main-button" type="submit">Get Started ➡</button>
                 </form>
