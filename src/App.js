@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import Landing from './components/Landing.js';
-import { DndProvider } from 'react-dnd'
 import Backend from 'react-dnd-html5-backend'
+import GameBoard from './components/GameBoard'
+import Gallery from './components/Gallery.js';
 import GameContainer from './components/GameContainer'
-
 import MagnetBoard from './components/MagnetBoard.js'
 
 
+import { DndProvider } from 'react-dnd'
 import firebase from './firebase.js';
 import './styles/styles.scss';
-import Gallery from './components/Gallery.js';
 
 class App extends Component {
     constructor() {
         super()
         this.state = {
-        currentPage : 'landing',
+        currentPage : 'gameBoard',
         generatedWords: [] ,
         // push each word into poem array when dragged into staging area
         poem : []
@@ -79,15 +79,18 @@ class App extends Component {
                         currentPage === 'landing' &&
                             <Landing /> 
                         || 
+                        currentPage === 'gameBoard' &&
+                            <GameBoard />
+                        || 
                         currentPage === 'gallery' &&
                             <Gallery changePage={this.changePage}/>
                     }
                 {/* THIS IS THE GAME BOARD FOR TESTING, IM NOT SURE WHERE TO PUT IT */}
-                    <section>
+                    {/* <section>
                         <DndProvider backend={Backend}>
                         <GameContainer />
                         </DndProvider>
-                    </section>
+                    </section> */}
                 </div>
                 <footer className="app__footer">
                     <div>
