@@ -15,7 +15,7 @@ class App extends Component {
     constructor() {
         super()
         this.state = {
-        currentPage : 'gameBoard',
+        currentPage : 'landing',
         generatedWords: [] ,
         // push each word into poem array when dragged into staging area
         poem : []
@@ -66,6 +66,12 @@ class App extends Component {
                             onClick={() => this.changePage('landing')}
                         >
                             Project Name
+                        </li>
+                        {/* testing purpose: */}
+                        <li className="nav__link"
+                            onClick={() => this.changePage('gameBoard')}
+                        >
+                            Gameboard testing
                         </li>
                         <li className="nav__link" 
                             onClick={() => this.changePage('gallery')}
