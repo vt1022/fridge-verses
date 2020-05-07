@@ -10,17 +10,19 @@ import ModalStart from './ModalStart.js';
 
 
 import firebase from './firebase.js';
-import './App.css';
+import './styles/styles.scss';
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
       currentPage : 'home',
+      generatedWords: [] ,
       // push each word into poem array when dragged into staging area
       poem : []
     }
   }
+
   componentDidMount() {
     // firebase stuff and poemSubmit will probably be moved to a gallery component later?
     // firebase:
@@ -31,6 +33,13 @@ class App extends Component {
     })
     // firebase ---
   }
+
+  setGeneratedWords = (generatedWords) => {
+    this.setState({
+      generatedWords: generatedWords
+    })
+  }
+
 
   poemSubmit = () => {
     const {poem} = this.state // destructuring state for clean code
@@ -50,20 +59,28 @@ class App extends Component {
   render() {
     const {currentPage} = this.state
     return (
-      <div className="App">
-        <div className="wrapper">
+      <div className="app wrapper">
+        <nav className="app__nav">
+          <ul>
+            <li className="nav__branding">Project Name</li>
+            <li className="nav__link">Gallery</li>
+          </ul>
+        </nav>
+        <div className="app__container">
           <section className="pageLeft">
             {
               currentPage === 'home' 
-                ? <HomeLeft /> 
+                ? <HomeLeft setGeneratedWords={this.setGeneratedWords} /> 
                 : <p>Nothing yet</p>
             }
           </section>
+
           <section className="pageRight">
             {
               currentPage === 'home' 
-
-                ? <p>HomeRight</p> 
+                ? <div>
+                    <img src="./assets/illustrations--landing.png" alt=""/>
+                  </div>
                 : <p>Nothing yet</p>
             }
           </section>
@@ -74,6 +91,9 @@ class App extends Component {
             </DndProvider>
           </section>
         </div>
+        <footer className="app__footer">
+          <div></div>
+        </footer>
       </div>
     );
   }
