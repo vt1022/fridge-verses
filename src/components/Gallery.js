@@ -9,13 +9,10 @@ class Gallery extends Component {
     }
 
     componentDidMount() {
-        // firebase stuff and poemSubmit will probably be moved to a gallery component later?
-        // firebase:
         const dbRef = firebase.database().ref();
         dbRef.on('value', (result) => {
             const data = result.val()
         })
-        // firebase ---
     }
 
     goHome = () => {
