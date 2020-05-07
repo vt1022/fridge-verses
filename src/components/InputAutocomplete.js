@@ -16,7 +16,7 @@ export default class InputAutocomplete extends React.Component {
 render() {
     return (
     <div>
-        <Autocomplete
+        <Autocomplete className="test"
         onChange={this.props.onAutoCompleteItemSelected}
             options={this.props.words}
             getOptionLabel={option => option.word}

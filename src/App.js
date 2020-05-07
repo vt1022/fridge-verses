@@ -4,7 +4,7 @@ import MagnetBoard from './MagnetBoard.js';
 import ModalStart from './ModalStart.js';
 
 import firebase from './firebase.js';
-import './App.css';
+import './styles/styles.scss';
 
 class App extends Component {
   constructor() {
@@ -44,8 +44,14 @@ class App extends Component {
   render() {
     const {currentPage} = this.state
     return (
-      <div className="App">
-        <div className="wrapper">
+      <div className="app wrapper">
+        <nav className="app__nav">
+          <ul>
+            <li className="nav__branding">Project Name</li>
+            <li className="nav__link">Gallery</li>
+          </ul>
+        </nav>
+        <div className="app__container">
           <section className="pageLeft">
             {
               currentPage === 'home' 
@@ -53,14 +59,20 @@ class App extends Component {
                 : <p>Nothing yet</p>
             }
           </section>
+
           <section className="pageRight">
             {
               currentPage === 'home' 
-                ? <p>HomeRight</p> 
+                ? <div>
+                    <img src="./assets/illustrations--landing.png" alt=""/>
+                  </div>
                 : <p>Nothing yet</p>
             }
           </section>
         </div>
+        <footer className="app__footer">
+          <div></div>
+        </footer>
       </div>
     );
   }
