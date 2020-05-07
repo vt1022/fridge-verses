@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import HomeLeft from './HomeLeft.js';
-import MagnetBoard from './MagnetBoard.js';
+import { DndProvider } from 'react-dnd'
+import Backend from 'react-dnd-html5-backend'
+import GameContainer from './components/GameContainer'
+
+import MagnetBoard from './components/MagnetBoard.js'
+
 import ModalStart from './ModalStart.js';
+
 
 import firebase from './firebase.js';
 import './styles/styles.scss';
@@ -68,6 +74,12 @@ class App extends Component {
                   </div>
                 : <p>Nothing yet</p>
             }
+          </section>
+          {/* THIS IS THE GAME BOARD FOR TESTING, IM NOT SURE WHERE TO PUT IT */}
+          <section>
+            <DndProvider backend={Backend}>
+              <GameContainer />
+            </DndProvider>
           </section>
         </div>
         <footer className="app__footer">
