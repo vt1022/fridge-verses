@@ -88,7 +88,7 @@ export class Search extends Component {
             <>
                 <Modal show={modal} showModal={this.showModal} whichModal="start" />
                 <form action="" onSubmit={(e) => this.showModal(e, true)}>
-                    <InputAutocomplete onTextChange={this.onTextChange} words={this.state.words} onAutoCompleteItemSelected={this.onAutoCompleteItemSelected} />
+                    <InputAutocomplete onTextChange={this.onTextChange} autoCompleteWords={this.state.autoCompleteWords} onAutoCompleteItemSelected={this.onAutoCompleteItemSelected} />
                     <button className="main-button" type="submit">Get Started ➡</button>
                 </form>
                 <button className="secondary-button">Generate Word ⚡</button>

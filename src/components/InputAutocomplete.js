@@ -1,7 +1,6 @@
 import React from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
-import axios from 'axios';
 
 export default class InputAutocomplete extends React.Component {
     constructor(props) {
@@ -18,7 +17,7 @@ render() {
     <div>
         <Autocomplete className="test"
         onChange={this.props.onAutoCompleteItemSelected}
-                options={this.props.autoCompleteWords}
+            options={this.props.autoCompleteWords}
             getOptionLabel={option => option.word}
             renderInput={params => (
                 <TextField
