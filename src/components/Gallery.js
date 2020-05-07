@@ -21,14 +21,14 @@ class Gallery extends Component {
 
     render() { 
         return ( 
-            <section className="gallery">
+            <div className="app__container__gallery">
                 <h1>Some Poetic Title for a Gallery</h1>
-                <div className="galleryGrid">
+                <div className="app__container__gallery__grid">
                     {/* map over array of data from firebase */}
                 </div>
                 <button>More v</button>
                 <button>Home</button>
-            </section>
+            </div>
         )
     }
 }

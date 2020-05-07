@@ -65,14 +65,14 @@ export class Search extends Component {
         const { userInput } = this.state
         const { modal } = this.state
         return (
-            <div>
+            <>
                 <Modal show={modal} showModal={this.showModal} whichModal="start" />
                 <form action="" onSubmit={(e) => this.showModal(e, true)}>
                     <InputAutocomplete onTextChange={this.onTextChange} words={this.state.words} onAutoCompleteItemSelected={this.onAutoCompleteItemSelected} />
                     <button type="submit">Get Started ➡</button>
                 </form>
                 <button>Generate Word ⚡</button>
-            </div>
+            </>
         )
     }
 }
