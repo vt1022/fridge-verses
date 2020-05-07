@@ -3,7 +3,7 @@ import InputAutocomplete from './InputAutocomplete.js'
 import ModalStart from '../ModalStart.js'
 import axios from 'axios'
 let badwordsArray = require('badwords/array');
-badwordsArray.push("fuckup", "bitchy", "bitchery", "bitchiness", "bitched", "bitchen", "shittah", "shittim", "shitfaced", "shittle", "nigget", "niggerhead", "niggerheads", "niggerling", "nigget", "nigged", "niggery", "niggle", "faggy", "fagged", "faggots", "faggoty", "faggotry", "faggoting", "faggoted", "cunty", "cunted", "cunting")
+badwordsArray.push("fuckup", "bitchy", "bitchery", "bitchiness", "bitched", "bitchen", "shittah", "shittim", "shitfaced", "shittle", "nigget", "niggerhead", "niggerheads", "niggerling", "nigged", "niggery", "niggle", "faggy", "fagged", "faggots", "faggoty", "faggotry", "faggoting", "faggoted", "cunty", "cunted", "cunting")
 
 
 export class Search extends Component {
