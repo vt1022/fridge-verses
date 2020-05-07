@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import InputAutocomplete from './InputAutocomplete.js' 
 import ModalStart from '../ModalStart.js'
 import axios from 'axios'
+let badwordsArray = require('badwords/array');
+badwordsArray.push("fuckup", "bitchy", "bitchery", "bitchiness", "bitched", "bitchen", "shittah", "shittim", "shitfaced", "shittle", "nigget", "niggerhead", "niggerheads", "niggerling", "nigget", "nigged", "niggery", "niggle", "faggy", "fagged", "faggots", "faggoty", "faggotry", "faggoting", "faggoted", "cunty", "cunted", "cunting")
+
 
 export class Search extends Component {
     constructor() {
@@ -34,7 +37,7 @@ export class Search extends Component {
                     //for loop to ensure only single words are suggested
                     let singleWords = []
                     for (let i=0; i < result.data.length; i++) {
-                        if (! result.data[i]['word'].includes(" ")) {
+                        if (!result.data[i]['word'].includes(" ") && badwordsArray.indexOf(result.data[i]['word']) === -1)  {
                             singleWords.push(result.data[i])
                         }
                     }
@@ -55,7 +58,7 @@ export class Search extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         this.showModal(event, true)
-//////////////////////////////////////////////////////////////////////////////
+
         axios({
             method: 'GET',
             url: `https://api.datamuse.com/words`,
