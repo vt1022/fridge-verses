@@ -77,7 +77,7 @@ class App extends Component {
                 <div className="app__container">
                     {
                         currentPage === 'landing' &&
-                            <Landing /> 
+                            <Landing  setGeneratedWords={this.setGeneratedWords} /> 
                         || 
                         currentPage === 'gallery' &&
                             <Gallery changePage={this.changePage}/>
