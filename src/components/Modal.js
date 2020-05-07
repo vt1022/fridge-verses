@@ -39,7 +39,8 @@ class Modal extends Component {
                     </div>
                 </div>
         // check prop to see which modal to show:
-            || whichModal === "share" && // SHARE modal: 
+            || 
+            whichModal === "share" && // SHARE modal: 
                 <div 
                     className={`app__container__leftLanding__modal 
                         ${hide ? "slideLeft" : ""} 
