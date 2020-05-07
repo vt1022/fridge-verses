@@ -18,7 +18,7 @@ render() {
     <div>
         <Autocomplete className="test"
         onChange={this.props.onAutoCompleteItemSelected}
-            options={this.props.words}
+                options={this.props.autoCompleteWords}
             getOptionLabel={option => option.word}
             renderInput={params => (
                 <TextField
