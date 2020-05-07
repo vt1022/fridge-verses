@@ -35,6 +35,8 @@ const Magnets = ({ name }) => {
 
 export default Magnets
 
+// notes: Both useDrag and useDrop return arrays, where the second element is a function that will hook up our ref with react - dnd internals.These functions are called connector functions.
+
 
 // export default function WordsMagnets(props) {
 //     const words = props.words;
