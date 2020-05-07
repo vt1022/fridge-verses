@@ -36,7 +36,7 @@ export default function GameContainer(props) {
                         </div>
                         <div style={{ overflow: 'hidden', clear: 'both' }}>
                             <Magnets name="Glass" />
-                          
+                        
                         </div>
                     </div>
                 </FrameBindingContext>
