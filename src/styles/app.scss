@@ -1,7 +1,7 @@
 // App.js
 .app {
     border: 1px solid red;
-    // height: 100vh;
+    height: 100vh;
 }
 
 .app__container {
@@ -83,14 +83,41 @@
         width: 100%;
     }
 
+
+    &__gameBoard.test {
+        span {
+            display: inline-block;
+            margin: 10px;
+            padding: 30px 60px;
+            color: white;
+            font-size: 40px;
+            border-radius: 20px;
+            text-shadow: 0 0 20px rgba(0,0,0,0.3);
+        }
+        
+        .draggable-source--is-dragging {
+            visibility: hidden;
+        }
+
+        .draggables {
+            @include bodyType(2rem, 400, $darkGreen);
+            display: inline-block;
+            user-select: none;
+            padding: 4px 10px;
+            border: 3px solid $darkGreen;
+            margin: 0 4px 4px 0;
+        }
+    }
+
     &__gameBoard {
         display: flex; 
         // justify-content: center; 
+        flex-direction: column;
         height: 100%;
         width: 100%;
 
         &__column {
-            width: 40%;
+            // width: 40%;
             display: flex; 
             flex-direction: column; 
             align-items: center;
@@ -116,7 +143,7 @@
         }
 
         &__column:nth-of-type(2) {
-            width: 60%;
+            // width: 60%;
 
         }
     }

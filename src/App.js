@@ -5,7 +5,8 @@ import GameBoard from './components/GameBoard'
 import Gallery from './components/Gallery.js';
 import GameContainer from './components/GameContainer'
 import MagnetBoard from './components/MagnetBoard.js'
-
+import DraggableBoard from './components/DraggableBoard.js'
+import DndGrid from './components/DndGrid.js'
 
 import { DndProvider } from 'react-dnd'
 import firebase from './firebase.js';
@@ -71,7 +72,12 @@ class App extends Component {
                         <li className="nav__link"
                             onClick={() => this.changePage('gameBoard')}
                         >
-                            Gameboard testing
+                            beautifulBoard
+                        </li>
+                        <li className="nav__link"
+                            onClick={() => this.changePage('dndGrid')}
+                        >
+                            beautifulGridBoard
                         </li>
                         <li className="nav__link" 
                             onClick={() => this.changePage('gallery')}
@@ -87,6 +93,9 @@ class App extends Component {
                         || 
                         currentPage === 'gameBoard' &&
                             <GameBoard />
+                        || 
+                        currentPage === 'dndGrid' &&
+                            <DndGrid />
                         || 
                         currentPage === 'gallery' &&
                             <Gallery changePage={this.changePage}/>
