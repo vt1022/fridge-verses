@@ -5,28 +5,18 @@ const sortList = (list) => {
     return list.slice().sort((first, second) => first.order - second.order);
 }
 
-const ListElement = ({ item: { content } }) => {
-    return (
-        <div className="app__container__gameBoard__dragbox__item">
-            <div>{content}</div>
-        </div>
-    )
-}
+const ListElement = ({ item: { content } }) => <div className="app__container__gameBoard__dragbox__item">{content}</div>
 
 class DndGrid extends Component {
     constructor(props) {
         super();
         this.state = {
-            sortedList: sortList(props.generatedWordsTest)
+            sortedList: [],
+            wordOrder: 0
         }
     }
     
-    sortList = () => {
-        this.setState({
-            ...this.state,
-            sortedList: sortList(this.state.sortedList)
-        })
-    }
+    sortList = () => this.setState({sortedList: sortList(this.state.sortedList)})
     
     reorderList = (sourceIndex, destinationIndex) => {
         if (destinationIndex === sourceIndex) {
@@ -52,6 +42,16 @@ class DndGrid extends Component {
         this.sortList();
     }
     
+    generatedWordClick = (e, wordObject) => {
+        const { id, content } = wordObject
+        const newList = [...this.state.sortedList]
+        newList.push({id: id, order: this.state.wordOrder, content: content});
+        this.setState({
+            sortedList: sortList(newList),
+            wordOrder: this.state.wordOrder + 1
+        })
+    }
+
     render() {
         return(
             <div className="app__container__gameBoard">
@@ -61,8 +61,9 @@ class DndGrid extends Component {
                             return(
                                 <div key={word.id}
                                     className="app__container__gameBoard__generated__item"
+                                    onClick={(e) => this.generatedWordClick(e, word)}
                                 >
-                                    <div>{word.content}</div>
+                                    {word.content}
                                 </div>
                             )
                         })
