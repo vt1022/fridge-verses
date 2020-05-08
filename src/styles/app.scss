@@ -1,7 +1,7 @@
 // App.js
 .app {
     border: 1px solid red;
-    // height: 100vh;
+    height: 100vh;
 }
 
 .app__container {
@@ -83,43 +83,82 @@
         width: 100%;
     }
 
+
     &__gameBoard {
-        display: flex; 
-        // justify-content: center; 
-        height: 100%;
+        display: flex;
         width: 100%;
-
-        &__column {
+        
+        .draggable-source--is-dragging {visibility: hidden;}
+        
+        &__generated {
             width: 40%;
-            display: flex; 
-            flex-direction: column; 
-            align-items: center;
-            
-            &__dropArea {
-                // display: flex;
-                // flex-direction: column;
-                // flex-wrap: wrap;
-                padding: 4px;
-                width: 100%;
-                height: 100%;
-                background-color: #000;
+            background: $lightGrey;
 
-                &__item {
-                    @include bodyType(2rem, 400, $darkGreen);
-                    display: inline-block;
-                    user-select: none;
-                    padding: 4px 10px;
-                    border: 3px solid $darkGreen;
-                    margin: 0 4px 4px 0;
-                }
+            &__item {
+                @include bodyType(2rem, 400, $darkGreen);
+                display: inline-block;
+                user-select: none;
+                padding: 4px 10px;
+                border: 3px solid $darkGreen;
+                margin: 0 4px 4px 0;
+                background: $lightGreen;
             }
         }
-
-        &__column:nth-of-type(2) {
+        
+        &__dragbox {
             width: 60%;
 
+            &__item {
+                @include bodyType(2rem, 400, $darkGreen);
+                display: inline-block;
+                user-select: none;
+                padding: 4px 10px;
+                border: 3px solid $darkGreen;
+                margin: 0 4px 4px 0;
+                background: $offsetLightGreen;
+            }
         }
     }
+
+
+    // &__gameBoard {
+    //     display: flex; 
+    //     // justify-content: center; 
+    //     // flex-direction: column;
+    //     height: 100%;
+    //     width: 100%;
+
+    //     &__column {
+    //         width: 40%;
+    //         display: flex; 
+    //         flex-direction: column; 
+    //         align-items: center;
+            
+    //         &__dropArea {
+    //             // display: flex;
+    //             // flex-direction: column;
+    //             // flex-wrap: wrap;
+    //             padding: 4px;
+    //             width: 100%;
+    //             height: 100%;
+    //             background-color: #000;
+
+    //             &__item {
+    //                 @include bodyType(2rem, 400, $darkGreen);
+    //                 display: inline-block;
+    //                 user-select: none;
+    //                 padding: 4px 10px;
+    //                 border: 3px solid $darkGreen;
+    //                 margin: 0 4px 4px 0;
+    //             }
+    //         }
+    //     }
+
+    //     &__column:nth-of-type(2) {
+    //         width: 60%;
+
+    //     }
+    // }
 
 } // app__container
 
