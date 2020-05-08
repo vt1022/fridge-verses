@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
 import Landing from './components/Landing.js';
-import { DndProvider } from 'react-dnd'
-import Backend from 'react-dnd-html5-backend'
-import GameContainer from './components/GameContainer'
-
-import MagnetBoard from './components/MagnetBoard.js'
-
-
+import GameBoard from './components/GameBoard'
+import Gallery from './components/Gallery.js';
 import firebase from './firebase.js';
 import './styles/styles.scss';
-import Gallery from './components/Gallery.js';
 
 class App extends Component {
     constructor() {
@@ -67,6 +61,12 @@ class App extends Component {
                         >
                             Project Name
                         </li>
+                        {/* testing purpose: */}
+                        <li className="nav__link"
+                            onClick={() => this.changePage('gameBoard')}
+                        >
+                            Gameboard testing
+                        </li>
                         <li className="nav__link" 
                             onClick={() => this.changePage('gallery')}
                         >
@@ -79,15 +79,13 @@ class App extends Component {
                         currentPage === 'landing' &&
                             <Landing  setGeneratedWords={this.setGeneratedWords} /> 
                         || 
+                        currentPage === 'gameBoard' &&
+                            <GameBoard />
+                        || 
                         currentPage === 'gallery' &&
                             <Gallery changePage={this.changePage}/>
                     }
-                {/* THIS IS THE GAME BOARD FOR TESTING, IM NOT SURE WHERE TO PUT IT */}
-                    <section>
-                        <DndProvider backend={Backend}>
-                        <GameContainer />
-                        </DndProvider>
-                    </section>
+                
                 </div>
                 <footer className="app__footer">
                     <div>
