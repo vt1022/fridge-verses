@@ -8,7 +8,7 @@ const sortList = (list) => {
 const ListElement = ({ item: { content } }) => <div className="app__container__gameBoard__dragbox__item">{content}</div>
 
 class DndGrid extends Component {
-    constructor(props) {
+    constructor() {
         super();
         this.state = {
             sortedList: [],
@@ -45,6 +45,7 @@ class DndGrid extends Component {
     generatedWordClick = (e, wordObject) => {
         const { id, content } = wordObject
         const newList = [...this.state.sortedList]
+        // if statement to filter out words already used
         newList.push({id: id, order: this.state.wordOrder, content: content});
         this.setState({
             sortedList: sortList(newList),
@@ -57,7 +58,7 @@ class DndGrid extends Component {
             <div className="app__container__gameBoard">
                 <div className="app__container__gameBoard__generated">
                     {
-                        this.props.generatedWordsTest.map((word) => {
+                        this.props.generatedWords.map((word) => {
                             return(
                                 <div key={word.id}
                                     className="app__container__gameBoard__generated__item"
@@ -77,6 +78,8 @@ class DndGrid extends Component {
                         render={item => <ListElement item={item} />}
                         onDragEnd={this.reorderList}
                     />
+                    <button>Clear</button>
+                    <button>Save</button>
                 </div>
             </div>
         )

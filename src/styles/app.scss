@@ -86,26 +86,10 @@
 
     &__gameBoard {
         display: flex;
-        // flex-direction: column;
         width: 100%;
-        // span {
-        //     display: inline-block;
-        //     margin: 10px;
-        //     padding: 30px 60px;
-        //     color: white;
-        //     font-size: 40px;
-        //     border-radius: 20px;
-        //     text-shadow: 0 0 20px rgba(0,0,0,0.3);
-        // }
         
-        .draggable-source--is-dragging {
-            visibility: hidden;
-        }
+        .draggable-source--is-dragging {visibility: hidden;}
         
-        .draggable-clone--is-dragging {
-            background: #000;
-        }
-
         &__generated {
             width: 40%;
             background: $lightGrey;
@@ -120,10 +104,10 @@
                 background: $lightGreen;
             }
         }
-
+        
         &__dragbox {
             width: 60%;
-        
+
             &__item {
                 @include bodyType(2rem, 400, $darkGreen);
                 display: inline-block;

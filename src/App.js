@@ -121,7 +121,7 @@ class App extends Component {
                             <GameBoard />
                         || 
                         currentPage === 'dndGrid' &&
-                            <DndGrid generatedWordsTest={this.state.generatedWordsTest}/>
+                            <DndGrid generatedWordsTest={this.state.generatedWordsTest} generatedWords={this.state.generatedWords}/>
                         || 
                         currentPage === 'gallery' &&
                             <Gallery changePage={this.changePage}/>

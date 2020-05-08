@@ -75,7 +75,7 @@ export class Search extends Component {
         .then((res) => {
             
             const generatedWords = res.data.map((value) => {
-                return {word: value.word, id: JSON.stringify(value.score)}
+                return {content: value.word, id: JSON.stringify(value.score)}
             })
             
             this.props.setGeneratedWords(generatedWords)
