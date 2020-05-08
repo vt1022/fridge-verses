@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import TextField from '@material-ui/core/TextField';
+
 
 class Modal extends Component {
     constructor() {
@@ -51,10 +53,34 @@ class Modal extends Component {
                         <img src="./assets/illustrations--save.png" alt="illustration of a person sharing ideas to the digital cloud"/>
                         <h2>Share your poem</h2>
                         <form action="" onSubmit={this.handleSubmit}>
-                            <label htmlFor="poemTitle">Title:</label>
-                            <input type="text" name="poemTitle" id="poemTitle"/>
-                            <label htmlFor="poemAuthor">Author:</label>
-                            <input type="text" name="poemAuthor" id="poemAuthor"/>
+
+                            
+                        {/* <form className={classes.root} noValidate autoComplete="off"> */}
+
+                            <TextField 
+                            variant="outlined"
+                            label="Title"
+                            placeholder=""
+                            margin="normal"
+                            helperText="Name your masterpiece"
+                            margin="normal"
+                            />
+
+                            <TextField 
+                            variant="outlined"
+                            label="Author"
+                            placeholder=""
+                            margin="normal"
+                            helperText="sign your masterpiece"
+                            margin="normal"
+                            />
+
+                            {/* <label htmlFor="poemTitle">Title:</label>
+                            <input type="text" name="poemTitle" id="poemTitle"/> */}
+
+                            {/* <label htmlFor="poemAuthor">Author:</label>
+                            <input type="text" name="poemAuthor" id="poemAuthor"/> */}
+                            
                             {/* work on add to gallery function */}
                             <button onClick={this.hideModal}>Add to Gallery</button>
                             {/* work on share function */}
@@ -66,4 +92,4 @@ class Modal extends Component {
     }
 }
 
-export default Modal
+export default Modal;

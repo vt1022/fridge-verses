@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import Landing from './components/Landing.js';
-import Backend from 'react-dnd-html5-backend'
 import GameBoard from './components/GameBoard'
 import Gallery from './components/Gallery.js';
-import GameContainer from './components/GameContainer'
-import MagnetBoard from './components/MagnetBoard.js'
-import DraggableBoard from './components/DraggableBoard.js'
 import DndGrid from './components/DndGrid.js'
 
-import { DndProvider } from 'react-dnd'
 import firebase from './firebase.js';
 import './styles/styles.scss';
 
@@ -120,7 +115,7 @@ class App extends Component {
                 <div className="app__container">
                     {
                         currentPage === 'landing' &&
-                            <Landing /> 
+                            <Landing  setGeneratedWords={this.setGeneratedWords} /> 
                         || 
                         currentPage === 'gameBoard' &&
                             <GameBoard />
@@ -131,12 +126,7 @@ class App extends Component {
                         currentPage === 'gallery' &&
                             <Gallery changePage={this.changePage}/>
                     }
-                {/* THIS IS THE GAME BOARD FOR TESTING, IM NOT SURE WHERE TO PUT IT */}
-                    {/* <section>
-                        <DndProvider backend={Backend}>
-                        <GameContainer />
-                        </DndProvider>
-                    </section> */}
+                
                 </div>
                 <footer className="app__footer">
                     <div>
