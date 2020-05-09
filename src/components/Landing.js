@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Search from './Search.js'
 import imgPath from '../assets/illustrations--landing.png'
 
+
 class Landing extends Component {
     constructor() {
         super()

@@ -91,12 +91,14 @@ export class Search extends Component {
                     <InputAutocomplete onTextChange={this.onTextChange} autoCompleteWords={this.state.autoCompleteWords} onAutoCompleteItemSelected={this.onAutoCompleteItemSelected} 
                     userInput = {userInput} />
                     <button className="main-button" type="submit">
-                        Get Started ➡
+                        Get Started
+                        <i class="far fa-arrow-right"></i>
                     </button>
                 </form>
                 <button className="secondary-button" 
                 onClick={this.getRandomWord}>
-                    Generate Word ⚡
+                    Generate Word
+                    <i class="far fa-random"></i>
                 </button>
             </>
         )

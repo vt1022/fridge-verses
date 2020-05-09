@@ -4,6 +4,7 @@ import GameBoard from './components/GameBoard'
 import Gallery from './components/Gallery.js';
 
 import './styles/styles.scss';
+
 /******** set poem max length at GameBoard.js ln 75 ********/
 class App extends Component {
     constructor() {
@@ -55,7 +56,6 @@ class App extends Component {
                 </div>
                 <footer className="app__footer">
                     <div>
-
                     </div>
                 </footer>
             </div>
