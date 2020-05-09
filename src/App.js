@@ -3,7 +3,6 @@ import Landing from './components/Landing.js';
 import GameBoard from './components/GameBoard'
 import Gallery from './components/Gallery.js';
 
-import firebase from './firebase.js';
 import './styles/styles.scss';
 
 class App extends Component {
