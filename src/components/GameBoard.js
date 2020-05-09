@@ -15,13 +15,12 @@ class GameBoard extends Component {
             modal: true,
             modalToShow: 'start',
             sortedList: [],
-            wordOrder: 0
+            wordOrder: 0,
         }
         
     }
 
     showModal = (modalShowBoolean) => this.setState({modal: modalShowBoolean})
-
     sortList = () => this.setState({sortedList: sortList(this.state.sortedList)})
     
     reorderList = (sourceIndex, destinationIndex) => {
@@ -49,17 +48,18 @@ class GameBoard extends Component {
     }
     
     generatedWordClick = (wordObject) => {
+        const { sortedList, wordOrder } = this.state
         const { id, content } = wordObject
         // filter word out if it is already in sortedList
-        const newList = [...this.state.sortedList].filter((item) => item.content != wordObject.content)
+        const newList = [...sortedList].filter((item) => item.content != wordObject.content)
         newList.push({
             id: id, 
-            order: this.state.wordOrder, 
+            order: wordOrder, 
             content: content
         });
         this.setState({
             sortedList: sortList(newList),
-            wordOrder: this.state.wordOrder + 1
+            wordOrder: wordOrder + 1
         })
         // disable buttons after clicked
         document.getElementById(wordObject.id).setAttribute("disabled", true)
@@ -67,8 +67,19 @@ class GameBoard extends Component {
     }
 
     saveToGalleryClick = () => {
-        this.showModal(true)
-        this.setState({modalToShow: "share"})
+        const { sortedList } = this.state
+        const maxWordsInPoem = 20 // placeholder number for now
+        if (sortedList.length <= maxWordsInPoem && sortedList.length > 5) {
+            this.setState({modalToShow: "share"})
+            this.showModal(true)
+        // 1st level error handling:
+        } else if (this.state.sortedList.length < 6) {
+            alert("You need more than 5 words in your poem.")
+        } else if (sortedList.length > maxWordsInPoem ) {
+            alert(`Your poem is too long! Nothing longer than ${maxWordsInPoem} please.`)
+        } else {
+            alert("Safi, please stop bringing my shit again.")
+        }
     }
 
     clearPoem = () => {
@@ -76,10 +87,16 @@ class GameBoard extends Component {
             sortedList: [],
             wordOrder: 0
         })
+        // remove disabled and disabled style from words: 
+        const words = document.getElementsByClassName("app__container__gameBoard__generated__item")
+        Array.from(words).forEach((word) => {
+            word.removeAttribute("disabled")
+            word.classList.remove("disabled")
+        })
     }
 
     render() {
-        const { sortedList, modal, modalToShow } = this.state
+        const { sortedList, modal, modalToShow, wordOrder } = this.state
         return(
             <>
                 <Modal show={modal} showModal={this.showModal} 
@@ -87,6 +104,7 @@ class GameBoard extends Component {
                 sortedList={sortedList} />
                 <div className="app__container__gameBoard">
                     <div className="app__container__gameBoard__generated">
+                        <h2>Themed words:</h2>
                         {
                             this.props.generatedWords.map((word) => {
                                 return(
@@ -100,6 +118,8 @@ class GameBoard extends Component {
                         }
                     </div>
                     <div className="app__container__gameBoard__dragbox">
+                        <h2>Create a 6 - 20 words poem:</h2>
+                        <p>{wordOrder} / 20</p>
                         <ListManager
                         items={sortedList}
                         direction="horizontal"

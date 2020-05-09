@@ -37,11 +37,11 @@ class Modal extends Component {
         this.setState({hide: false})
     }
     
-    savePoem = () => {
+    savePoemClick = () => {
         const { sortedList } = this.props // destructuring for clean code
         const { inputTitle, inputAuthor } = this.state
         const maxWordsInPoem = 20 // placeholder number for now
-        if (sortedList.length <= maxWordsInPoem && sortedList.length > 2) {
+        if (sortedList.length <= maxWordsInPoem && sortedList.length > 5) {
             const dbRef = firebase.database().ref()
             const dataObjToFirebase = {
                 title: inputTitle,
@@ -49,12 +49,18 @@ class Modal extends Component {
                 poem: sortedList
             }
             dbRef.push(dataObjToFirebase)
-        // error handling:
-        } else if (sortedList.length < 3) {
-            alert('You need more than 2 words in your poem.')
+        // 2nd level error handling:
+        } else if (this.state.sortedList.length < 6) {
+            alert("You need more than 5 words in your poem.")
         } else if (sortedList.length > maxWordsInPoem ) {
             alert(`Your poem is too long! Nothing longer than ${maxWordsInPoem} please.`)
+        } else {
+            alert("Safi, please stop bringing my shit again.")
         }
+        this.hideModal()
+    }
+
+    shareClick = () => {
 
         this.hideModal()
     }
@@ -85,7 +91,6 @@ class Modal extends Component {
                         <img src={imgIllustrations} alt="illustration of a person sharing ideas to the digital cloud"/>
                         <h2>Share your poem</h2>
                         <form className="share_inputs" action="" onSubmit={this.handleSubmit}>
-
                             <MuiThemeProvider theme={theme}>
                                 <TextField 
                                 className="share_title"
@@ -100,7 +105,6 @@ class Modal extends Component {
                                 value={inputTitle}
                                 onChange={this.bindInputTitle}
                                 />
-
                                 <TextField 
                                 className="share_author"
                                 variant="outlined"
@@ -116,21 +120,14 @@ class Modal extends Component {
                                 onChange={this.bindInputAuthor}
                                 />
                             </MuiThemeProvider>
-
-                            {/* <label htmlFor="poemTitle">Title:</label>
-                            <input type="text" name="poemTitle" id="poemTitle"/> */}
-
-                            {/* <label htmlFor="poemAuthor">Author:</label>
-                            <input type="text" name="poemAuthor" id="poemAuthor"/> */}
-                            
-                            {/* work on add to gallery function */}
-                            <button 
-                            className="gallery_btn"
-                            onClick={this.savePoem}>Submit</button>
-                            {/* work on share function */}
-                            <button 
-                            className="share_btn"
-                            onClick={this.hideModal}>Share</button>
+                            <button className="gallery_btn"
+                            onClick={this.savePoemClick}>
+                                Submit
+                            </button>
+                            <button className="share_btn"
+                            onClick={this.shareClick}>
+                                Share
+                            </button>
                         </form>
                     </div>
                 }
