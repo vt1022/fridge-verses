@@ -87,7 +87,6 @@ export class Search extends Component {
         const { userInput } = this.state
         return (
             <>
-                <Modal show={modal} showModal={this.showModal} whichModal="share" />
                 <form action="" onSubmit={this.handleSubmit}>
                     <InputAutocomplete onTextChange={this.onTextChange} autoCompleteWords={this.state.autoCompleteWords} onAutoCompleteItemSelected={this.onAutoCompleteItemSelected} 
                     userInput = {userInput} />
