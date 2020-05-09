@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Modal from './Modal.js'
-
 import { ListManager } from 'react-beautiful-dnd-grid';
 import firebase from './firebase.js';
 

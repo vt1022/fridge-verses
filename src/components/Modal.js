@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import TextField from '@material-ui/core/TextField';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import imgInstruct from '../assets/illustrations--instruct.png'
@@ -67,7 +66,6 @@ class Modal extends Component {
                             label="Title"
                             placeholder=""
                             margin="normal"
-                            helperText="Name your masterpiece"
                             margin="normal"
                             size="small"
                             id="poemTitle"
@@ -80,7 +78,6 @@ class Modal extends Component {
                             placeholder=""
                             margin="normal"
                             borderColor="primary"
-                            helperText="sign your masterpiece"
                             margin="normal"
                             size="small"
                             id="poemAuthor"
