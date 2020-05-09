@@ -96,7 +96,7 @@ export class Search extends Component {
                 <Modal show={modal} showModal={this.showModal} whichModal="start" />
                 <form action="" onSubmit={this.handleSubmit}>
                     <InputAutocomplete onTextChange={this.onTextChange} autoCompleteWords={this.state.autoCompleteWords} onAutoCompleteItemSelected={this.onAutoCompleteItemSelected} 
-                    userInput = {this.state.userInput }/>
+                    userInput = {this.state.userInput } />
                     <button className="main-button" type="submit">Get Started ➡</button>
                 </form>
                 <button className="secondary-button" onClick={this.getRandomWord}>Generate Word ⚡</button>

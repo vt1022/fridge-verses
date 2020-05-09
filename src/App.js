@@ -47,17 +47,15 @@ class App extends Component {
                     </ul>
                 </nav>
                 <div className="app__container">
-                    {
-                        currentPage === 'landing' &&
-                            <Landing setGeneratedWords={this.setGeneratedWords} /> 
-                        || 
-                        currentPage === 'gameBoard' &&
-                            <GameBoard generatedWords={this.state.generatedWords} />
-                        || 
-                        currentPage === 'gallery' &&
-                            <Gallery changePage={this.changePage}/>
+                    {currentPage === 'landing' &&
+                        <Landing setGeneratedWords={this.setGeneratedWords} /> 
                     }
-                
+                    {currentPage === 'gameBoard' &&
+                        <GameBoard generatedWords={this.state.generatedWords} />
+                    }
+                    {currentPage === 'gallery' &&
+                        <Gallery changePage={this.changePage} />
+                    }
                 </div>
                 <footer className="app__footer">
                     <div>
