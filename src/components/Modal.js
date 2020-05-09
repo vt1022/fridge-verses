@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import TextField from '@material-ui/core/TextField';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import imgInstruct from '../assets/illustrations--instruct.png'
@@ -116,12 +115,6 @@ class Modal extends Component {
                                 onChange={this.bindInputAuthor}
                                 />
                             </MuiThemeProvider>
-
-                            {/* <label htmlFor="poemTitle">Title:</label>
-                            <input type="text" name="poemTitle" id="poemTitle"/> */}
-
-                            {/* <label htmlFor="poemAuthor">Author:</label>
-                            <input type="text" name="poemAuthor" id="poemAuthor"/> */}
                             
                             {/* work on add to gallery function */}
                             <button 
