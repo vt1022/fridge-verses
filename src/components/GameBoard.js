@@ -1,22 +1,26 @@
 import React, { Component } from 'react';
+import Modal from './Modal.js'
 
 import { ListManager } from 'react-beautiful-dnd-grid';
 import firebase from './firebase.js';
 
-const sortList = (list) => {
-    return list.slice().sort((first, second) => first.order - second.order);
-}
+const sortList = (list) => list.slice().sort((first, second) => first.order - second.order)
 
-const ListElement = ({ item: { content } }) => <div className="app__container__gameBoard__dragbox__item">{content}</div>
+const ListElement = ({ item: { content } }) => 
+    <div className="app__container__gameBoard__dragbox__item">{content}</div>
 
 class GameBoard extends Component {
     constructor() {
         super();
         this.state = {
+            modal: true,
             sortedList: [],
             wordOrder: 0
         }
+        
     }
+
+    showModal = (modalShowBoolean) => this.setState({modal: modalShowBoolean})
 
     sortList = () => this.setState({sortedList: sortList(this.state.sortedList)})
     
@@ -84,34 +88,37 @@ class GameBoard extends Component {
     }
 
     render() {
+        const { sortedList, modal } = this.state
         return(
-            <div className="app__container__gameBoard">
-                <div className="app__container__gameBoard__generated">
-                    {
-                        this.props.generatedWords.map((word) => {
-                            return(
-                                <button key={word.id} id={word.id}
+            <>
+                <Modal show={modal} showModal={this.showModal} 
+                whichModal="start" changePage={this.props.changePage} />
+                <div className="app__container__gameBoard">
+                    <div className="app__container__gameBoard__generated">
+                        {
+                            this.props.generatedWords.map((word) => {
+                                return(
+                                    <button key={word.id} id={word.id}
                                     className="app__container__gameBoard__generated__item"
-                                    onClick={() => this.generatedWordClick(word)}
-                                >
-                                    {word.content}
-                                </button>
-                            )
-                        })
-                    }
-                </div>
-                <div className="app__container__gameBoard__dragbox">
-                    <ListManager
-                        items={this.state.sortedList}
+                                    onClick={() => this.generatedWordClick(word)}>
+                                        {word.content}
+                                    </button>
+                                )
+                            })
+                        }
+                    </div>
+                    <div className="app__container__gameBoard__dragbox">
+                        <ListManager
+                        items={sortedList}
                         direction="horizontal"
                         maxItems={5}
-                        render={item => <ListElement item={item} />}
-                        onDragEnd={this.reorderList}
-                    />
-                    <button onClick={this.clearPoem}>Clear</button>
-                    <button onClick={this.savePoem}>Save to Gallery</button>
+                        render={(item) => <ListElement item={item} />}
+                        onDragEnd={this.reorderList} />
+                        <button onClick={this.clearPoem}>Clear</button>
+                        <button onClick={this.savePoem}>Save to Gallery</button>
+                    </div>
                 </div>
-            </div>
+            </>
         )
     }
 }

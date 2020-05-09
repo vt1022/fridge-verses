@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import TextField from '@material-ui/core/TextField';
 
 
@@ -12,7 +13,7 @@ class Modal extends Component {
 
     animationEnd = (e) => {
         if (this.state.hide) {
-        this.props.showModal(e, false)
+        this.props.showModal(false)
         }
         this.setState({hide: false})
     }
@@ -56,7 +57,6 @@ class Modal extends Component {
                             placeholder=""
                             margin="normal"
                             helperText="Name your masterpiece"
-                            margin="normal"
                             />
 
                             <TextField 
@@ -65,7 +65,6 @@ class Modal extends Component {
                             placeholder=""
                             margin="normal"
                             helperText="sign your masterpiece"
-                            margin="normal"
                             />
 
                             {/* <label htmlFor="poemTitle">Title:</label>
