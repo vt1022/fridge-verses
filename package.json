@@ -1,4 +1,5 @@
 {
+  "homepage": "https://zevg-project6.github.io/Refridgeration-Versification",
   "name": "refridgeration-versification",
   "version": "0.1.0",
   "private": true,
@@ -12,6 +13,7 @@
     "axios": "^0.19.2",
     "badwords": "^1.0.0",
     "firebase": "^7.14.2",
+    "gh-pages": "^2.2.0",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-beautiful-dnd": "^13.0.0",
@@ -25,7 +27,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

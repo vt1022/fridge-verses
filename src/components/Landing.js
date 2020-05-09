@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Search from './Search.js'
+import imgPath from '../assets/illustrations--landing.png'
 
 class Landing extends Component {
     constructor() {
@@ -21,7 +22,7 @@ class Landing extends Component {
                     </div>
                 </div>
                 <div className="app__container__rightLanding">
-                    <img src="./assets/illustrations--landing.png" alt="illustration of a person moving one post-it from a board of 18 other post-its"/>
+                    <img src={imgPath} alt="illustration of a person moving one post-it from a board of 18 other post-its"/>
                 </div>
             </>
         )

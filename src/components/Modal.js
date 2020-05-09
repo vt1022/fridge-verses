@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 
 import TextField from '@material-ui/core/TextField';
 
+import imgInstruct from '../assets/illustrations--instruct.png'
+import imgIllustrations from '../assets/illustrations--save.png'
+
 
 class Modal extends Component {
     constructor() {
@@ -35,7 +38,7 @@ class Modal extends Component {
                 {   // check prop to see which modal to show:
                     whichModal === "start" && // START modal: 
                     <div className="app__container__modal__modalInner modalStart">
-                        <img src="./assets/illustrations--instruct.png" alt="illustration of a person deep in thought"/>
+                        <img src={imgInstruct} alt="illustration of a person deep in thought"/>
                         <h2>How it works</h2>
                         <p>We've generated a bunch of words for you on the left. Simply drag and drop them into your canvas on the right!</p>
                         <button onClick={this.hideModal}>Start <span>🧲</span></button>
@@ -44,7 +47,7 @@ class Modal extends Component {
                 {   // check prop to see which modal to show:
                     whichModal === "share" && // SHARE modal: 
                     <div className="app__container__modal__modalInner modalShare">
-                        <img src="./assets/illustrations--save.png" alt="illustration of a person sharing ideas to the digital cloud"/>
+                        <img src={imgIllustrations} alt="illustration of a person sharing ideas to the digital cloud"/>
                         <h2>Share your poem</h2>
                         <form action="" onSubmit={this.handleSubmit}>
 
