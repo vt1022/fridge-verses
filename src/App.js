@@ -56,6 +56,7 @@ class App extends Component {
                 </div>
                 <footer className="app__footer">
                     <div>
+                        <i class="fab fa-github"></i>
                     </div>
                 </footer>
             </div>
