@@ -34,14 +34,30 @@ class App extends Component {
                             Fridge Verses
                         </li>
                         {/* testing purpose: */}
-                        <li className="nav__link"
+                        {/* <li className="nav__link nav__link--dessktop"
                         onClick={() => this.changePage('gameBoard')}>
                             game test
-                        </li>
-                        <li className="nav__link" 
+                        </li> */}
+                        <li className="nav__link nav__link--desktop" 
                         onClick={() => this.changePage('gallery')}>
                             Gallery
                         </li>
+
+                        <li className="nav__link nav__link--mobile">
+
+                            <input type="checkbox" id="menu-trigger"/>
+
+                            <label className="hamburger" for="menu-trigger">
+                                <div className="hamburger__line hamburger__line--top"></div>
+                                <div className="hamburger__line hamburger__line--bottom"></div>
+                            </label>
+
+                            <div className="nav__mobile">
+
+                            </div>
+
+                        </li>
+
                     </ul>
                 </nav>
                 <div className="app__container">
