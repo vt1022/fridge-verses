@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import InputAutocomplete from './InputAutocomplete.js' 
-import Modal from './Modal.js'
 import axios from 'axios'
 import TextField from '@material-ui/core/TextField';
 
@@ -13,7 +12,6 @@ export class Search extends Component {
         super()
         this.state = {
             userInput: "",
-            modal: false,
             autoCompleteWords: [],
             randomWords: ["Kitten", "Tacos", "Hockey", "Monkey", "Muffin"]
         }
@@ -64,7 +62,6 @@ export class Search extends Component {
     
     handleSubmit = (event) => {
         event.preventDefault();
-        this.showModal(event, true)
 
         axios({
             method: 'GET',
@@ -82,26 +79,26 @@ export class Search extends Component {
             
             this.props.setGeneratedWords(generatedWords)
         })
-    }    
 
-    showModal = (e, modalShow) => {
-        e.preventDefault()
-        this.setState({modal: modalShow})
-        // load next page here also.
-    }
+        this.props.changePage('gameBoard')
+    }    
 
     render() {
         const { userInput } = this.state
-        const { modal } = this.state
         return (
             <>
                 <Modal show={modal} showModal={this.showModal} whichModal="share" />
                 <form action="" onSubmit={this.handleSubmit}>
                     <InputAutocomplete onTextChange={this.onTextChange} autoCompleteWords={this.state.autoCompleteWords} onAutoCompleteItemSelected={this.onAutoCompleteItemSelected} 
-                    userInput = {this.state.userInput }/>
-                    <button className="main-button" type="submit">Get Started ➡</button>
+                    userInput = {userInput} />
+                    <button className="main-button" type="submit">
+                        Get Started ➡
+                    </button>
                 </form>
-                <button className="secondary-button" onClick={this.getRandomWord}>Generate Word ⚡</button>
+                <button className="secondary-button" 
+                onClick={this.getRandomWord}>
+                    Generate Word ⚡
+                </button>
             </>
         )
     }
