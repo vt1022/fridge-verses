@@ -84,12 +84,11 @@ export class Search extends Component {
 
     render() {
         const { userInput } = this.state
-        const { modal } = this.state
         return (
             <>
                 <form action="" onSubmit={this.handleSubmit}>
                     <InputAutocomplete onTextChange={this.onTextChange} autoCompleteWords={this.state.autoCompleteWords} onAutoCompleteItemSelected={this.onAutoCompleteItemSelected} 
-                    userInput = {this.state.userInput } />
+                    userInput = {userInput} />
                     <button className="main-button" type="submit">
                         Get Started ➡
                     </button>
