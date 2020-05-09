@@ -126,7 +126,7 @@ class Modal extends Component {
                             {/* work on add to gallery function */}
                             <button 
                             className="gallery_btn"
-                            onClick={this.savePoem}>Add to Gallery</button>
+                            onClick={this.savePoem}>Submit</button>
                             {/* work on share function */}
                             <button 
                             className="share_btn"
