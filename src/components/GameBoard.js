@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Modal from './Modal.js'
 
 import { ListManager } from 'react-beautiful-dnd-grid';
-import firebase from './firebase.js';
 
 const sortList = (list) => list.slice().sort((first, second) => first.order - second.order)
 
@@ -14,6 +13,7 @@ class GameBoard extends Component {
         super();
         this.state = {
             modal: true,
+            modalToShow: 'start',
             sortedList: [],
             wordOrder: 0
         }
@@ -66,6 +66,11 @@ class GameBoard extends Component {
         document.getElementById(wordObject.id).classList.add("disabled")
     }
 
+    saveToGalleryClick = () => {
+        this.showModal(true)
+        this.setState({modalToShow: "share"})
+    }
+
     clearPoem = () => {
         this.setState({
             sortedList: [],
@@ -73,26 +78,13 @@ class GameBoard extends Component {
         })
     }
 
-    savePoem = () => {
-        const { sortedList } = this.state // destructuring state for clean code
-        const maxWordsInPoem = 10 // placeholder number for now
-        if (sortedList.length <= maxWordsInPoem && sortedList.length > 2) {
-            const dbRef = firebase.database().ref()
-            dbRef.push(sortedList)
-        // error handling:
-        } else if (sortedList.length < 3) {
-            alert('You need more than 2 words in your poem.')
-        } else if (sortedList.length > maxWordsInPoem ) {
-            alert(`Your poem is too long! Nothing longer than ${maxWordsInPoem} please.`)
-        }
-    }
-
     render() {
-        const { sortedList, modal } = this.state
+        const { sortedList, modal, modalToShow } = this.state
         return(
             <>
                 <Modal show={modal} showModal={this.showModal} 
-                whichModal="start" changePage={this.props.changePage} />
+                whichModal={modalToShow} changePage={this.props.changePage} 
+                sortedList={sortedList} />
                 <div className="app__container__gameBoard">
                     <div className="app__container__gameBoard__generated">
                         {
@@ -115,7 +107,7 @@ class GameBoard extends Component {
                         render={(item) => <ListElement item={item} />}
                         onDragEnd={this.reorderList} />
                         <button onClick={this.clearPoem}>Clear</button>
-                        <button onClick={this.savePoem}>Save to Gallery</button>
+                        <button onClick={this.saveToGalleryClick}>Save to Gallery</button>
                     </div>
                 </div>
             </>
