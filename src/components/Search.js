@@ -15,6 +15,7 @@ export class Search extends Component {
             userInput: "",
             modal: false,
             autoCompleteWords: [],
+            randomWords: ["Kitten", "Tacos", "Hockey", "Monkey", "Muffin"]
         }
     }
 
@@ -55,6 +56,11 @@ export class Search extends Component {
             })
         }
     }
+
+    getRandomWord = () => {
+        let randomWord = this.state.randomWords[Math.floor(Math.random() * this.state.randomWords.length)]
+        this.setState({userInput:randomWord})
+    }    
     
     handleSubmit = (event) => {
         event.preventDefault();
@@ -71,7 +77,7 @@ export class Search extends Component {
         .then((res) => {
             
             const generatedWords = res.data.map((value) => {
-                return {word: value.word, id: JSON.stringify(value.score)}
+                return {content: value.word, id: JSON.stringify(value.score)}
             })
             
             this.props.setGeneratedWords(generatedWords)
@@ -92,10 +98,10 @@ export class Search extends Component {
                 <Modal show={modal} showModal={this.showModal} whichModal="share" />
                 <form action="" onSubmit={this.handleSubmit}>
                     <InputAutocomplete onTextChange={this.onTextChange} autoCompleteWords={this.state.autoCompleteWords} onAutoCompleteItemSelected={this.onAutoCompleteItemSelected} 
-                    />
+                    userInput = {this.state.userInput }/>
                     <button className="main-button" type="submit">Get Started ➡</button>
                 </form>
-                <button className="secondary-button">Generate Word ⚡</button>
+                <button className="secondary-button" onClick={this.getRandomWord}>Generate Word ⚡</button>
             </>
         )
     }

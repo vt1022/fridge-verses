@@ -48,7 +48,7 @@ const columnsFromBackend =
 
 const onDragEnd = (result, columns, setColumns) => {
     if(!result.destination) return;
-        const { source, destination } = result;
+    const { source, destination } = result;
     if(source.droppableId !== destination.droppableId) {
         const sourceColumn = columns[source.droppableId];
         const destColumn = columns[destination.droppableId]
@@ -99,29 +99,29 @@ function GameBoard() {
                                             {...provided.droppableProps}
                                             ref={provided.innerRef}
                                             style={{
-                                            background: snapshot.isDraggingOver ? '#FFFEB9' : '#E6E7E9',
+                                                background: snapshot.isDraggingOver ? '#FFFEB9' : '#E6E7E9',
                                             }}
                                         >
                                             {column.items.map((item, index) => {
-                                            return (
-                                                <Draggable key={item.id} draggableId={item.id} index={index}>
-                                                {(provided, snapshot) => {
-                                                    return (
-                                                        <div className="app__container__gameBoard__column__dropArea__item"
-                                                            ref={provided.innerRef}
-                                                            {...provided.draggableProps}
-                                                            {...provided.dragHandleProps}
-                                                            style={{
-                                                            backgroundColor: snapshot.isDragging ? '#E4FFE3' : '#85FB83',
-                                                            ...provided.draggableProps.style
-                                                            }}
-                                                        >
-                                                            {item.content}
-                                                        </div>
-                                                    )
-                                                }}
-                                                </Draggable>
-                                            );
+                                                return (
+                                                    <Draggable key={item.id} draggableId={item.id} index={index}>
+                                                    {(provided, snapshot) => {
+                                                        return (
+                                                            <div className="app__container__gameBoard__column__dropArea__item"
+                                                                ref={provided.innerRef}
+                                                                {...provided.draggableProps}
+                                                                {...provided.dragHandleProps}
+                                                                style={{
+                                                                    backgroundColor: snapshot.isDragging ? '#E4FFE3' : '#85FB83',
+                                                                    ...provided.draggableProps.style
+                                                                }}
+                                                            >
+                                                                {item.content}
+                                                            </div>
+                                                        )
+                                                    }}
+                                                    </Draggable>
+                                                );
                                             })}
                                             {provided.placeholder}
                                         </div>
