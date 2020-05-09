@@ -1,140 +1,120 @@
-import React, { useState } from 'react';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import React, { Component } from 'react';
 
-const itemsFromBackend = [
-    {id: '123', content: 'a'},
-    {id: '124', content: 'an'},
-    {id: '125', content: 'the'},
-    {id: '126', content: 'that'},
-    {id: '127', content: 'this'},
-    {id: '128', content: 'those'},
-    {id: '129', content: 'these'},
-    {id: '120', content: 'my'},
-    {id: '131', content: 'your'},
-    {id: '132', content: 'their'},
-    {id: '133', content: 'our'},
-    {id: '134', content: 'ours'},
-    {id: '135', content: 'whose'},
-    {id: '136', content: 'his'},
-    {id: '137', content: 'hers'},
-    {id: '138', content: 'its'},
-    {id: '139', content: 'which'},
-    {id: '130', content: 'some'},
-    {id: '141', content: 'both'},
-    {id: '142', content: 'most'},
-    {id: '143', content: 'many'},
-    {id: '144', content: 'a few'},
-    {id: '145', content: 'a lot of'},
-    {id: '146', content: 'any'},
-    {id: '147', content: 'much'},
-    {id: '148', content: 'a little'},
-    {id: '149', content: 'enough'},
-    {id: '140', content: 'several'},
-    {id: '151', content: 'none'},
-    {id: '152', content: 'all'},
-]
+import { ListManager } from 'react-beautiful-dnd-grid';
+import firebase from 'firebase';
 
-const columnsFromBackend = 
-    {
-        '202': {
-            name: 'generated words',
-            items: itemsFromBackend,
-        },
-        '203': {
-            name: 'sandbox',
-            items: [],
-        },
-    };
+const sortList = (list) => {
+    return list.slice().sort((first, second) => first.order - second.order);
+}
 
-const onDragEnd = (result, columns, setColumns) => {
-    if(!result.destination) return;
-    const { source, destination } = result;
-    if(source.droppableId !== destination.droppableId) {
-        const sourceColumn = columns[source.droppableId];
-        const destColumn = columns[destination.droppableId]
-        const sourceItems = [...sourceColumn.items];
-        const destItems = [...destColumn.items]; 
-        const [removed] = sourceItems.splice(source.index, 1);
-        destItems.splice(destination.index, 0, removed);
-        setColumns({
-            ...columns,
-            [source.droppableId]: {
-                ...sourceColumn,
-                items: sourceItems
-            },
-            [destination.droppableId]: {
-                ...destColumn,
-                items: destItems
-            }
+const ListElement = ({ item: { content } }) => <div className="app__container__gameBoard__dragbox__item">{content}</div>
+
+class GameBoard extends Component {
+    constructor() {
+        super();
+        this.state = {
+            sortedList: [],
+            wordOrder: 0
+        }
+    }
+
+    sortList = () => this.setState({sortedList: sortList(this.state.sortedList)})
+    
+    reorderList = (sourceIndex, destinationIndex) => {
+        if (destinationIndex === sourceIndex) {
+            return;
+        }
+        const list = this.state.sortedList;
+        if (destinationIndex === 0) {
+            list[sourceIndex].order = list[0].order - 1;
+            this.sortList();
+            return;
+        }
+        if (destinationIndex === list.length - 1) {
+            list[sourceIndex].order = list[list.length - 1].order + 1;
+            this.sortList();
+            return;
+        }
+        if (destinationIndex < sourceIndex) {
+            list[sourceIndex].order = (list[destinationIndex].order + list[destinationIndex - 1].order) / 2;
+            this.sortList();
+            return;
+        }
+        list[sourceIndex].order = (list[destinationIndex].order + list[destinationIndex + 1].order) / 2;
+        this.sortList();
+    }
+    
+    generatedWordClick = (wordObject) => {
+        const { id, content } = wordObject
+        // filter word out if it is already in sortedList
+        const newList = [...this.state.sortedList].filter((item) => item.content != wordObject.content)
+        newList.push({
+            id: id, 
+            order: this.state.wordOrder, 
+            content: content
+        });
+        this.setState({
+            sortedList: sortList(newList),
+            wordOrder: this.state.wordOrder + 1
         })
-    } else {
-        const column = columns[source.droppableId];
-        const copiedItems = [...column.items]
-        const [removed] = copiedItems.splice(source.index, 1);
-        copiedItems.splice(destination.index, 0, removed);
-        setColumns({
-            ...columns,
-            [source.droppableId]: {
-                ...column,
-                items: copiedItems,
-            }
+        // disable buttons after clicked
+        document.getElementById(wordObject.id).setAttribute("disabled", true)
+        document.getElementById(wordObject.id).classList.add("disabled")
+    }
+
+    clearPoem = () => {
+        this.setState({
+            sortedList: [],
+            wordOrder: 0
         })
+    }
+
+    savePoem = () => {
+        const { sortedList } = this.state // destructuring state for clean code
+        const maxWordsInPoem = 10 // placeholder number for now
+        if (sortedList.length <= maxWordsInPoem && sortedList.length > 2) {
+            const dbRef = firebase.database().ref()
+            dbRef.push(sortedList)
+            // this.setState({sortedList: []})
+        // error handling:
+        } else if (sortedList.length < 3) {
+            alert('You need more than 2 words in your poem.')
+        } else if (sortedList.length > maxWordsInPoem ) {
+            alert(`Your poem is too long! Nothing longer than ${maxWordsInPoem} please.`)
+        }
+    }
+
+    render() {
+        return(
+            <div className="app__container__gameBoard">
+                <div className="app__container__gameBoard__generated">
+                    {
+                        this.props.generatedWords.map((word) => {
+                            return(
+                                <button key={word.id} id={word.id}
+                                    className="app__container__gameBoard__generated__item"
+                                    onClick={() => this.generatedWordClick(word)}
+                                >
+                                    {word.content}
+                                </button>
+                            )
+                        })
+                    }
+                </div>
+                <div className="app__container__gameBoard__dragbox">
+                    <ListManager
+                        items={this.state.sortedList}
+                        direction="horizontal"
+                        maxItems={5}
+                        render={item => <ListElement item={item} />}
+                        onDragEnd={this.reorderList}
+                    />
+                    <button onClick={this.clearPoem}>Clear</button>
+                    <button onClick={this.savePoem}>Save to Gallery</button>
+                </div>
+            </div>
+        )
     }
 }
 
-function GameBoard() {
-    const [columns, setColumns] = useState(columnsFromBackend);
-    return (
-        <div className="app__container__gameBoard">
-            <DragDropContext onDragEnd={result => onDragEnd(result, columns, setColumns)}>
-                {Object.entries(columns).map(([id, column]) => {
-                    return (
-                        <div className="app__container__gameBoard__column">
-                            <h2>{column.name}</h2>
-                            {/* <div style={{margin: 8}}> */}
-                            <Droppable droppableId={id} key={id} direction="horizontal">
-                                {(provided, snapshot) => {
-                                    return (
-                                        <div className="app__container__gameBoard__column__dropArea"
-                                            {...provided.droppableProps}
-                                            ref={provided.innerRef}
-                                            style={{
-                                                background: snapshot.isDraggingOver ? '#FFFEB9' : '#E6E7E9',
-                                            }}
-                                        >
-                                            {column.items.map((item, index) => {
-                                                return (
-                                                    <Draggable key={item.id} draggableId={item.id} index={index}>
-                                                    {(provided, snapshot) => {
-                                                        return (
-                                                            <div className="app__container__gameBoard__column__dropArea__item"
-                                                                ref={provided.innerRef}
-                                                                {...provided.draggableProps}
-                                                                {...provided.dragHandleProps}
-                                                                style={{
-                                                                    backgroundColor: snapshot.isDragging ? '#E4FFE3' : '#85FB83',
-                                                                    ...provided.draggableProps.style
-                                                                }}
-                                                            >
-                                                                {item.content}
-                                                            </div>
-                                                        )
-                                                    }}
-                                                    </Draggable>
-                                                );
-                                            })}
-                                            {provided.placeholder}
-                                        </div>
-                                    )
-                                }}
-                            </Droppable>
-                            {/* </div> */}
-                        </div>
-                    )
-                })}
-            </DragDropContext>
-        </div>
-    );
-}
-
-export default GameBoard;
+export default GameBoard
