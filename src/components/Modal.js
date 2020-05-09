@@ -27,14 +27,14 @@ class Modal extends Component {
         const { hide } = this.state
         return(
             <div 
-                className={`app__container__leftLanding__modal 
+                className={`app__container__modal 
                     ${hide ? "slideLeft" : ""} 
                     ${show ? "slideRight" : ""}`}
                 onAnimationEnd={(e) => this.animationEnd(e)}
             >
                 {   // check prop to see which modal to show:
                     whichModal === "start" && // START modal: 
-                    <div className="app__container__leftLanding__modal__modalInner modalStart">
+                    <div className="app__container__modal__modalInner modalStart">
                         <img src="./assets/illustrations--instruct.png" alt="illustration of a person deep in thought"/>
                         <h2>How it works</h2>
                         <p>We've generated a bunch of words for you on the left. Simply drag and drop them into your canvas on the right!</p>
@@ -43,7 +43,7 @@ class Modal extends Component {
                 }
                 {   // check prop to see which modal to show:
                     whichModal === "share" && // SHARE modal: 
-                    <div className="app__container__leftLanding__modal__modalInner modalShare">
+                    <div className="app__container__modal__modalInner modalShare">
                         <img src="./assets/illustrations--save.png" alt="illustration of a person sharing ideas to the digital cloud"/>
                         <h2>Share your poem</h2>
                         <form action="" onSubmit={this.handleSubmit}>

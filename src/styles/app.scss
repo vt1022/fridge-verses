@@ -21,46 +21,6 @@
         min-width: 400px;
         border: 1px solid red;
         padding-top: 90px;
-
-        &__modal {
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            z-index: 10;
-            
-            display: flex;
-            justify-content: center;
-            
-            background: rgba(0, 0, 0, 0.8);
-            transform: translateX(-100%);
-            
-            &__modalInner {
-                display: flex;
-                flex-direction: column;
-                height: auto;
-                width: 50%;
-                padding: 10px 15px;
-                border-radius: 1em;
-                margin: auto 0;
-                background: #fff;
-
-                img {
-                    margin: 0 auto;
-                    width: 60%;
-                }
-            
-                h2 {
-                    margin: 0;
-                    margin-top: 5px;
-                }
-            
-                button {
-                    align-self: flex-end;
-                }
-            }
-        }
     }
 
     &__rightLanding {
@@ -122,8 +82,48 @@
                 background: $offsetLightGreen;
             }
         }
-    }
-} // app__container
+    }   // gameboard
+
+    &__modal {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 10;
+        
+        display: flex;
+        justify-content: center;
+        
+        background: rgba(0, 0, 0, 0.8);
+        transform: translateX(-100%);
+        
+        &__modalInner {
+            display: flex;
+            flex-direction: column;
+            height: auto;
+            width: 50%;
+            padding: 10px 15px;
+            border-radius: 1em;
+            margin: auto 0;
+            background: #fff;
+
+            img {
+                margin: 0 auto;
+                width: 60%;
+            }
+        
+            h2 {
+                margin: 0;
+                margin-top: 5px;
+            }
+        
+            button {
+                align-self: flex-end;
+            }
+        }
+    }   // modal
+}   // app__container
 
 .app__nav {
     height: 10%;
