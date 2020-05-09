@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Modal from './Modal.js'
-
 import { ListManager } from 'react-beautiful-dnd-grid';
 
 const sortList = (list) => list.slice().sort((first, second) => first.order - second.order)
