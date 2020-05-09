@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import InputAutocomplete from './InputAutocomplete.js' 
 import Modal from './Modal.js'
 import axios from 'axios'
+import TextField from '@material-ui/core/TextField';
+
 let badwordsArray = require('badwords/array');
 badwordsArray.push("fuckup", "bitchy", "bitchery", "bitchiness", "bitched", "bitchen", "shittah", "shittim", "shitfaced", "shittle", "nigget", "niggerhead", "niggerheads", "niggerling", "nigged", "niggery", "niggle", "faggy", "fagged", "faggots", "faggoty", "faggotry", "faggoting", "faggoted", "cunty", "cunted", "cunting")
 
@@ -87,9 +89,10 @@ export class Search extends Component {
         const { modal } = this.state
         return (
             <>
-                <Modal show={modal} showModal={this.showModal} whichModal="start" />
+                <Modal show={modal} showModal={this.showModal} whichModal="share" />
                 <form action="" onSubmit={this.handleSubmit}>
-                    <InputAutocomplete onTextChange={this.onTextChange} autoCompleteWords={this.state.autoCompleteWords} onAutoCompleteItemSelected={this.onAutoCompleteItemSelected} />
+                    <InputAutocomplete onTextChange={this.onTextChange} autoCompleteWords={this.state.autoCompleteWords} onAutoCompleteItemSelected={this.onAutoCompleteItemSelected} 
+                    />
                     <button className="main-button" type="submit">Get Started ➡</button>
                 </form>
                 <button className="secondary-button">Generate Word ⚡</button>

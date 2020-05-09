@@ -62,7 +62,9 @@ $offsetLightGreen: #E4FFE3;
     border-radius: 8px;
     
     &:hover {
-        background-color: darken($darkGreen, 4%);
+        background-color: darken($lightGrey, 4%);
+        color: $darkGreen;
+        border: 2px solid $darkGreen;
     }
 }
 
@@ -86,6 +88,7 @@ $offsetLightGreen: #E4FFE3;
     border: 2px solid $darkGreen;
     
     &:hover {
+        color: $lightGrey;
         background-color: darken($darkGreen, 4%);
     }
 }
