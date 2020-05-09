@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { ListManager } from 'react-beautiful-dnd-grid';
-import firebase from 'firebase';
+import firebase from './firebase.js';
 
 const sortList = (list) => {
     return list.slice().sort((first, second) => first.order - second.order);
@@ -75,7 +75,6 @@ class GameBoard extends Component {
         if (sortedList.length <= maxWordsInPoem && sortedList.length > 2) {
             const dbRef = firebase.database().ref()
             dbRef.push(sortedList)
-            // this.setState({sortedList: []})
         // error handling:
         } else if (sortedList.length < 3) {
             alert('You need more than 2 words in your poem.')
