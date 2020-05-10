@@ -124,12 +124,63 @@
 }  
 
 // inside share modal
+
+.app__container__modal__modalInner {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 406px;
+    width: 50%;
+    padding: 20px;
+    border-radius: 6px;
+    background: #fff;
+
+    @media (max-height: 618px) {
+        flex-direction: colum;
+    }
+
+        .share__illustration {
+            @media (max-height: 618px) {
+            margin-bottom: 0;
+        
+
+        .share__img {
+            display: block;
+            width: 100%;
+            height: auto;
+            min-height: 112.19px;
+            min-width: 116.5px;
+        }
+
+        // @media (max-width: 1428px) {
+        //     width: 50%;
+        // }
+
+        // @media (max-width: 1041px) {
+        //     width: 60%;
+        // }
+
+        // @media (max-width: 819px) {
+        //     width: 70%;
+        // }
+
+        // @media (max-width: 675px) {
+        //     width: 90%;
+        // }
+
+        // @media (max-width: 480px) {
+        //     width: 100%;
+        // }
+    }
+        }
+
+}
+
 .share_inputs {
     display: flex;
     width: 100%;
     justify-content: space-between;
     flex-wrap: wrap;
-    align-items: stretch;
     align-content: center;
 
     @media(max-width: 1181px){
@@ -144,12 +195,16 @@
 
     .gallery_btn {
         @include mainButton($fontSizeValue: calc(.7rem + 0.59vw), $heightValue: calc(17px + 1.19vw), $widthValue: calc(100px + 2.5vw));
-        margin-top: 16px             
+        margin-top: 16px;
+        width: 132px;
+        height: 32.86px;
     }
 
     .share_btn {
         @include secondaryButton($fontSizeValue: calc(.8rem + 0.59vw), $heightValue: calc(17px + 1.19vw), $widthValue: calc(100px + 2.5vw));
         margin-top: 16px;
+        width: 132px;
+        height: 32.86px;
     }
 }
 
