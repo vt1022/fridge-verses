@@ -4,14 +4,8 @@ import imgPath from '../assets/illustrations--landing.png'
 import '../styles/landing.scss'
 
 class Landing extends Component {
-    constructor() {
-        super()
-        this.state = {
-
-        }
-    }
-
     render() {
+        const { changePage, setGeneratedWords, setFunctionalWords } = this.props
         return(
             <>
                 <div className="landing__illustration">
@@ -21,14 +15,10 @@ class Landing extends Component {
                     <h1 className="main-header">Recreate the IRL fun of magnetic poetry</h1>
                     <div className="opt-in__form">
                         <p className="main-paragraph">Give us your own prompt to kick things off or let us generate a word for you.</p>
-                        <Search 
-                            changePage={this.props.changePage}
-                            setGeneratedWords={this.props.setGeneratedWords}
-                            setFunctionalWords={this.props.setFunctionalWords}/>
+                        <Search changePage={changePage}
+                            setGeneratedWords={setGeneratedWords} setFunctionalWords={setFunctionalWords}/>
                     </div>
                 </div>
-
-                
             </>
         )
     }
