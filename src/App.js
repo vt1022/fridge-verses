@@ -75,6 +75,7 @@ class App extends Component {
     render() {
         const { currentPage, generatedWords, functionalWords } = this.state
         return (
+            <>
             <div className="app wrapper">
                 <nav className="app__nav">
                     <ul>
@@ -122,6 +123,10 @@ class App extends Component {
                     </div>
                 </footer>
             </div>
+            <div className="copyright__footer">
+                <p>© 2020. Made with <i class="fas fa-heart"></i> by <a href="www.vinccitsui.me">Vinnci Tsui, </a> <a href="zarinamia.com">Zarina Mia, </a><a href="#">George Zikos </a>and <a href="http://edithwerbel.com/">Edith Werbel</a> </p>
+            </div>
+            </>
         );
     }
 }

@@ -227,6 +227,23 @@
     }
 }
 
+.copyright__footer {
+    background-color: $darkGreen;
+    padding: 2px;
+
+    p {
+        color: $lightGrey;
+        font-size: 10px;
+        text-align: center;
+    }
+
+    a {
+        color: $lightGrey;
+        text-decoration: underline;
+    }
+    
+}
+
 .main-button {
     @include mainButton(calc(1.5rem + 0.4vw), calc(46px + 1.19vw), 100%);
     margin-bottom: 15px;
