@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import Modal from './Modal.js'
 import Swal from 'sweetalert2';
-
+import ListElement from './ListElement'
 import { ListManager } from 'react-beautiful-dnd-grid';
-import firebase from './firebase.js';
 
 import '../styles/gameBoard.scss'
 
 const sortList = (list) => list.slice().sort((first, second) => first.order - second.order)
 
-const ListElement = ({ item: { content } }) => 
+const listElement = ({ item: { content } }) => 
     <div className="generated__item">{content}</div>
 
 class GameBoard extends Component {
@@ -17,6 +16,7 @@ class GameBoard extends Component {
         super();
         this.state = {
             modal: true,
+            modalToShow: 'start',
             sortedList: [],
             wordOrder: 0
         }
@@ -60,13 +60,16 @@ class GameBoard extends Component {
             order: this.state.wordOrder, 
             content: content
         });
+        
         this.setState({
             sortedList: sortList(newList),
             wordOrder: this.state.wordOrder + 1
         })
-        // disable buttons after clicked
-        document.getElementById(wordObject.id).setAttribute("disabled", true)
-        document.getElementById(wordObject.id).classList.add("disabled")
+    }
+
+    saveToGalleryClick = () => {
+        this.showModal(true)
+        this.setState({modalToShow: "share"})
     }
 
     clearPoem = () => {
@@ -80,7 +83,8 @@ class GameBoard extends Component {
         const { sortedList } = this.state // destructuring state for clean code
         const maxWordsInPoem = 10 // placeholder number for now
         if (sortedList.length <= maxWordsInPoem && sortedList.length > 2) {
-            const dbRef = firebase.database().ref()
+            const dbRef = this.database().ref()
+            // This was called on 'firedbase' but I'm being told it's undefined
             dbRef.push(sortedList)
         // error handling:
         } else if (sortedList.length < 3) {
@@ -91,21 +95,18 @@ class GameBoard extends Component {
     }
 
     render() {
-        const { sortedList, modal } = this.state
+        const { sortedList, modal, modalToShow } = this.state
         return(
             <>
                 <Modal show={modal} showModal={this.showModal} 
-                whichModal="start" changePage={this.props.changePage} />
+                whichModal={modalToShow} changePage={this.props.changePage} 
+                sortedList={sortedList} />
                 <div className="container__game-board">
                     <div className="game-board__generated">
                         {
                             this.props.generatedWords.map((word) => {
                                 return(
-                                    <button key={word.id} id={word.id}
-                                    className="generated__item"
-                                    onClick={() => this.generatedWordClick(word)}>
-                                        {word.content}
-                                    </button>
+                                    <ListElement word={word} generatedWordClick={this.generatedWordClick} />
                                 )
                             })
                         }
@@ -115,16 +116,16 @@ class GameBoard extends Component {
                         <div className="game-board__sandbox">
                             <div className="sandbox__droppable">
                                 <ListManager
-                                items={sortedList}
-                                direction="horizontal"
-                                maxItems={5}
-                                render={(item) => <ListElement item={item} />}
-                                onDragEnd={this.reorderList} />
+                                    items={sortedList}
+                                    direction="horizontal"
+                                    maxItems={5}
+                                    render={(item) => <ListElement word={item} generatedWordClick={() => {}} />}
+                                    onDragEnd={this.reorderList} 
+                                />
                             </div>
-
                             <div className="sandbox__buttons">
                                 <button className="secondary-button" onClick={this.clearPoem}>Clear</button>
-                                <button className="main-button" onClick={this.savePoem}>
+                                <button className="main-button" onClick={this.saveToGalleryClick}>
                                     Save
                                 </button>
                             </div>

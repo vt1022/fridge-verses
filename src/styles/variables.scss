@@ -57,7 +57,7 @@ $offsetDarkYellow: #754800;
     width: $widthValue;
     // max at 275px for main-button
     background-color: $darkGreen;
-    border: none;
+    border: 2px solid transparent;
     cursor: pointer;
     transition: background-color 250ms ease;
     border-radius: 8px;

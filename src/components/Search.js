@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import InputAutocomplete from './InputAutocomplete.js' 
 import axios from 'axios'
-import TextField from '@material-ui/core/TextField';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            main: '#1A4542',
+        },
+    }
+});
 
 let badwordsArray = require('badwords/array');
 badwordsArray.push("fuckup", "bitchy", "bitchery", "bitchiness", "bitched", "bitchen", "shittah", "shittim", "shitfaced", "shittle", "nigget", "niggerhead", "niggerheads", "niggerling", "nigged", "niggery", "niggle", "faggy", "fagged", "faggots", "faggoty", "faggotry", "faggoting", "faggoted", "cunty", "cunted", "cunting")
@@ -60,26 +68,39 @@ export class Search extends Component {
         this.setState({userInput:randomWord})
     }    
     
-    handleSubmit = (event) => {
+    handleSubmit = async (event) => {
         event.preventDefault();
 
-        axios({
+        let result = await axios({
             method: 'GET',
             url: `https://api.datamuse.com/words`,
             params: {
-                rel_trg: this.state.userInput,
-                max: 50
+                topics: this.state.userInput,
+                max: 40
             }
         })
-        .then((res) => {
-            
-            const generatedWords = res.data.map((value) => {
-                return {content: value.word, id: JSON.stringify(value.score)}
-            })
-            
-            this.props.setGeneratedWords(generatedWords)
+        
+        const generatedWords = result.data.map((value) => {
+            return {content: value.word, id: JSON.stringify(value.score)}
+        })
+        
+        this.props.setGeneratedWords(generatedWords)
+
+        // Now get the functional words
+        result = await axios({
+            method: 'GET',
+            url: `https://api.datamuse.com/words`,
+            params: {
+                rel_bga: this.state.userInput,
+                max: 20
+            }
         })
 
+        const functionalWords = result.data.map((value) => {
+            return { content: value.word, id: JSON.stringify(value.score) }
+        })
+
+        this.props.setFunctionalWords(functionalWords)
         this.props.changePage('gameBoard')
     }    
 
@@ -88,8 +109,14 @@ export class Search extends Component {
         return (
             <>
                 <form action="" onSubmit={this.handleSubmit}>
-                    <InputAutocomplete onTextChange={this.onTextChange} autoCompleteWords={this.state.autoCompleteWords} onAutoCompleteItemSelected={this.onAutoCompleteItemSelected} 
-                    userInput = {userInput} />
+                    <MuiThemeProvider theme={theme}>
+
+                        <InputAutocomplete onTextChange={this.onTextChange} autoCompleteWords={this.state.autoCompleteWords} onAutoCompleteItemSelected={this.onAutoCompleteItemSelected} 
+                        userInput = {userInput} 
+                        borderColor="primary"
+                        />
+                        </MuiThemeProvider>
+
                     <button className="main-button" type="submit">
                         Get Started
                     </button>

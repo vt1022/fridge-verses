@@ -12,7 +12,7 @@
     min-height: 668px;
     padding-top: 40px;
     // border: 1px solid black;
-
+    height: 85%;
     @media (max-width: 1442px) {
         justify-content: center;
     }
@@ -248,7 +248,6 @@
 
 .secondary-button {
     @include secondaryButton(calc(1.5rem + 0.4vw), calc(46px + 1.19vw), 100%);
-
     &::after {
         font-family: 'Font Awesome 5 Pro';
         font-size: calc(1.8rem + 0.25vw);
