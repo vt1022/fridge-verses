@@ -1,5 +1,6 @@
 @import 'variables';
 
+
 // Gallery
 .app__container__gallery {
     
@@ -8,7 +9,23 @@
         flex-wrap: wrap;
 
         &__poem {
-            width: 50%;
+            width: 46%;
+            background-color: $lightGrey;
+            padding: 4px 0 4px 10px;
+            margin: 5px;
+            box-shadow: 0 1px 3px $darkGrey;
+
+            .verse__title {
+                font-size: 20px;
+                margin-bottom: 3px;
+            }
+
+            .verse__by {
+                align-self: flex-end;
+                justify-self: flex-end;
+                position: relative;
+                left: 65%;
+            }
 
             @media (max-width: 960px) {
                 width: 100%;

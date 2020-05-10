@@ -31,18 +31,23 @@ class Gallery extends Component {
                         return(
                             <div key={Object.keys(firebaseDataObject)[index]}
                             className="app__container__gallery__grid__poem">
-                                <h2>{title}</h2>
-                                <p>by: {author}</p>
+                                <h2 className="verse__title">{title}</h2>
+                                
                                 {
                                 poem.map((wordObj) => {
                                     return( // fix below class name. just need temp styling for now
+                                     
                                         <div key={wordObj.order} 
                                         className="app__container__gallery__grid__poem__word">
                                             {wordObj.content}
                                         </div>
-                                    ) 
+                                       
+                                    )
+                                        
                                 })
+                                       
                                 }
+                                 <p className="verse__by">by, {author}</p>      
                             </div>
                         )
                     })
