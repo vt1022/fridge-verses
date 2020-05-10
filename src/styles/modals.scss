@@ -31,7 +31,6 @@
             flex-direction: column;
             justify-content: center;
             width: 100%;
-            // margin-left: 20px;
         }
     }
 
@@ -45,7 +44,6 @@
 
     .instructions__illustration {
         width: 40%;
-        // border: 1px solid red;
         margin: 0 auto 10px;
 
         @media (max-height: 618px) {
@@ -55,37 +53,33 @@
         .illustration__img {
             display: block;
             width: 100%;
-            // border: 1px solid red;
         }
 
-        // George, I took these out so the image scales natually allows for short screens
+        @media (max-width: 1428px) {
+            width: 50%;
+        }
 
-        // @media (max-width: 1428px) {
-        //     width: 50%;
-        // }
+        @media (max-width: 1041px) {
+            width: 60%;
+        }
 
-        // @media (max-width: 1041px) {
-        //     width: 60%;
-        // }
+        @media (max-width: 819px) {
+            width: 70%;
+        }
 
-        // @media (max-width: 819px) {
-        //     width: 70%;
-        // }
+        @media (max-width: 675px) {
+            width: 90%;
+        }
 
-        // @media (max-width: 675px) {
-        //     width: 90%;
-        // }
-
-        // @media (max-width: 480px) {
-        //     width: 100%;
-        // }
+        @media (max-width: 480px) {
+            width: 100%;
+        }
     }
 
     .main-header {
         @include headingType(calc(2.4rem + 0.96vw));
         text-align: center;
         margin-bottom: 15px;
-        // border: 1px solid red;
         text-align: center;
     }
 
@@ -93,24 +87,11 @@
         @include bodyType(calc(1.5rem + 0.18vw), 400);
         text-align: center;
         margin: 0 auto 40px;
-        // border: 1px solid red;
-        width: 100%;
+        width: 60%;
         text-align: center;
 
-        @media (min-height: 402px) {
-            height: 45%;
-            width: 100%;
-            margin-bottom: 5px;
-            align-self: center;
-            
-        }
-
-        @media (max-width: 1238px) {
-            width: 75%;
-        }
-
-        @media (max-width: 901px) {
-            width: 90%;
+        @media (max-width: 1130px) {
+            width: 80%;
         }
     }
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { ListManager } from "react-beautiful-dnd-grid";
+import Swal from 'sweetalert2'
 import '../styles/gameBoard.scss'
 
 const sortList = (list) => {
@@ -42,16 +43,22 @@ class DndGrid extends Component {
         list[sourceIndex].order = (list[destinationIndex].order + list[destinationIndex + 1].order) / 2;
         this.sortList();
     }
+
     
     generatedWordClick = (e, wordObject) => {
-        const { id, content } = wordObject
-        const newList = [...this.state.sortedList]
-        // if statement to filter out words already used
-        newList.push({id: id, order: this.state.wordOrder, content: content});
-        this.setState({
-            sortedList: sortList(newList),
-            wordOrder: this.state.wordOrder + 1
-        })
+        console.log(this.state.wordOrder)
+        if (this.state.wordOrder >= 20) {
+            Swal.fire("You've reached your maximum word limit")
+        } else {
+            const { id, content } = wordObject
+            const newList = [...this.state.sortedList]
+            // if statement to filter out words already used
+            newList.push({id: id, order: this.state.wordOrder, content: content});
+            this.setState({
+                sortedList: sortList(newList),
+                wordOrder: this.state.wordOrder + 1
+            })
+        }
     }
 
     render() {

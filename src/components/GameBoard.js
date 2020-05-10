@@ -5,6 +5,7 @@ import { ListManager } from 'react-beautiful-dnd-grid';
 import { TwitterShareButton } from "react-share";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
+import Swal from 'sweetalert2';
 
 import '../styles/gameBoard.scss';
 
@@ -53,21 +54,28 @@ class GameBoard extends Component {
     }
     
     generatedWordClick = (wordObject) => {
-        const { sortedList, wordOrder } = this.state
-        const { id, content } = wordObject
-        const newList = [...sortedList]
+        if (this.state.wordOrder >= 20) {
+            Swal.fire({
+                icon: 'error',
+                text: "You've reached your maximum word limit",
+            })
+        } else {
+            const { sortedList, wordOrder } = this.state
+            const { id, content } = wordObject
+            const newList = [...sortedList]
 
-        newList.push({
-            id: id, 
-            order: wordOrder, 
-            content: content
-        });
+            newList.push({
+                id: id, 
+                order: wordOrder, 
+                content: content
+            });
 
-        this.props.disableWord(wordObject.id)
-        this.setState({
-            sortedList: sortList(newList),
-            wordOrder: wordOrder + 1
-        })
+            this.props.disableWord(wordObject.id)
+            this.setState({
+                sortedList: sortList(newList),
+                wordOrder: wordOrder + 1
+            })
+        }
     }
 
     saveToGalleryClick = () => {
@@ -79,11 +87,20 @@ class GameBoard extends Component {
             this.showModal(true)
         // 1st level error handling:
         } else if (sortedList.length < 6) {
-            alert("You need more than 5 words in your poem.")
+            Swal.fire({
+                icon: 'error',
+                text: "You need more than 5 words in your poem.",
+            })
         } else if (sortedList.length > maxWordsInPoem ) {
-            alert(`Your poem is too long! Nothing longer than ${maxWordsInPoem} please.`)
+            Swal.fire({
+                icon: 'error',
+                text: `Your poem is too long! Nothing longer than ${maxWordsInPoem} please.`,
+            })
         } else {
-            alert("Safi, please stop bringing my shit again.")
+            Swal.fire({
+                icon: 'error',
+                text: "Safi, please stop bringing my shit again.",
+            })
         }
     }
 
@@ -110,9 +127,16 @@ class GameBoard extends Component {
             dbRef.push(sortedList)
         // error handling:
         } else if (sortedList.length < 3) {
-            alert('You need more than 2 words in your poem.')
+            Swal.fire({
+                icon: 'error',
+                text: 'You need more than 2 words in your poem.',
+            })
+            
         } else if (sortedList.length > maxWordsInPoem ) {
-            alert(`Your poem is too long! Nothing longer than ${maxWordsInPoem} please.`)
+            Swal.fire({
+                icon: 'error',
+                text: `Your poem is too long! Nothing longer than ${maxWordsInPoem} please.`,
+            })
         }
     }
 
