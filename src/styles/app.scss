@@ -9,7 +9,6 @@
     align-items: center;
     height: 80%;
     min-height: 668px;
-    // padding-top: 40px;
 
     @media (max-width: 1442px) {
         justify-content: center;
@@ -32,11 +31,8 @@
 .nav__branding {
     @include bodyType(calc(2.4rem + 0.25vw), 400, $darkGreen);
     text-align: center;
-    // line-height: 56px;
     line-height: calc(46px + 0.7vw);
-    // width: 250px;
     width: calc(200px + 2.98vw);
-    // height: 64px;
     height: calc(54px + 0.6vw);
     background-color: $offsetLightGreen;
     border: 4px solid $lightGreen;
@@ -87,12 +83,8 @@
         position: relative;
         display: inline-block;
         margin-right: 0;
-        // width: 60px;
         width: calc(50px + 1.1vw);
-        // height: 25px;
-        // height: calc(20px + 0.55vw);
         height: calc(54px + 0.6vw);
-        // border: 1px solid red;
 
         &::after {
             display: none;
@@ -168,7 +160,6 @@
         display: inline-block;
         z-index: 10;
         position: relative;
-        // border: 1px solid purple;
         height: 100%;
         width: 100%;
     
@@ -201,7 +192,6 @@
     display: flex;
     justify-content: flex-end;
     height: 10%;
-    // min-height: 100px;
     padding: 20px 0;
 
     @media (max-width: 940px) {
@@ -210,12 +200,9 @@
 
     .footer__social {
         width: 100px;
-        // height: 100px;
         font-size: calc(3.2rem + 1.1vw);
         text-align: right;
-        // line-height: 100px;
         transition: color 250ms ease;
-        // border: 1px solid blue;
 
         &:hover {
             color: lighten($darkGrey, 5%);
