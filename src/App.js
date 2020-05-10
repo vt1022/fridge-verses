@@ -82,16 +82,15 @@ class App extends Component {
                         onClick={() => this.changePage('landing')}>
                             Fridge Verses
                         </li>
+                        
                         <li className="nav__link nav__link--desktop" 
                         onClick={() => this.changePage('gallery')}>
                             Gallery
                         </li>
 
                         <li className="nav__link nav__link--mobile">
-
                             <input type="checkbox" id="menu-trigger"/>
-
-                            <label className="hamburger" for="menu-trigger">
+                            <label className="hamburger" htmlFor="menu-trigger">
                                 <div className="hamburger__line hamburger__line--top"></div>
                                 <div className="hamburger__line hamburger__line--bottom"></div>
                             </label>
@@ -101,20 +100,16 @@ class App extends Component {
                                     <li>Gallery</li>
                                 </ul>
                             </div>
-
                         </li>
-
                     </ul>
                 </nav>
                 <main className="app__container">
-                    { // && basically shorthand if statement
-                    currentPage === 'landing' &&
+                    {/* && basically shorthand if statement */}
+                    { currentPage === 'landing' &&
                         <Landing changePage={this.changePage} 
                         setGeneratedWords={this.setGeneratedWords} 
-                        setFunctionalWords={this.setFunctionalWords} />
-                    }
-                    {
-                    currentPage === 'gameBoard' &&
+                        setFunctionalWords={this.setFunctionalWords} />}
+                    {currentPage === 'gameBoard' &&
                         <GameBoard changePage={this.changePage}
                         generatedWords={generatedWords} functionalWords={functionalWords} enableAllWords={this.enableAllWords}
                         disableWord={this.disableWord}/>}
@@ -123,7 +118,7 @@ class App extends Component {
                 </main>
                 <footer className="app__footer">
                     <div className="footer__social">
-                        <i class="fab fa-github"></i>
+                        <i className="fab fa-github"></i>
                     </div>
                 </footer>
             </div>

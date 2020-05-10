@@ -66,12 +66,7 @@
             width: 100%;
             display: flex;
             justify-content: space-between;
-
-            @media (max-width: 525px) {
-                width: 75%;
-                margin: 0 auto;
-            }
-
+            
             .main-button {
                 @include mainButton(calc(1.5rem + 0.4vw), calc(46px + 1.19vw), 32%);
                 margin: 0;
@@ -83,6 +78,11 @@
                     left: 10px;
                     top: 2px;
                     content: '\f02e';
+                }
+
+                @media (max-width: 525px) {
+                    height: 40px !important;
+                    &::after{left: 4px;}
                 }
             }
 
@@ -98,6 +98,11 @@
                     top: 2px;
                     left: 8px;
                     content: '\f55a';
+                }    
+
+                @media (max-width: 525px) {
+                    height: 40px !important;
+                    &::after{left: 2px;}
                 }
             }
             
@@ -120,6 +125,10 @@
                 
                 &:hover {
                     background-color: lighten(#1DA1F2, 8%) !important;
+                }    
+
+                @media (max-width: 525px) {
+                    height: 40px !important;
                 }
             }
         }

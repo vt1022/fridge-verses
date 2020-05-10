@@ -24,7 +24,7 @@ class Gallery extends Component {
         const { changePage } = this.props
         return (
             <div className="app__container__gallery">
-                <h1>Some Poetic Title for a Gallery</h1>
+                <h1>Verse By Magnet Poets</h1>
                 <div className="app__container__gallery__grid">
                     {/* map over array from firebase. slice to control how many results to show */
                     Object.values(firebaseDataObject).reverse().slice(0, poemsToShow).map(({ title, author, poem }, index) => {
@@ -50,11 +50,11 @@ class Gallery extends Component {
                 </div>
                 <div className="app__container__gallery__buttons">    
                     <button onClick={() =>this.showMoreLessClick(-10)}
-                    className="main-button">Less -</button>
+                    className="secondary-button">Less</button>
                     <button onClick={() =>this.showMoreLessClick(10)}
-                    className="main-button">More +</button>
+                    className="secondary-button">More</button>
                     <button onClick={() => changePage('landing')}
-                    className="secondary-button">Home</button>
+                    className="main-button">Home</button>
                 </div>
             </div>
         )
