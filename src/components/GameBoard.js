@@ -53,21 +53,25 @@ class GameBoard extends Component {
     }
     
     generatedWordClick = (wordObject) => {
-        const { sortedList, wordOrder } = this.state
-        const { id, content } = wordObject
-        const newList = [...sortedList]
+        if (this.state.wordOrder >= 20) {
+            alert("You've reached your maximum word limit")
+        } else {
+            const { sortedList, wordOrder } = this.state
+            const { id, content } = wordObject
+            const newList = [...sortedList]
 
-        newList.push({
-            id: id, 
-            order: wordOrder, 
-            content: content
-        });
+            newList.push({
+                id: id, 
+                order: wordOrder, 
+                content: content
+            });
 
-        this.props.disableWord(wordObject.id)
-        this.setState({
-            sortedList: sortList(newList),
-            wordOrder: wordOrder + 1
-        })
+            this.props.disableWord(wordObject.id)
+            this.setState({
+                sortedList: sortList(newList),
+                wordOrder: wordOrder + 1
+            })
+        }
     }
 
     saveToGalleryClick = () => {
