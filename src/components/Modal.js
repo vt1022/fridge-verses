@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import TextField from '@material-ui/core/TextField';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import imgInstruct from '../assets/illustrations--instruct.png'
@@ -57,11 +56,6 @@ class Modal extends Component {
         } else {
             alert("Safi, please stop bringing my shit again.")
         }
-        this.hideModal()
-    }
-
-    shareClick = () => {
-
         this.hideModal()
     }
 
@@ -125,7 +119,7 @@ class Modal extends Component {
                                 Submit
                             </button>
                             <button className="share_btn"
-                            onClick={this.shareClick}>
+                            onClick={this.hideModal}>
                                 Cancel
                             </button>
                         </form>

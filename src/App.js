@@ -10,20 +10,55 @@ class App extends Component {
         super()
         this.state = {
         currentPage : 'landing',
-        generatedWords: [] 
+        generatedWords: [],
+        functionalWords: []
         }
     }
 
+    getUniqueWords = (words) => {
+        let uniqueWords = []
+
+        for (let i = 0; i < words.length; i++) {
+            let keyExists = false;
+            let word = words[i];
+
+            for(let j = 0; j < uniqueWords.length; j++) {
+                if (word.id == uniqueWords[j].id) {
+                    keyExists = true;
+                }
+            }
+            if (!keyExists) {
+                uniqueWords.push(word);
+            }
+        }
+
+        return uniqueWords
+    }
+
+
     setGeneratedWords = (generatedWords) => {
+
+        let uniqueWords = this.getUniqueWords(generatedWords);
+
         this.setState({
-            generatedWords: generatedWords
+            generatedWords: uniqueWords
+        })
+    }
+
+
+    setFunctionalWords = (functionalWords) => {
+
+        let uniqueWords = this.getUniqueWords(functionalWords);
+
+        this.setState({
+            functionalWords: uniqueWords
         })
     }
 
     changePage = (targetPage) => this.setState({currentPage: targetPage})
 
     render() {
-        const { currentPage, generatedWords } = this.state
+        const { currentPage, generatedWords, functionalWords } = this.state
         return (
             <div className="app wrapper">
                 <nav className="app__nav">
@@ -46,10 +81,10 @@ class App extends Component {
                 <div className="app__container">
                     {currentPage === 'landing' &&
                         <Landing changePage={this.changePage} 
-                        setGeneratedWords={this.setGeneratedWords} /> }
+                        setGeneratedWords={this.setGeneratedWords} setFunctionalWords={this.setFunctionalWords} /> }
                     {currentPage === 'gameBoard' &&
                         <GameBoard changePage={this.changePage}
-                        generatedWords={generatedWords} />}
+                        generatedWords={generatedWords} functionalWords={functionalWords}/>}
                     {currentPage === 'gallery' &&
                         <Gallery changePage={this.changePage} />}
                 </div>

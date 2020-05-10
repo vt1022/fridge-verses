@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Modal from './Modal.js';
-
+import Modal from './Modal.js'
+import GeneratedWord from './GeneratedWord.js'
 import { ListManager } from 'react-beautiful-dnd-grid';
 import { TwitterShareButton } from "react-share";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -60,13 +60,11 @@ class GameBoard extends Component {
             order: wordOrder, 
             content: content
         });
+        
         this.setState({
             sortedList: sortList(newList),
             wordOrder: wordOrder + 1
         })
-        // disable buttons after clicked
-        document.getElementById(wordObject.id).setAttribute("disabled", true)
-        document.getElementById(wordObject.id).classList.add("disabled")
     }
 
     saveToGalleryClick = () => {
@@ -116,11 +114,7 @@ class GameBoard extends Component {
                         {
                             this.props.generatedWords.map((word) => {
                                 return(
-                                    <button key={word.id} id={word.id}
-                                    className="app__container__gameBoard__generated__item"
-                                    onClick={() => this.generatedWordClick(word)}>
-                                        {word.content}
-                                    </button>
+                                    <GeneratedWord word={word} generatedWordClick={this.generatedWordClick} />
                                 )
                             })
                         }
@@ -132,6 +126,7 @@ class GameBoard extends Component {
                         items={sortedList}
                         direction="horizontal"
                         maxItems={5}
+                        // render={(item) => <ListElement word={item} generatedWordClick={() => {}} />}
                         render={(item) => <ListElement item={item} />}
                         onDragEnd={this.reorderList} />
                         <button onClick={this.clearPoem}>Clear</button>

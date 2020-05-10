@@ -24,7 +24,7 @@ render() {
                 {...params}
                 
                 onChange={this.props.onTextChange}
-                variant="standard"
+                variant="outlined"
                 label="Type in a word"
                 placeholder=""
                 margin="normal"
