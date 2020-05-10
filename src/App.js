@@ -115,7 +115,8 @@ class App extends Component {
                         generatedWords={generatedWords} functionalWords={functionalWords} enableAllWords={this.enableAllWords}
                         disableWord={this.disableWord}/>}
                     {currentPage === 'gallery' &&
-                        <Gallery changePage={this.changePage} />}
+                        <Gallery changePage={this.changePage}/>
+                        }
                 </main>
                 <footer className="app__footer">
                     <div className="footer__social">
