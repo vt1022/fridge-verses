@@ -67,7 +67,7 @@ class Modal extends Component {
             className={`container__modal ${hide ? "slideLeft" : ""} ${show ? "slideRight" : ""}`}>
 
                 {   // check prop to see which modal to show:
-                whichModal === "share" && // START modal:  
+                whichModal === "start" && // START modal:  
                     <div className="modal__instructions">
                         <div className="instructions__illustration">
                             <img src={imgInstruct} className="illustration__img" alt="illustration of a person deep in thought"/>
@@ -84,7 +84,7 @@ class Modal extends Component {
                 }
 
                 {   // check prop to see which modal to show:
-                    whichModal === "start" && // SHARE modal: 
+                    whichModal === "share" && // SHARE modal: 
                     <div className="app__container__modal__modalInner modalShare">
                         <div className="share__illustration">
                             <img src={imgIllustrations} className="share__img" alt="illustration of a person sharing ideas to the digital cloud"/>

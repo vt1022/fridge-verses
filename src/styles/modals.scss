@@ -22,18 +22,16 @@
     padding: 20px;
     border-radius: 6px;
     background: #fff;
-    // border: 1px solid red;
 
-    @media (max-height: 618px) {
-        flex-direction: row;
+    @media (max-height: 627px) {
+        flex-direction: column;
 
         .instructions__copy {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            // border: 1px solid red;
-            width: 50%;
-            margin-left: 20px;
+            width: 100%;
+            // margin-left: 20px;
         }
     }
 
@@ -60,25 +58,27 @@
             // border: 1px solid red;
         }
 
-        @media (max-width: 1428px) {
-            width: 50%;
-        }
+        // George, I took these out so the image scales natually allows for short screens
 
-        @media (max-width: 1041px) {
-            width: 60%;
-        }
+        // @media (max-width: 1428px) {
+        //     width: 50%;
+        // }
 
-        @media (max-width: 819px) {
-            width: 70%;
-        }
+        // @media (max-width: 1041px) {
+        //     width: 60%;
+        // }
 
-        @media (max-width: 675px) {
-            width: 90%;
-        }
+        // @media (max-width: 819px) {
+        //     width: 70%;
+        // }
 
-        @media (max-width: 480px) {
-            width: 100%;
-        }
+        // @media (max-width: 675px) {
+        //     width: 90%;
+        // }
+
+        // @media (max-width: 480px) {
+        //     width: 100%;
+        // }
     }
 
     .main-header {
@@ -94,13 +94,15 @@
         text-align: center;
         margin: 0 auto 40px;
         // border: 1px solid red;
-        width: 55%;
+        width: 100%;
         text-align: center;
 
-        @media (max-height: 618px) {
-            // height: 45%;
+        @media (min-height: 402px) {
+            height: 45%;
             width: 100%;
-            margin-bottom: 0;
+            margin-bottom: 5px;
+            align-self: center;
+            
         }
 
         @media (max-width: 1238px) {
@@ -150,29 +152,11 @@
             height: auto;
             min-height: 112.19px;
             min-width: 116.5px;
+            }
+
+        
         }
-
-        // @media (max-width: 1428px) {
-        //     width: 50%;
-        // }
-
-        // @media (max-width: 1041px) {
-        //     width: 60%;
-        // }
-
-        // @media (max-width: 819px) {
-        //     width: 70%;
-        // }
-
-        // @media (max-width: 675px) {
-        //     width: 90%;
-        // }
-
-        // @media (max-width: 480px) {
-        //     width: 100%;
-        // }
     }
-        }
 
 }
 
