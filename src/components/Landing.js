@@ -3,21 +3,15 @@ import Search from './Search.js'
 import imgPath from '../assets/illustrations--landing.png'
 
 class Landing extends Component {
-    constructor() {
-        super()
-        this.state = {
-
-        }
-    }
-
     render() {
+        const { changePage, setGeneratedWords, setFunctionalWords } = this.props
         return(
             <>
                 <div className="app__container__leftLanding">
                     <h1 className="main-header">Recreate the IRL fun of magnetic poetry</h1>
                     <div className="container__form">
-                        <Search changePage={this.props.changePage}
-                            setGeneratedWords={this.props.setGeneratedWords} setFunctionalWords={this.props.setFunctionalWords}/>
+                        <Search changePage={changePage}
+                            setGeneratedWords={setGeneratedWords} setFunctionalWords={setFunctionalWords}/>
                         <p className="main-paragraph">Give us your own prompt to kick things off or let us generate a word for you.</p>
                     </div>
                 </div>

@@ -119,7 +119,7 @@ class GameBoard extends Component {
                         }
                     </div>
                     <div className="app__container__gameBoard__dragbox">
-                        <div className="xxxxxxx__functional">
+                        <div className="TEMPCLASS__functional">
                             <h2>Function words:</h2>
                             {
                             functionalWords.map((word) => {
@@ -130,7 +130,7 @@ class GameBoard extends Component {
                             })
                             }
                         </div>
-                        <div className="xxxxxxxx__dragbox">
+                        <div className="TEMPCLASS__dragbox">
                             <h2>Create a 6 - 20 words poem:</h2>
                             <p>{wordOrder} / 20</p>
                             <ListManager
@@ -143,7 +143,7 @@ class GameBoard extends Component {
                             <button className="clear-btn" onClick={this.clearPoem}>Clear</button>
                             <button className="save-to-gall-btn" onClick={this.saveToGalleryClick}>Save to Gallery</button>
                             <TwitterShareButton url="https://bit.ly/2yHFNdM"
-                            title={`Check out my poem!\n${this.poemString()}\nCreate your own:`} >
+                            title={`Check out my magnet poem!\n"${this.poemString()}"\nCreate your own @`} >
                                     Share <FontAwesomeIcon icon={faTwitter}/>
                             </TwitterShareButton>
                         </div>

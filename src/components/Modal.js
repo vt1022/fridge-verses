@@ -89,7 +89,6 @@ class Modal extends Component {
                             placeholder=""
                             margin="normal"
                             helperText="Name your masterpiece"
-                            margin="normal"
                             size="medium"
                             id="poemTitle"
                             value={inputTitle}
@@ -102,7 +101,6 @@ class Modal extends Component {
                             placeholder=""
                             margin="normal"
                             helperText="sign your masterpiece"
-                            margin="normal"
                             size="medium"
                             id="poemAuthor"
                             value={inputAuthor}

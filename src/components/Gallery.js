@@ -26,7 +26,7 @@ class Gallery extends Component {
                 <h1>Some Poetic Title for a Gallery</h1>
                 <div className="app__container__gallery__grid">
                     {/* map over array from firebase. slice to control how many results to show */
-                    Object.values(firebaseDataObject).slice(0, poemsToShow).map(({ title, author, poem }, index) => {
+                    Object.values(firebaseDataObject).reverse().slice(0, poemsToShow).map(({ title, author, poem }, index) => {
                         return(
                             <div key={Object.keys(firebaseDataObject)[index]}
                             className="app__container__gallery__grid__poem">
