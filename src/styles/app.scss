@@ -22,8 +22,7 @@ button[style] { // override styles of a button with inline styles
 }
 
 .app {
-    // border: 1px solid red;
-    min-height: 100vh;
+    height: 100vh;
 }
 
 .app__container {
@@ -33,9 +32,7 @@ button[style] { // override styles of a button with inline styles
     align-items: center;
     height: 80%;
     min-height: 668px;
-    padding-top: 40px;
-    // border: 1px solid black;
-    height: 85%;
+    // padding-top: 40px;
 
     @media (max-width: 1442px) {
         justify-content: center;
@@ -43,9 +40,8 @@ button[style] { // override styles of a button with inline styles
 }  
 .app__nav {
     height: 10%;
-    min-height: 100px;
+    min-height: 80px;
     padding: 20px 0;
-    // border: 1px solid black;
 }
 
 .app__nav ul {
@@ -228,7 +224,7 @@ button[style] { // override styles of a button with inline styles
     display: flex;
     justify-content: flex-end;
     height: 10%;
-    min-height: 100px;
+    // min-height: 100px;
     padding: 20px 0;
 
     @media (max-width: 940px) {
@@ -237,10 +233,10 @@ button[style] { // override styles of a button with inline styles
 
     .footer__social {
         width: 100px;
-        height: 100px;
+        // height: 100px;
         font-size: calc(3.2rem + 1.1vw);
         text-align: right;
-        line-height: 100px;
+        // line-height: 100px;
         transition: color 250ms ease;
         // border: 1px solid blue;
 
