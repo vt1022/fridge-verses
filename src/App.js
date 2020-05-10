@@ -119,14 +119,14 @@ class App extends Component {
                 </main>
                 <footer className="app__footer">
                     <div className="footer__social">
-                        <a href="https://github.com/ZEVG-project6/Refridgeration-Versification">
+                        <a href="https://github.com/ZEVG-project6/Refridgeration-Versification" target="_blank" rel="external">
                             <i className="fab fa-github"></i>
                         </a>
                     </div>
                 </footer>
             </div>
             <div className="copyright__footer">
-                <p>© 2020. Made with <i class="fas fa-heart"></i> by <a href="http://www.vinccitsui.me">Vinnci Tsui, </a> <a href="http://zarinamia.com">Zarina Mia, </a><a href="mailto: george@nosuchthing.training">George Zikos </a>and <a href="http://edithwerbel.com/">Edith Werbel</a> </p>
+                    <p>© 2020. Made with <i class="fas fa-heart"></i> by <a href="http://www.vinccitsui.me" target="_blank" rel="external">Vinnci Tsui, </a> <a href="http://zarinamia.com" target="_blank" rel="external">Zarina Mia, </a><a href="mailto: george@nosuchthing.training" target="_blank" rel="external">George Zikos </a>and <a href="http://edithwerbel.com/">Edith Werbel</a> </p>
             </div>
             </>
         );
