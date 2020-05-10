@@ -1,26 +1,5 @@
 @import 'variables';
 
-%draggableItem {
-    @include bodyType(2rem, 400, $darkGreen);
-    display: inline-block;
-    user-select: none;
-    padding: 4px 10px;
-    border: 3px solid $darkGreen;
-    margin: 0 10px 10px 0;
-
-    background: $lightGreen;
-    transition: all 0.1s ease-in-out;
-
-    &:hover, 
-    &:focus {
-        color: $offsetDarkYellow;
-        background: $lightYellow;
-        border: 3px solid $darkYellow;
-        box-shadow: 3px 3px 0 0 $offsetDarkYellow;
-        transform: rotate(-2deg);
-    }
-}
-
 .container__game-board {
     display: flex;
     flex-wrap: wrap-reverse;
@@ -55,9 +34,13 @@
     .sandbox__container {
         width: 60%;
         min-width: 646px;
-        // border: 1px solid red;
         display: flex;
         flex-direction: column;
+
+        p {
+            text-align: center;
+            margin-bottom: 15px;
+        }
 
         @media (max-width: 1198px) {
             width: 100%;
@@ -68,7 +51,7 @@
         .main-header {
             @include headingType(calc(2.4rem + 0.96vw));
             text-align: center;
-            margin: 40px 0;
+            margin: 40px 0 15px 0;
             // border: 1px solid red;
             text-align: center;
 
@@ -128,7 +111,6 @@
         width: 80%;
         height: 100%;
         margin: 0 auto;
-        // border: 1px solid red;
 
         @media (max-width: 1198px) {
             height: 50%;
@@ -148,7 +130,7 @@
             flex-direction: column;
             align-items: center;
             max-width: 100%;
-            overflow: hidden;
+            // overflow: hidden;
         }
 
         .generated__item {

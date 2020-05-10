@@ -85,7 +85,7 @@ class Modal extends Component {
 
                 {   // check prop to see which modal to show:
                     whichModal === "share" && // SHARE modal: 
-                    <div className="app__container__modal__modalInner modalShare">
+                    <div className="modal__instructions">
                         <img src={imgIllustrations} alt="illustration of a person sharing ideas to the digital cloud"/>
                         <h2>Share your poem</h2>
                         <form className="share_inputs" action="" onSubmit={this.handleSubmit}>
