@@ -5,6 +5,10 @@ import Gallery from './components/Gallery.js';
 
 import './styles/styles.scss';
 
+// Prevents Auto-Zoom Behaviour with Forms on Mobile
+const viewportMeta = document.querySelector('meta[name="viewport"]');
+viewportMeta.content = 'user-scalable=NO, width=device-width, initial-scale=1.0';
+
 /******** set poem max length at GameBoard.js ln 75 ********/
 class App extends Component {
     constructor() {
@@ -57,6 +61,7 @@ class App extends Component {
 
                     </ul>
                 </nav>
+
                 <main className="app__container">
 
                     {currentPage === 'landing' &&
@@ -69,8 +74,9 @@ class App extends Component {
                         <Gallery changePage={this.changePage} />}
 
                 </main>
+
                 <footer className="app__footer">
-                    <div>
+                    <div className="footer__social">
                         <i class="fab fa-github"></i>
                     </div>
                 </footer>

@@ -37,25 +37,30 @@ class Modal extends Component {
         const { hide } = this.state
         return(
             <div 
-                className={`app__container__modal 
+                className={`container__modal 
                     ${hide ? "slideLeft" : ""} 
                     ${show ? "slideRight" : ""}`}
                 onAnimationEnd={(e) => this.animationEnd(e)}
             >
                 {   // check prop to see which modal to show:
                     whichModal === "start" && // START modal: 
-                    <div className="app__container__modal__modalInner modalStart">
-                        <img src={imgInstruct} alt="illustration of a person deep in thought"/>
-                        <h2>How it works</h2>
-                        <p>We've generated a bunch of words for you on the left. Simply drag and drop them into your canvas on the right!</p>
+                    <div className="modal__instructions">
+                        <div className="instructions__illustration">
+                            <img src={imgInstruct} className="illustration__img" alt="illustration of a person deep in thought"/>
+                        </div>
+                        <div className="instructions__copy">
+                            <h2 className="main-header">How it works</h2>
+                            <p className="main-paragraph">We've generated a bunch of words for you on the left. Simply drag and drop them into your canvas on the right!</p>
+                        </div>
                         <button 
-                        className="start_btn"
-                        onClick={this.hideModal}>Start <span>🧲</span></button>
+                        className="main-button"
+                        onClick={this.hideModal}>Start</button>
+                        {/* Class was start_btn before, incase I broke anything */}
                     </div>
                 }
                 {   // check prop to see which modal to show:
                     whichModal === "share" && // SHARE modal: 
-                    <div className="app__container__modal__modalInner modalShare">
+                    <div className="container__modal__modalInner modalShare">
                         <img src={imgIllustrations} alt="illustration of a person sharing ideas to the digital cloud"/>
                         <h2>Share your poem</h2>
                         <form className="share_inputs" action="" onSubmit={this.handleSubmit}>

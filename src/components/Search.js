@@ -92,13 +92,11 @@ export class Search extends Component {
                     userInput = {userInput} />
                     <button className="main-button" type="submit">
                         Get Started
-                        <i class="far fa-arrow-right"></i>
                     </button>
                 </form>
                 <button className="secondary-button" 
                 onClick={this.getRandomWord}>
                     Generate Word
-                    <i class="far fa-random"></i>
                 </button>
             </>
         )

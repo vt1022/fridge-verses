@@ -1,58 +1,132 @@
 @import 'variables';
 
-// Modals
-.app__container__modal {
-    position: absolute;
+.container__modal {
+    position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
     z-index: 10;
-    
     display: flex;
     justify-content: center;
-    
-    background: rgba(0, 0, 0, 0.8);
+    align-items: center;
+    background: rgba(0, 0, 0, 0.4);
     transform: translateX(-100%);
+}
     
-    &__modalInner {
-        display: flex;
-        flex-direction: column;
-        height: auto;
-        width: 50%;
-        padding: 10px 15px;
-        border-radius: 1em;
-        margin: auto 0;
-        background: #fff;
+.modal__instructions {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 50%;
+    padding: 20px;
+    border-radius: 6px;
+    background: #fff;
+    // border: 1px solid red;
 
-        @media(max-width: 708px){
-            align-items: center;
-            
+    @media (max-height: 618px) {
+        flex-direction: row;
+
+        .instructions__copy {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            // border: 1px solid red;
+            width: 50%;
+            margin-left: 20px;
+        }
+    }
+
+    @media (max-width: 940px) {
+        width: 75%;
+    }
+
+    @media (max-width: 480px) {
+        width: 90%;
+    }
+
+    .instructions__illustration {
+        width: 40%;
+        // border: 1px solid red;
+        margin: 0 auto 10px;
+
+        @media (max-height: 618px) {
+            margin-bottom: 0;
         }
 
-        img {
-            margin: 0 auto;
+        .illustration__img {
+            display: block;
+            width: 100%;
+            // border: 1px solid red;
+        }
+
+        @media (max-width: 1428px) {
+            width: 50%;
+        }
+
+        @media (max-width: 1041px) {
             width: 60%;
         }
-    
-        h2 {
-            margin: 0;
-            margin-top: 5px;
+
+        @media (max-width: 819px) {
+            width: 70%;
         }
 
-        .start_btn {
-            @include mainButton(calc(1.5rem + 0.4vw), calc(20px + 1.19vw));
-            width: 150px;
-            margin-top: 5px;
-            align-self: flex-end;
+        @media (max-width: 675px) {
+            width: 90%;
+        }
 
-            @media(max-width: 708px){
+        @media (max-width: 480px) {
+            width: 100%;
+        }
+    }
+
+    .main-header {
+        @include headingType(calc(2.4rem + 0.96vw));
+        text-align: center;
+        margin-bottom: 15px;
+        // border: 1px solid red;
+        text-align: center;
+
+        @media (max-height: 618px) {
+            // height: 25%;
+            // margin-bottom: 0;
+        }
+    }
+
+    .main-paragraph {
+        @include bodyType(calc(1.5rem + 0.18vw), 400);
+        text-align: center;
+        margin: 0 auto 40px;
+        // border: 1px solid red;
+        width: 55%;
+        text-align: center;
+
+        @media (max-height: 618px) {
+            // height: 45%;
+            width: 100%;
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 1238px) {
+            width: 75%;
+        }
+
+        @media (max-width: 901px) {
+            width: 90%;
+        }
+    }
+
+    .main-button {
+        margin: 0;
+        width: 150px;
+        align-self: flex-end;
+
+        @media (max-width: 940px) {
             align-self: center;
-            
         }
-    }         
-}
-}
+    }
+}  
 
 // inside share modal
 .share_inputs {
@@ -84,45 +158,45 @@
     }
 }
 
-.app__container__modal {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 10;
+// .container__modal {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     bottom: 0;
+//     right: 0;
+//     z-index: 10;
     
-    display: flex;
-    justify-content: center;
+//     display: flex;
+//     justify-content: center;
     
-    background: rgba(0, 0, 0, 0.8);
-    transform: translateX(-100%);
+//     background: rgba(0, 0, 0, 0.8);
+//     transform: translateX(-100%);
         
-    &__modalInner {
-        display: flex;
-        flex-direction: column;
-        height: auto;
-        width: 50%;
-        padding: 10px 15px;
-        border-radius: 1em;
-        margin: auto 0;
-        background: #fff;
+//     &__modalInner {
+//         display: flex;
+//         flex-direction: column;
+//         height: auto;
+//         width: 50%;
+//         padding: 10px 15px;
+//         border-radius: 1em;
+//         margin: auto 0;
+//         background: #fff;
 
-        img {
-            margin: 0 auto;
-            width: 60%;
-        }
+//         img {
+//             margin: 0 auto;
+//             width: 60%;
+//         }
     
-        h2 {
-            margin: 0;
-            margin-top: 5px;
-        }
+//         h2 {
+//             margin: 0;
+//             margin-top: 5px;
+//         }
         
-        button {
-            align-self: flex-end;
-        }
-    }
-}
+//         button {
+//             align-self: flex-end;
+//         }
+//     }
+// }
 
 /* animations */
 /* ----------------------------------------------
