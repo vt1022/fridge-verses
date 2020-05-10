@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
-
-class ListElement extends Component {
+class GeneratedWord extends Component {
 
     constructor() {
         super();
@@ -21,8 +20,6 @@ class ListElement extends Component {
 
 
     render() {
-
-        console.log(this.props)
         return (
             <button key={this.props.word.id} id={this.props.word.id}
                 className={"app__container__gameBoard__generated__item" + (this.state.disabled ? " disabled" : "")}
@@ -35,4 +32,4 @@ class ListElement extends Component {
 
 }
 
-export default ListElement
+export default GeneratedWord
