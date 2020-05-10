@@ -65,6 +65,8 @@ class GameBoard extends Component {
             sortedList: sortList(newList),
             wordOrder: wordOrder + 1
         })
+
+        this.props.disableWord(wordObject.id);
     }
 
     saveToGalleryClick = () => {
@@ -88,12 +90,9 @@ class GameBoard extends Component {
             sortedList: [],
             wordOrder: 0
         })
+
         // remove disabled and disabled style from words: 
-        const words = document.getElementsByClassName("app__container__gameBoard__generated__item")
-        Array.from(words).forEach((word) => {
-            word.removeAttribute("disabled")
-            word.classList.remove("disabled")
-        })
+        this.props.enableAllWords();
     }
 
     poemString = () => {
