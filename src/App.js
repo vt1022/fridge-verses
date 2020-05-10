@@ -14,7 +14,7 @@ class App extends Component {
         functionalWords: []
         }
     }
-
+    //Make sure no words have the same ID
     getUniqueWords = (words) => {
         let uniqueWords = []
 
@@ -35,7 +35,34 @@ class App extends Component {
         return uniqueWords
     }
 
+    enableAllWords = () => {
+        // Set "disabled" to false for all generated word
+        let generatedWords = this.state.generatedWords.map(word => {
+            word.disabled = false;
+            return word;
+        })
 
+        this.setState({
+            generatedWords: generatedWords
+        })
+    }
+
+    disableWord = (id) => {
+        // Given the ID of a word, disable only that word        
+        let generatedWords = this.state.generatedWords.map(word => {
+
+            if(word.id === id) {
+                word.disabled = true;
+            }
+
+            return word;
+        })
+
+        this.setState({
+            generatedWords: generatedWords
+        })
+    }
+    //Words generated based on query saved to state 
     setGeneratedWords = (generatedWords) => {
 
         let uniqueWords = this.getUniqueWords(generatedWords);
@@ -45,7 +72,7 @@ class App extends Component {
         })
     }
 
-
+    //Functional words generated based on query saved to state
     setFunctionalWords = (functionalWords) => {
 
         let uniqueWords = this.getUniqueWords(functionalWords);
@@ -84,7 +111,10 @@ class App extends Component {
                         setGeneratedWords={this.setGeneratedWords} setFunctionalWords={this.setFunctionalWords} /> }
                     {currentPage === 'gameBoard' &&
                         <GameBoard changePage={this.changePage}
-                        generatedWords={generatedWords} functionalWords={functionalWords}/>}
+                        generatedWords={generatedWords} functionalWords={functionalWords}
+                        enableAllWords={this.enableAllWords}
+                        disableWord={this.disableWord}
+                        />}
                     {currentPage === 'gallery' &&
                         <Gallery changePage={this.changePage} />}
                 </div>

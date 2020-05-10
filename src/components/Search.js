@@ -12,7 +12,7 @@ const theme = createMuiTheme({
 });
 
 let badwordsArray = require('badwords/array');
-badwordsArray.push("fuckup", "bitchy", "bitchery", "bitchiness", "bitched", "bitchen", "shittah", "shittim", "shitfaced", "shittle", "nigget", "niggerhead", "niggerheads", "niggerling", "nigged", "niggery", "niggle", "faggy", "fagged", "faggots", "faggoty", "faggotry", "faggoting", "faggoted", "cunty", "cunted", "cunting")
+badwordsArray.push("fuckup", "bitchy", "bitchery", "bitchiness", "bitched", "bitchen","bitchily","bitchier","bitchiest", "shittah", "shittim", "shitfaced", "shittle", "nigget", "niggerhead", "niggerheads", "niggerling", "nigged", "niggery", "niggle","niggardly","niggling","niggard","niggly","niggler","niggardliness","niggish", "faggy", "fagged", "faggots", "faggoty", "faggotry", "faggoting", "faggoted", "cunty", "cunted", "cunting","cummingtonite", "wetback","wetbacks", "spunk", "whoremonger", "whoring", "whorehouse", "hooker", "whoredom","whoremaster","whoremasters","whoremasterly","whored", "whores", "porn", "pornography", "slutty", "sluttish", "sluttery", "sluttishness", "sluttishly", "fucked-up")
 
 
 export class Search extends Component {
@@ -81,7 +81,7 @@ export class Search extends Component {
         })
         
         const generatedWords = result.data.map((value) => {
-            return {content: value.word, id: JSON.stringify(value.score)}
+            return {content: value.word, id: JSON.stringify(value.score), disabled: false}
         })
         
         this.props.setGeneratedWords(generatedWords)
