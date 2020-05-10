@@ -6,41 +6,164 @@
     user-select: none;
     padding: 4px 10px;
     border: 3px solid $darkGreen;
-    margin: 0 4px 4px 0;
+    margin: 0 10px 10px 0;
 
     background: $lightGreen;
-    transition: background box-shadow 0.2s ease-in;
+    transition: all 0.1s ease-in-out;
 
     &:hover, 
     &:focus {
+        color: $offsetDarkYellow;
         background: $lightYellow;
-        box-shadow: 2px 2px 1px $black;
+        border: 3px solid $darkYellow;
+        box-shadow: 3px 3px 0 0 $offsetDarkYellow;
         transform: rotate(-2deg);
     }
 }
 
-.app__container__gameBoard {
+.container__game-board {
     display: flex;
+    flex-wrap: wrap-reverse;
     width: 100%;
-    
-    .draggable-source--is-dragging {visibility: hidden;}
-        
+    min-height: 100vh;
+    // border: 1px solid red;
 
-    &__generated {
+
+    .game-board__generated {
         width: 40%;
+        padding: 40px;
         background: $lightGrey;
 
-        &__item {@extend %draggableItem;}
+        @media (max-width: 1198px) {
+            width: 100%;
+            height: 20%;
+        }
 
-        .disabled {background: $darkYellow;}
+        @media (max-width: 768px) {
+            padding: 20px;
+        }
+
+        .generated__item {@extend %draggableItem;}
+
+        .disabled {
+            background: $darkYellow;
+            border: 3px solid $offsetDarkYellow;
+            color: $offsetDarkYellow;
+        }
     }
-        
-    &__dragbox {
-        width: 60%;
 
-        &__item {
+    .sandbox__container {
+        width: 60%;
+        min-width: 646px;
+        // border: 1px solid red;
+        display: flex;
+        flex-direction: column;
+
+        @media (max-width: 1198px) {
+            width: 100%;
+            min-height: 55vh;
+            min-width: auto;
+        }
+
+        .main-header {
+            @include headingType(calc(2.4rem + 0.96vw));
+            text-align: center;
+            margin: 40px 0;
+            // border: 1px solid red;
+            text-align: center;
+
+            @media (max-width: 940px) {
+                display: none;
+            }
+        }
+
+        .sandbox__buttons {
+            // border: 1px solid red;
+            align-self: flex-end;
+            width: 50%;
+            display: flex;
+            justify-content: space-between;
+
+            @media (max-width: 525px) {
+                width: 75%;
+                margin: 0 auto;
+            }
+
+            .main-button {
+                @include mainButton(calc(1.5rem + 0.4vw), calc(46px + 1.19vw), 45%);
+                margin: 0;
+
+                &::after {
+                    font-family: 'Font Awesome 5 Pro';
+                    font-size: calc(1.8rem + 0.25vw);
+                    position: relative;
+                    left: 10px;
+                    top: 2px;
+                    content: '\f02e';
+                }
+            }
+
+            .secondary-button {
+                @include secondaryButton(calc(1.5rem + 0.4vw), calc(46px + 1.19vw), 45%);
+                position: static;
+                // z-index: 0;
+
+                &::after {
+                    font-family: 'Font Awesome 5 Pro';
+                    font-size: calc(1.8rem + 0.25vw);
+                    position: relative;
+                    top: 2px;
+                    left: 8px;
+                    content: '\f55a';
+                }
+            }
+        }
+    }
+
+    .game-board__sandbox {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        width: 80%;
+        height: 100%;
+        margin: 0 auto;
+        // border: 1px solid red;
+
+        @media (max-width: 1198px) {
+            height: 50%;
+            flex-direction: column-reverse;
+        }
+
+        @media (max-width: 940px) {
+            height: 60%;
+        }
+
+        @media (max-width: 768px) {
+            width: 100%;
+        }
+
+        .sandbox__droppable {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        .generated__item {
             @extend %draggableItem;
             background: $offsetLightGreen;
+            border: 3px solid $lightGreen;
+
+            &:hover,
+            &:focus {
+                color: $darkGreen;
+                @extend %draggableItem;
+                background: $offsetLightGreen;
+                border: 3px solid $lightGreen;
+                box-shadow: 3px 3px 0 0 $darkGreen;
+            }
         }
     }
 }

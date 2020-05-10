@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Modal from './Modal.js'
+import Swal from 'sweetalert2';
 
 import { ListManager } from 'react-beautiful-dnd-grid';
 import firebase from './firebase.js';
@@ -9,7 +10,7 @@ import '../styles/gameBoard.scss'
 const sortList = (list) => list.slice().sort((first, second) => first.order - second.order)
 
 const ListElement = ({ item: { content } }) => 
-    <div className="app__container__gameBoard__dragbox__item">{content}</div>
+    <div className="generated__item">{content}</div>
 
 class GameBoard extends Component {
     constructor() {
@@ -83,7 +84,7 @@ class GameBoard extends Component {
             dbRef.push(sortedList)
         // error handling:
         } else if (sortedList.length < 3) {
-            alert('You need more than 2 words in your poem.')
+            Swal.fire('You need more than 2 words in your poem.')
         } else if (sortedList.length > maxWordsInPoem ) {
             alert(`Your poem is too long! Nothing longer than ${maxWordsInPoem} please.`)
         }
@@ -95,13 +96,13 @@ class GameBoard extends Component {
             <>
                 <Modal show={modal} showModal={this.showModal} 
                 whichModal="start" changePage={this.props.changePage} />
-                <div className="app__container__gameBoard">
-                    <div className="app__container__gameBoard__generated">
+                <div className="container__game-board">
+                    <div className="game-board__generated">
                         {
                             this.props.generatedWords.map((word) => {
                                 return(
                                     <button key={word.id} id={word.id}
-                                    className="app__container__gameBoard__generated__item"
+                                    className="generated__item"
                                     onClick={() => this.generatedWordClick(word)}>
                                         {word.content}
                                     </button>
@@ -109,15 +110,25 @@ class GameBoard extends Component {
                             })
                         }
                     </div>
-                    <div className="app__container__gameBoard__dragbox">
-                        <ListManager
-                        items={sortedList}
-                        direction="horizontal"
-                        maxItems={5}
-                        render={(item) => <ListElement item={item} />}
-                        onDragEnd={this.reorderList} />
-                        <button onClick={this.clearPoem}>Clear</button>
-                        <button onClick={this.savePoem}>Save to Gallery</button>
+                    <div className="sandbox__container">
+                        <h2 className="main-header">You're like a young Maya Angelou</h2>
+                        <div className="game-board__sandbox">
+                            <div className="sandbox__droppable">
+                                <ListManager
+                                items={sortedList}
+                                direction="horizontal"
+                                maxItems={5}
+                                render={(item) => <ListElement item={item} />}
+                                onDragEnd={this.reorderList} />
+                            </div>
+
+                            <div className="sandbox__buttons">
+                                <button className="secondary-button" onClick={this.clearPoem}>Clear</button>
+                                <button className="main-button" onClick={this.savePoem}>
+                                    Save
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </>
