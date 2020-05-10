@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { ListManager } from "react-beautiful-dnd-grid";
+import '../styles/gameBoard.scss'
 
 const sortList = (list) => {
     return list.slice().sort((first, second) => first.order - second.order);
 }
 
-const ListElement = ({ item: { content } }) => <div className="app__container__gameBoard__dragbox__item">{content}</div>
+const ListElement = ({ item: { content } }) => <div className="generated__item">{content}</div>
 
 class DndGrid extends Component {
     constructor() {
@@ -55,13 +56,13 @@ class DndGrid extends Component {
 
     render() {
         return(
-            <div className="app__container__gameBoard">
-                <div className="app__container__gameBoard__generated">
+            <div className="container__game-board">
+                <div className="game-board__generated">
                     {
                         this.props.generatedWords.map((word) => {
                             return(
                                 <div key={word.id}
-                                    className="app__container__gameBoard__generated__item"
+                                    className="generated__item"
                                     onClick={(e) => this.generatedWordClick(e, word)}
                                 >
                                     {word.content}
@@ -70,7 +71,7 @@ class DndGrid extends Component {
                         })
                     }
                 </div>
-                <div className="app__container__gameBoard__dragbox">
+                <div className="sandbox__droppable">
                     <ListManager
                         items={this.state.sortedList}
                         direction="horizontal"

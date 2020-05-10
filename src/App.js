@@ -4,6 +4,11 @@ import GameBoard from './components/GameBoard'
 import Gallery from './components/Gallery.js';
 
 import './styles/styles.scss';
+
+// Prevents Auto-Zoom Behaviour with Forms on Mobile
+const viewportMeta = document.querySelector('meta[name="viewport"]');
+viewportMeta.content = 'user-scalable=NO, width=device-width, initial-scale=1.0';
+
 /******** set poem max length at GameBoard.js ln 72 ********/
 class App extends Component {
     constructor() {
@@ -77,13 +82,31 @@ class App extends Component {
                         onClick={() => this.changePage('landing')}>
                             Fridge Verses
                         </li>
-                        <li className="nav__link" 
+                        <li className="nav__link nav__link--desktop" 
                         onClick={() => this.changePage('gallery')}>
                             Gallery
                         </li>
+
+                        <li className="nav__link nav__link--mobile">
+
+                            <input type="checkbox" id="menu-trigger"/>
+
+                            <label className="hamburger" for="menu-trigger">
+                                <div className="hamburger__line hamburger__line--top"></div>
+                                <div className="hamburger__line hamburger__line--bottom"></div>
+                            </label>
+
+                            <div className="nav__mobile">
+                                <ul className="mobile__links">
+                                    <li>Gallery</li>
+                                </ul>
+                            </div>
+
+                        </li>
+
                     </ul>
                 </nav>
-                <div className="app__container">
+                <main className="app__container">
                     { // && basically shorthand if statement
                     currentPage === 'landing' &&
                         <Landing changePage={this.changePage} 
@@ -93,18 +116,15 @@ class App extends Component {
                     {
                     currentPage === 'gameBoard' &&
                         <GameBoard changePage={this.changePage}
-                        generatedWords={generatedWords} 
-                        functionalWords={functionalWords}
-                        enableAllWords={this.enableAllWords}
-                        disableWord={this.disableWord} />
-                    }
-                    {
-                    currentPage === 'gallery' &&
-                        <Gallery changePage={this.changePage} />
-                    }
-                </div>
+                        generatedWords={generatedWords} functionalWords={functionalWords} enableAllWords={this.enableAllWords}
+                        disableWord={this.disableWord}/>}
+                    {currentPage === 'gallery' &&
+                        <Gallery changePage={this.changePage} />}
+                </main>
                 <footer className="app__footer">
-                    <p><a href="https://github.com/ZEVG-project6">@ZEVG</a> © 2020</p>
+                    <div className="footer__social">
+                        <i class="fab fa-github"></i>
+                    </div>
                 </footer>
             </div>
         );

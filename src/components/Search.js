@@ -114,12 +114,12 @@ export class Search extends Component {
                     </MuiThemeProvider>
 
                     <button className="main-button" type="submit">
-                        Get Started ➡
+                        Get Started
                     </button>
                 </form>
                 <button className="secondary-button" 
                 onClick={this.getRandomWord}>
-                    Generate Word ⚡
+                    Generate Word
                 </button>
             </>
         )

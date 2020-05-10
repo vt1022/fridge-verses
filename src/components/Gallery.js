@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from './firebase.js';
+import '../styles/gallery.scss';
 
 class Gallery extends Component {
     constructor() {
