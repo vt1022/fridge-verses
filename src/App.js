@@ -33,11 +33,6 @@ class App extends Component {
                         onClick={() => this.changePage('landing')}>
                             Fridge Verses
                         </li>
-                        {/* testing purpose: */}
-                        {/* <li className="nav__link nav__link--dessktop"
-                        onClick={() => this.changePage('gameBoard')}>
-                            game test
-                        </li> */}
                         <li className="nav__link nav__link--desktop" 
                         onClick={() => this.changePage('gallery')}>
                             Gallery
@@ -53,14 +48,17 @@ class App extends Component {
                             </label>
 
                             <div className="nav__mobile">
-
+                                <ul className="mobile__links">
+                                    <li>Gallery</li>
+                                </ul>
                             </div>
 
                         </li>
 
                     </ul>
                 </nav>
-                <div className="app__container">
+                <main className="app__container">
+
                     {currentPage === 'landing' &&
                         <Landing changePage={this.changePage} 
                         setGeneratedWords={this.setGeneratedWords} /> }
@@ -69,7 +67,8 @@ class App extends Component {
                         generatedWords={generatedWords} />}
                     {currentPage === 'gallery' &&
                         <Gallery changePage={this.changePage} />}
-                </div>
+
+                </main>
                 <footer className="app__footer">
                     <div>
                         <i class="fab fa-github"></i>

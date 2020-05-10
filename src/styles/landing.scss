@@ -1,0 +1,29 @@
+@import 'variables';
+
+// Landing Page
+.app__container__leftLanding {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 45%;
+    min-width: 400px;
+    border: 1px solid red;
+    padding-top: 90px;
+}
+
+.app__container__rightLanding {
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+    min-width: 400px;
+    border: 1px solid red;
+
+    div {
+        margin: 90px auto;
+        // border: 1px solid black;
+        // height: 50%;
+        width: 100%;
+    }
+}

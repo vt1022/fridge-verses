@@ -4,6 +4,8 @@ import Modal from './Modal.js'
 import { ListManager } from 'react-beautiful-dnd-grid';
 import firebase from './firebase.js';
 
+import '../styles/gameBoard.scss'
+
 const sortList = (list) => list.slice().sort((first, second) => first.order - second.order)
 
 const ListElement = ({ item: { content } }) => 

@@ -1,0 +1,46 @@
+@import 'variables';
+
+%draggableItem {
+    @include bodyType(2rem, 400, $darkGreen);
+    display: inline-block;
+    user-select: none;
+    padding: 4px 10px;
+    border: 3px solid $darkGreen;
+    margin: 0 4px 4px 0;
+
+    background: $lightGreen;
+    transition: background box-shadow 0.2s ease-in;
+
+    &:hover, 
+    &:focus {
+        background: $lightYellow;
+        box-shadow: 2px 2px 1px $black;
+        transform: rotate(-2deg);
+    }
+}
+
+.app__container__gameBoard {
+    display: flex;
+    width: 100%;
+    
+    .draggable-source--is-dragging {visibility: hidden;}
+        
+
+    &__generated {
+        width: 40%;
+        background: $lightGrey;
+
+        &__item {@extend %draggableItem;}
+
+        .disabled {background: $darkYellow;}
+    }
+        
+    &__dragbox {
+        width: 60%;
+
+        &__item {
+            @extend %draggableItem;
+            background: $offsetLightGreen;
+        }
+    }
+}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import '../styles/modals.scss'
 import TextField from '@material-ui/core/TextField';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import imgInstruct from '../assets/illustrations--instruct.png'

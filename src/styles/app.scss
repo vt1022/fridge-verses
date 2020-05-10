@@ -1,25 +1,6 @@
-%draggableItem {
-    @include bodyType(2rem, 400, $darkGreen);
-    display: inline-block;
-    user-select: none;
-    padding: 4px 10px;
-    border: 3px solid $darkGreen;
-    margin: 0 4px 4px 0;
-
-    background: $lightGreen;
-    transition: background box-shadow 0.2s ease-in;
-
-    &:hover, 
-    &:focus {
-        background: $lightYellow;
-        box-shadow: 2px 2px 1px $black;
-        transform: rotate(-2deg);
-    }
-}
-
 .app {
     border: 1px solid red;
-    // height: 100vh;
+    min-height: 100vh;
 }
 
 .app__container {
@@ -28,190 +9,7 @@
     display: flex;
     flex-wrap: wrap-reverse;
     height: 85%;
-    
-    &__leftLanding {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-        width: 45%;
-        min-width: 400px;
-        border: 1px solid red;
-        padding-top: 90px;
-
-        &__modal {
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            z-index: 10;
-            
-            display: flex;
-            justify-content: center;
-            
-            background: rgba(0, 0, 0, 0.8);
-            transform: translateX(-100%);
-            
-            &__modalInner {
-                display: flex;
-                flex-direction: column;
-                height: auto;
-                width: 50%;
-                padding: 10px 15px;
-                border-radius: 1em;
-                margin: auto 0;
-                background: #fff;
-
-                 @media(max-width: 708px){
-                    align-items: center;
-                    
-                }
-
-                img {
-                    margin: 0 auto;
-                    width: 60%;
-                }
-            
-                h2 {
-                    margin: 0;
-                    margin-top: 5px;
-                }
-
-                .start_btn {
-                    @include mainButton(calc(1.5rem + 0.4vw), calc(20px + 1.19vw));
-                    width: 150px;
-                    margin-top: 5px;
-                    align-self: flex-end;
-
-                    @media(max-width: 708px){
-                    align-self: center;
-                    
-                }
-                }
-            
-            }
-        }
-    }
-
-    // inside share modal
-    .share_inputs {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        align-items: stretch;
-        align-content: center;
-
-        @media(max-width: 1181px){
-        width: 55%;
-        justify-content: space-around;
-        margin: 0 auto;
-    }
-
-        @media(max-width: 1007px){
-            width: 80%;
-        }
-
-        .gallery_btn {
-                @include mainButton($fontSizeValue: calc(.7rem + 0.59vw), $heightValue: calc(17px + 1.19vw), $widthValue: calc(100px + 2.5vw));
-                margin-top: 16px             
-                }
-
-        .share_btn {
-                 @include secondaryButton($fontSizeValue: calc(.8rem + 0.59vw), $heightValue: calc(17px + 1.19vw), $widthValue: calc(100px + 2.5vw));
-                 margin-top: 16px;
-                }
-    }
-
-    &__rightLanding {
-        display: flex;
-        flex-direction: column;
-        width: 55%;
-        min-width: 400px;
-        border: 1px solid red;
-
-        div {
-            margin: 90px auto;
-            // border: 1px solid black;
-            // height: 50%;
-            width: 100%;
-        }
-    }
-
-    &__gallery {
-        border: 1px solid red;
-        width: 100%;
-    }
-
-
-    &__gameBoard {
-        display: flex;
-        width: 100%;
-        
-        .draggable-source--is-dragging {visibility: hidden;}
-        
-
-        &__generated {
-            width: 40%;
-            background: $lightGrey;
-
-            &__item {@extend %draggableItem;}
-
-            .disabled {background: $darkYellow;}
-        }
-        
-        &__dragbox {
-            width: 60%;
-
-            &__item {
-                @extend %draggableItem;
-                background: $offsetLightGreen;
-            }
-        }
-    }   // gameboard
-
-    &__modal {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        z-index: 10;
-        
-        display: flex;
-        justify-content: center;
-        
-        background: rgba(0, 0, 0, 0.8);
-        transform: translateX(-100%);
-        
-        &__modalInner {
-            display: flex;
-            flex-direction: column;
-            height: auto;
-            width: 50%;
-            padding: 10px 15px;
-            border-radius: 1em;
-            margin: auto 0;
-            background: #fff;
-
-            img {
-                margin: 0 auto;
-                width: 60%;
-            }
-        
-            h2 {
-                margin: 0;
-                margin-top: 5px;
-            }
-        
-            button {
-                align-self: flex-end;
-            }
-        }
-    }   // modal
-}   // app__container
+}  
 
 .app__nav {
     height: 10%;
@@ -247,8 +45,6 @@
     }
 }
 
-
-
 .nav__link {
     @include bodyType(calc(2.4rem + 0.25vw), 400, $darkGrey);
     text-align: center;
@@ -259,18 +55,14 @@
 
     &--mobile {
         display: none;
-        border: 1px solid red;
     }
 
     &::after {
+        font-family: 'Font Awesome 5 Pro';
+        font-size: calc(1.8rem + 0.25vw);
         position: relative;
-        top: 2px;
         left: 6px;
-        content: '';
-        display: inline-block;
-        height: 20px;
-        width: 20px;
-        border: 1px solid red;
+        content: '\f061';
         transition: left 150ms ease;
     }
 
@@ -280,9 +72,6 @@
         }
     }
 }
-
-
-
 
 @media (max-width: 940px) {
     .nav__link--desktop {
@@ -314,15 +103,22 @@
             bottom: 0;
             right: -470px;
             width: 50%;
-            background: black;
-            opacity: 20%;
+            padding: 125px 45px 0;
+            background: rgba(230, 231, 233, 0.88);
+            transition: right 250ms ease-out;
 
-            // li {
-            //     @include bodyType(calc(2.4rem + 0.25vw), 400, $darkGrey);
-            //     width: 100%;
-            //     height: 200px;
-            //     border: 1px solid red;
-            // }
+            .mobile__links {
+                position: relative;
+
+                li {
+                    position: absolute;
+                    top: 0;
+                    width: 100%;
+                    height: 70px;
+                    text-align: left;
+                    border-bottom: dashed $darkGrey 2px;
+                }
+            }
         }
 
         #menu-trigger:checked { 
@@ -349,8 +145,7 @@
             bottom: 0;
             right: 0;
             width: 50%;
-            background: black;
-            opacity: 20%;
+            background: rgba(230, 231, 233, 0.88);
         }
 
     }
@@ -388,14 +183,6 @@
     }
 }
 
-
-
-
-
-
-
-
-
 .container__form {
     // border: 1px solid black;
     width: 60%;
@@ -405,7 +192,7 @@
 .app__footer {
     display: flex;
     justify-content: flex-end;
-    height: 5%;
+    height: 100%;
     border: 1px solid black;
 }
 
@@ -432,35 +219,4 @@
 .secondary-button {
     @include secondaryButton(calc(1.5rem + 0.4vw), calc(46px + 1.19vw), 100%);
     margin-bottom: 20px;
-}
-
-// in start modal
-// .start_btn {
-//     @include mainButton(calc(1.5rem + 0.4vw), calc(20px + 1.19vw));
-//     width: 150px;
-//     margin-top: 5px;
-// }
-
-/* animations */
-/* ----------------------------------------------
- * Generated by Animista on 2020-5-5 19:9:32
- * Licensed under FreeBSD License.
- * See http://animista.net/license for more info. 
- * w: http://animista.net, t: @cssanimista
- * ---------------------------------------------- */
-.slideRight {animation: slideRight 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;}
-.slideLeft {animation: slideLeft 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;}
-
-@keyframes slideLeft {
-    0% {transform: translateX(0);}
-    100% {transform: translateX(-100%);}
-}
-
-@keyframes slideRight {
-    0% {transform: translateX(-100%);}
-    100% {transform: translateX(0);}
-}
-
-Autocomplete {
-    background: red;
 }
