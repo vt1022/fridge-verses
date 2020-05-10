@@ -210,15 +210,17 @@
 
     .footer__social {
         width: 100px;
-        // height: 100px;
         font-size: calc(3.2rem + 1.1vw);
         text-align: right;
-        // line-height: 100px;
         transition: color 250ms ease;
-        // border: 1px solid blue;
 
         &:hover {
             color: lighten($darkGrey, 5%);
+        }
+
+        a:visited {
+            text-decoration: none;
+            color: inherit;
         }
 
         @media (max-width: 940px) {

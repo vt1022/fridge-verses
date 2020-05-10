@@ -119,7 +119,9 @@ class App extends Component {
                 </main>
                 <footer className="app__footer">
                     <div className="footer__social">
-                        <i className="fab fa-github"></i>
+                        <a href="https://github.com/ZEVG-project6/Refridgeration-Versification">
+                            <i className="fab fa-github"></i>
+                        </a>
                     </div>
                 </footer>
             </div>
