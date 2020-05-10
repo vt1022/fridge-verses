@@ -113,7 +113,8 @@ class GameBoard extends Component {
                         {
                             this.props.generatedWords.map((word) => {
                                 return(
-                                    <GeneratedWord id={word.id} word={word} generatedWordClick={this.generatedWordClick} />
+                                    <GeneratedWord key={word.id} word={word} 
+                                    generatedWordClick={this.generatedWordClick} />
                                 )
                             })
                         }
@@ -125,7 +126,6 @@ class GameBoard extends Component {
                         items={sortedList}
                         direction="horizontal"
                         maxItems={5}
-                        // render={(item) => <ListElement word={item} generatedWordClick={() => {}} />}
                         render={(item) => <ListElement item={item} />}
                         onDragEnd={this.reorderList} />
                         <button onClick={this.clearPoem}>Clear</button>
