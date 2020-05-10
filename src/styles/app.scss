@@ -219,9 +219,13 @@
             color: lighten($darkGrey, 5%);
         }
 
+        a {
+            color: inherit;
+        }
+
         a:visited {
             text-decoration: none;
-            color: inherit;
+            color: $darkGrey;
         }
 
         @media (max-width: 940px) {

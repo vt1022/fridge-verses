@@ -9,6 +9,10 @@
         text-align: center;
         margin-bottom: 30px;
 
+        @media (min-width: 1680px) {
+            font-size: 7rem;
+        }
+        
         @media (max-width: 379px) {
             font-size: 3.6rem;
         }
