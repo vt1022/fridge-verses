@@ -17,6 +17,29 @@
     }
 }
 
+button[style] { // override styles of a button with inline styles
+    font-family: 'Kanit', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+    font-size: calc(.7rem + 0.59vw) !important;
+    //Max at 3rem for main-button
+    font-weight: 400 !important;
+    letter-spacing: 0.12rem !important;
+    line-height: 1 !important;
+    color: $lightGrey !important;
+    height: calc(17px + 1.19vw) !important;
+    min-width: calc(80px + 2.5vw) !important;
+    background-color: #1DA1F2 !important;
+    border: 2px solid transparent !important;
+    cursor: pointer !important;
+    transition: background-color 250ms ease !important;
+    border-radius: 8px !important;
+    
+    &:hover {
+        background-color: darken($lightGrey, 4%) !important;
+        color: #1DA1F2 !important;
+        border: 2px solid #1DA1F2 !important;
+    }
+}
+
 .app {
     border: 1px solid red;
     height: 100vh;
@@ -86,9 +109,8 @@
                     align-self: flex-end;
 
                     @media(max-width: 708px){
-                    align-self: center;
-                    
-                }
+                        align-self: center;
+                    }  
                 }
             
             }
@@ -152,7 +174,7 @@
         
         .draggable-source--is-dragging {visibility: hidden;}
         
-
+        
         &__generated {
             width: 40%;
             background: $lightGrey;
@@ -206,8 +228,15 @@
                 margin-top: 5px;
             }
         
-            button {
+            .start_btn {
+                @include mainButton(calc(1.5rem + 0.4vw), calc(20px + 1.19vw));
+                width: 150px;
+                margin-top: 5px;
                 align-self: flex-end;
+
+                @media(max-width: 708px){
+                    align-self: center;
+                }  
             }
         }
     }   // modal

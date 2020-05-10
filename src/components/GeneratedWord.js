@@ -1,23 +1,18 @@
 import React, { Component } from 'react';
 
 class GeneratedWord extends Component {
-
-    constructor() {
-        super();
-    }
- 
     handleClick = (e) => {
         this.props.generatedWordClick(this.props.word)
     }
 
-
     render() {
+        const { id, disabled, content } = this.props.word
         return (
-            <button key={this.props.word.id} id={this.props.word.id}
-                className={"app__container__gameBoard__generated__item" + (this.props.word.disabled ? " disabled" : "")}
-                disabled={this.props.word.disabled}
-                onClick={this.handleClick}>
-                {this.props.word.content}
+            <button key={id} id={id}
+            className={"app__container__gameBoard__generated__item" + (disabled ? " disabled" : "")}
+            disabled={disabled}
+            onClick={this.handleClick}>
+                {content}
             </button>
         )
     }

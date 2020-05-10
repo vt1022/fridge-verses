@@ -110,12 +110,11 @@ export class Search extends Component {
             <>
                 <form action="" onSubmit={this.handleSubmit}>
                     <MuiThemeProvider theme={theme}>
-
                         <InputAutocomplete onTextChange={this.onTextChange} autoCompleteWords={this.state.autoCompleteWords} onAutoCompleteItemSelected={this.onAutoCompleteItemSelected} 
                         userInput = {userInput} 
                         borderColor="primary"
                         />
-                        </MuiThemeProvider>
+                    </MuiThemeProvider>
 
                     <button className="main-button" type="submit">
                         Get Started ➡
