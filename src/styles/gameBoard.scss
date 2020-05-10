@@ -63,7 +63,7 @@
         .sandbox__buttons {
             // border: 1px solid red;
             align-self: flex-end;
-            width: 50%;
+            width: 100%;
             display: flex;
             justify-content: space-between;
 
@@ -73,7 +73,7 @@
             }
 
             .main-button {
-                @include mainButton(calc(1.5rem + 0.4vw), calc(46px + 1.19vw), 45%);
+                @include mainButton(calc(1.5rem + 0.4vw), calc(46px + 1.19vw), 32%);
                 margin: 0;
 
                 &::after {
@@ -87,9 +87,9 @@
             }
 
             .secondary-button {
-                @include secondaryButton(calc(1.5rem + 0.4vw), calc(46px + 1.19vw), 45%);
+                @include secondaryButton(calc(1.5rem + 0.4vw), calc(46px + 1.19vw), 32%);
                 position: static;
-                // z-index: 0;
+                z-index: 0;
 
                 &::after {
                     font-family: 'Font Awesome 5 Pro';
@@ -98,6 +98,28 @@
                     top: 2px;
                     left: 8px;
                     content: '\f55a';
+                }
+            }
+            
+            button[style] { // override styles of a button with inline styles
+                font-family: 'Kanit', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+                font-size: calc(1.5rem + 0.4vw) !important;
+                //Max at 3rem for main-button
+                font-weight: 400 !important;
+                letter-spacing: 0.12rem !important;
+                line-height: 1 !important;
+                color: $lightGrey !important;
+                height: calc(46px + 1.19vw) !important;
+                width: 32% !important;
+                min-width: calc(80px + 2.5vw) !important;
+                background-color: #1DA1F2 !important;
+                border: 2px solid transparent !important;
+                cursor: pointer !important;
+                transition: background-color 250ms ease !important;
+                border-radius: 8px !important;
+                
+                &:hover {
+                    background-color: lighten(#1DA1F2, 8%) !important;
                 }
             }
         }

@@ -48,9 +48,14 @@ class Gallery extends Component {
                     })
                     }
                 </div>
-                <button onClick={() =>this.showMoreLessClick(-10)}>Less -</button>
-                <button onClick={() =>this.showMoreLessClick(10)}>More +</button>
-                <button onClick={() => changePage('landing')}>Home</button>
+                <div className="app__container__gallery__buttons">    
+                    <button onClick={() =>this.showMoreLessClick(-10)}
+                    className="main-button">Less -</button>
+                    <button onClick={() =>this.showMoreLessClick(10)}
+                    className="main-button">More +</button>
+                    <button onClick={() => changePage('landing')}
+                    className="secondary-button">Home</button>
+                </div>
             </div>
         )
     }

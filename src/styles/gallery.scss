@@ -25,4 +25,39 @@
         }
     }
 
+    &__buttons {
+        display: flex;
+        justify-content: space-between;
+        width: 70%;
+        margin: 0 auto;
+        margin-top: 15px;
+
+        .main-button {
+            @include mainButton(calc(1.5rem + 0.4vw), calc(46px + 1.19vw), 32%);
+            margin: 0;
+    
+            &::after {
+                font-family: 'Font Awesome 5 Pro';
+                font-size: calc(1.8rem + 0.25vw);
+                position: relative;
+                left: 10px;
+                top: 2px;
+                content: '\f146';
+            }
+            &:nth-of-type(2)::after {content: '\f0fe';}
+        }
+    
+        .secondary-button {
+            @include secondaryButton(calc(1.5rem + 0.4vw), calc(46px + 1.19vw), 32%);
+    
+            &::after {
+                font-family: 'Font Awesome 5 Pro';
+                font-size: calc(1.8rem + 0.25vw);
+                position: relative;
+                top: 2px;
+                left: 8px;
+                content: '\f80a';
+            }
+        }
+    }
 } // Gallery
