@@ -62,9 +62,10 @@ class Modal extends Component {
     render() {
         const { show, whichModal } = this.props
         const { hide, inputAuthor, inputTitle } = this.state
-        return(
+        return (
             <div onAnimationEnd={() => this.animationEnd()}
             className={`container__modal ${hide ? "slideLeft" : ""} ${show ? "slideRight" : ""}`}>
+
                 {   // check prop to see which modal to show:
                 whichModal === "start" && // START modal:  
                     <div className="modal__instructions">
@@ -81,48 +82,52 @@ class Modal extends Component {
                         {/* Class was start_btn before, incase I broke anything */}
                     </div>
                 }
+
                 {   // check prop to see which modal to show:
                     whichModal === "share" && // SHARE modal: 
                     <div className="app__container__modal__modalInner modalShare">
-                    <img src={imgIllustrations} alt="illustration of a person sharing ideas to the digital cloud"/>
-                    <h2>Share your poem</h2>
-                    <form className="share_inputs" action="" onSubmit={this.handleSubmit}>
-                        <MuiThemeProvider theme={theme}>
-                            <TextField 
-                            className="share_title"
-                            variant="outlined"
-                            label="Title"
-                            placeholder=""
-                            margin="normal"
-                            helperText="Name your masterpiece"
-                            size="medium"
-                            id="poemTitle"
-                            value={inputTitle}
-                            onChange={this.bindInputTitle}
-                            />
-                            <TextField 
-                            className="share_author"
-                            variant="outlined"
-                            label="Author"
-                            placeholder=""
-                            margin="normal"
-                            helperText="sign your masterpiece"
-                            size="medium"
-                            id="poemAuthor"
-                            value={inputAuthor}
-                            onChange={this.bindInputAuthor}
-                            />
-                        </MuiThemeProvider>
-                        <button className="gallery_btn" onClick={this.savePoemClick}>
-                            Submit
-                        </button>
-                        <button className="share_btn" onClick={this.hideModal}>
-                            Cancel
-                        </button>
-                    </form>
+                        <img src={imgIllustrations} alt="illustration of a person sharing ideas to the digital cloud"/>
+                        <h2>Share your poem</h2>
+                        <form className="share_inputs" action="" onSubmit={this.handleSubmit}>
+                            <MuiThemeProvider theme={theme}>
+                                <TextField 
+                                className="share_title"
+                                variant="outlined"
+                                label="Title"
+                                placeholder=""
+                                margin="normal"
+                                helperText="Name your masterpiece"
+                                size="medium"
+                                id="poemTitle"
+                                value={inputTitle}
+                                onChange={this.bindInputTitle}
+                                />
+                                <TextField 
+                                className="share_author"
+                                variant="outlined"
+                                label="Author"
+                                placeholder=""
+                                margin="normal"
+                                helperText="sign your masterpiece"
+                                size="medium"
+                                id="poemAuthor"
+                                value={inputAuthor}
+                                onChange={this.bindInputAuthor}
+                                />
+                            </MuiThemeProvider>
+                            <button className="gallery_btn" onClick={this.savePoemClick}>
+                                Submit
+                            </button>
+                            <button className="share_btn" onClick={this.hideModal}>
+                                Cancel
+                            </button>
+                        </form>
+                    </div>
+                    }
                 </div>
         )
     }
-}
 
+}
+                
 export default Modal;
