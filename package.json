@@ -25,8 +25,8 @@
     "react-dom": "^16.13.1",
     "react-frame-component": "^4.1.2",
     "react-scripts": "3.4.1",
-    "sweetalert2": "^9.10.12",
-    "react-share": "^4.1.0"
+    "react-share": "^4.1.0",
+    "sweetalert2": "^9.10.12"
   },
   "scripts": {
     "start": "react-scripts start",

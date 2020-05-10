@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Modal from './Modal.js'
-import Swal from 'sweetalert2';
+// import Swal from 'sweetalert2';
 import ListElement from './ListElement'
 import GeneratedWord from './GeneratedWord.js'
 import { ListManager } from 'react-beautiful-dnd-grid';
@@ -112,7 +112,7 @@ class GameBoard extends Component {
             dbRef.push(sortedList)
         // error handling:
         } else if (sortedList.length < 3) {
-            Swal.fire('You need more than 2 words in your poem.')
+            alert('You need more than 2 words in your poem.')
         } else if (sortedList.length > maxWordsInPoem ) {
             alert(`Your poem is too long! Nothing longer than ${maxWordsInPoem} please.`)
         }
