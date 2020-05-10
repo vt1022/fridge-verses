@@ -124,7 +124,7 @@ class App extends Component {
                 </footer>
             </div>
             <div className="copyright__footer">
-                <p>© 2020. Made with <i class="fas fa-heart"></i> by <a href="http://www.vinccitsui.me">Vinnci Tsui, </a> <a href="http://zarinamia.com">Zarina Mia, </a><a href="#">George Zikos </a>and <a href="http://edithwerbel.com/">Edith Werbel</a> </p>
+                <p>© 2020. Made with <i class="fas fa-heart"></i> by <a href="http://www.vinccitsui.me">Vinnci Tsui, </a> <a href="http://zarinamia.com">Zarina Mia, </a><a href="mailto: george@nosuchthing.training">George Zikos </a>and <a href="http://edithwerbel.com/">Edith Werbel</a> </p>
             </div>
             </>
         );
