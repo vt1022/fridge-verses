@@ -126,7 +126,7 @@ class Modal extends Component {
                             </button>
                             <button className="share_btn"
                             onClick={this.shareClick}>
-                                Share
+                                Cancel
                             </button>
                         </form>
                     </div>
