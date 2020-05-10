@@ -65,6 +65,8 @@ class App extends Component {
     //Words generated based on query saved to state 
     setGeneratedWords = (generatedWords) => {
 
+        generatedWords = generatedWords.filter(word => word.content.indexOf(' ') === -1)
+
         let uniqueWords = this.getUniqueWords(generatedWords);
 
         this.setState({
@@ -74,6 +76,8 @@ class App extends Component {
 
     //Functional words generated based on query saved to state
     setFunctionalWords = (functionalWords) => {
+
+        functionalWords =functionalWords.filter(word => word.content.indexOf(' ') === -1)
 
         let uniqueWords = this.getUniqueWords(functionalWords);
 
