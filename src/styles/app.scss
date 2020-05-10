@@ -1,28 +1,4 @@
-button[style] { // override styles of a button with inline styles
-    font-family: 'Kanit', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
-    font-size: calc(.7rem + 0.59vw) !important;
-    //Max at 3rem for main-button
-    font-weight: 400 !important;
-    letter-spacing: 0.12rem !important;
-    line-height: 1 !important;
-    color: $lightGrey !important;
-    height: calc(17px + 1.19vw) !important;
-    min-width: calc(80px + 2.5vw) !important;
-    background-color: #1DA1F2 !important;
-    border: 2px solid transparent !important;
-    cursor: pointer !important;
-    transition: background-color 250ms ease !important;
-    border-radius: 8px !important;
-    
-    &:hover {
-        background-color: darken($lightGrey, 4%) !important;
-        color: #1DA1F2 !important;
-        border: 2px solid #1DA1F2 !important;
-    }
-}
-
 .app {
-    // border: 1px solid red;
     min-height: 100vh;
 }
 
@@ -33,9 +9,7 @@ button[style] { // override styles of a button with inline styles
     align-items: center;
     height: 80%;
     min-height: 668px;
-    padding-top: 40px;
-    // border: 1px solid black;
-    height: 85%;
+    // padding-top: 40px;
 
     @media (max-width: 1442px) {
         justify-content: center;
@@ -43,9 +17,8 @@ button[style] { // override styles of a button with inline styles
 }  
 .app__nav {
     height: 10%;
-    min-height: 100px;
+    min-height: 80px;
     padding: 20px 0;
-    // border: 1px solid black;
 }
 
 .app__nav ul {
@@ -228,7 +201,7 @@ button[style] { // override styles of a button with inline styles
     display: flex;
     justify-content: flex-end;
     height: 10%;
-    min-height: 100px;
+    // min-height: 100px;
     padding: 20px 0;
 
     @media (max-width: 940px) {
@@ -237,10 +210,10 @@ button[style] { // override styles of a button with inline styles
 
     .footer__social {
         width: 100px;
-        height: 100px;
+        // height: 100px;
         font-size: calc(3.2rem + 1.1vw);
         text-align: right;
-        line-height: 100px;
+        // line-height: 100px;
         transition: color 250ms ease;
         // border: 1px solid blue;
 

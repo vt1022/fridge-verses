@@ -24,7 +24,7 @@ class Gallery extends Component {
         const { changePage } = this.props
         return (
             <div className="app__container__gallery">
-                <h1>Some Poetic Title for a Gallery</h1>
+                <h1>Verse By Magnet Poets</h1>
                 <div className="app__container__gallery__grid">
                     {/* map over array from firebase. slice to control how many results to show */
                     Object.values(firebaseDataObject).reverse().slice(0, poemsToShow).map(({ title, author, poem }, index) => {
@@ -33,26 +33,29 @@ class Gallery extends Component {
                             className="app__container__gallery__grid__poem">
                                 <h2>{title}</h2>
                                 <p>by: {author}</p>
-                                <div className="app__container__gallery__grid__poem__body">
-                                    {
-                                    poem.map((wordObj) => {
-                                        return( // fix below class name. just need temp styling for now
-                                            <div key={wordObj.order} 
-                                            className="app__container__gameBoard__dragbox__item">
-                                                {wordObj.content}
-                                            </div>
-                                        ) 
-                                    })
-                                    }
-                                </div>
+                                {
+                                poem.map((wordObj) => {
+                                    return( // fix below class name. just need temp styling for now
+                                        <div key={wordObj.order} 
+                                        className="app__container__gallery__grid__poem__word">
+                                            {wordObj.content}
+                                        </div>
+                                    ) 
+                                })
+                                }
                             </div>
                         )
                     })
                     }
                 </div>
-                <button onClick={() =>this.showMoreLessClick(-10)}>Less -</button>
-                <button onClick={() =>this.showMoreLessClick(10)}>More +</button>
-                <button onClick={() => changePage('landing')}>Home</button>
+                <div className="app__container__gallery__buttons">    
+                    <button onClick={() =>this.showMoreLessClick(-10)}
+                    className="secondary-button">Less</button>
+                    <button onClick={() =>this.showMoreLessClick(10)}
+                    className="secondary-button">More</button>
+                    <button onClick={() => changePage('landing')}
+                    className="main-button">Home</button>
+                </div>
             </div>
         )
     }

@@ -91,3 +91,24 @@ $offsetDarkYellow: #754800;
         background-color: darken($offsetDarkGreen, 6%);
     }
 }
+
+%draggableItem {
+    @include bodyType(2rem, 400, $darkGreen);
+    display: inline-block;
+    user-select: none;
+    padding: 4px 10px;
+    border: 3px solid $darkGreen;
+    margin: 0 10px 10px 0;
+
+    background: $lightGreen;
+    transition: all 0.1s ease-in-out;
+
+    &:hover, 
+    &:focus {
+        color: $offsetDarkYellow;
+        background: $lightYellow;
+        border: 3px solid $darkYellow;
+        box-shadow: 3px 3px 0 0 $offsetDarkYellow;
+        transform: rotate(-2deg);
+    }
+}

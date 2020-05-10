@@ -1,26 +1,5 @@
 @import 'variables';
 
-%draggableItem {
-    @include bodyType(2rem, 400, $darkGreen);
-    display: inline-block;
-    user-select: none;
-    padding: 4px 10px;
-    border: 3px solid $darkGreen;
-    margin: 0 10px 10px 0;
-
-    background: $lightGreen;
-    transition: all 0.1s ease-in-out;
-
-    &:hover, 
-    &:focus {
-        color: $offsetDarkYellow;
-        background: $lightYellow;
-        border: 3px solid $darkYellow;
-        box-shadow: 3px 3px 0 0 $offsetDarkYellow;
-        transform: rotate(-2deg);
-    }
-}
-
 .container__game-board {
     display: flex;
     flex-wrap: wrap-reverse;
@@ -55,9 +34,13 @@
     .sandbox__container {
         width: 60%;
         min-width: 646px;
-        // border: 1px solid red;
         display: flex;
         flex-direction: column;
+
+        p {
+            text-align: center;
+            margin-bottom: 15px;
+        }
 
         @media (max-width: 1198px) {
             width: 100%;
@@ -68,7 +51,7 @@
         .main-header {
             @include headingType(calc(2.4rem + 0.96vw));
             text-align: center;
-            margin: 40px 0;
+            margin: 40px 0 15px 0;
             // border: 1px solid red;
             text-align: center;
 
@@ -80,17 +63,12 @@
         .sandbox__buttons {
             // border: 1px solid red;
             align-self: flex-end;
-            width: 50%;
+            width: 100%;
             display: flex;
             justify-content: space-between;
-
-            @media (max-width: 525px) {
-                width: 75%;
-                margin: 0 auto;
-            }
-
+            
             .main-button {
-                @include mainButton(calc(1.5rem + 0.4vw), calc(46px + 1.19vw), 45%);
+                @include mainButton(calc(1.5rem + 0.4vw), calc(46px + 1.19vw), 32%);
                 margin: 0;
 
                 &::after {
@@ -101,12 +79,17 @@
                     top: 2px;
                     content: '\f02e';
                 }
+
+                @media (max-width: 525px) {
+                    height: 40px !important;
+                    &::after{left: 4px;}
+                }
             }
 
             .secondary-button {
-                @include secondaryButton(calc(1.5rem + 0.4vw), calc(46px + 1.19vw), 45%);
+                @include secondaryButton(calc(1.5rem + 0.4vw), calc(46px + 1.19vw), 32%);
                 position: static;
-                // z-index: 0;
+                z-index: 0;
 
                 &::after {
                     font-family: 'Font Awesome 5 Pro';
@@ -115,6 +98,37 @@
                     top: 2px;
                     left: 8px;
                     content: '\f55a';
+                }    
+
+                @media (max-width: 525px) {
+                    height: 40px !important;
+                    &::after{left: 2px;}
+                }
+            }
+            
+            button[style] { // override styles of a button with inline styles
+                font-family: 'Kanit', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+                font-size: calc(1.5rem + 0.4vw) !important;
+                //Max at 3rem for main-button
+                font-weight: 400 !important;
+                letter-spacing: 0.12rem !important;
+                line-height: 1 !important;
+                color: $lightGrey !important;
+                height: calc(46px + 1.19vw) !important;
+                width: 32% !important;
+                min-width: calc(80px + 2.5vw) !important;
+                background-color: #1DA1F2 !important;
+                border: 2px solid transparent !important;
+                cursor: pointer !important;
+                transition: background-color 250ms ease !important;
+                border-radius: 8px !important;
+                
+                &:hover {
+                    background-color: lighten(#1DA1F2, 8%) !important;
+                }    
+
+                @media (max-width: 525px) {
+                    height: 40px !important;
                 }
             }
         }
@@ -128,7 +142,6 @@
         width: 80%;
         height: 100%;
         margin: 0 auto;
-        // border: 1px solid red;
 
         @media (max-width: 1198px) {
             height: 50%;
@@ -148,7 +161,7 @@
             flex-direction: column;
             align-items: center;
             max-width: 100%;
-            overflow: hidden;
+            // overflow: hidden;
         }
 
         .generated__item {
