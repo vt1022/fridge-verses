@@ -47,6 +47,7 @@
 
     &:hover {
         transform: rotateZ(0deg);
+        cursor: pointer;
     }
 }
 
@@ -210,15 +211,21 @@
 
     .footer__social {
         width: 100px;
-        // height: 100px;
         font-size: calc(3.2rem + 1.1vw);
         text-align: right;
-        // line-height: 100px;
         transition: color 250ms ease;
-        // border: 1px solid blue;
 
         &:hover {
             color: lighten($darkGrey, 5%);
+        }
+
+        a {
+            color: inherit;
+        }
+
+        a:visited {
+            text-decoration: none;
+            color: $darkGrey;
         }
 
         @media (max-width: 940px) {
@@ -261,12 +268,11 @@
 
 .secondary-button {
     @include secondaryButton(calc(1.5rem + 0.4vw), calc(46px + 1.19vw), 100%);
+
     &::after {
         font-family: 'Font Awesome 5 Pro';
         font-size: calc(1.8rem + 0.25vw);
-        position: relative;
-        top: 0.5px;
-        left: 10px;
+        margin-left: 10px;
         content: '\f074';
     }
 }

@@ -29,7 +29,6 @@ $offsetDarkYellow: #754800;
     color: $black;
     letter-spacing: 0.05rem;
     line-height: 1;
-    // margin-bottom: 100px;
 }
 
 @mixin bodyType($sizeValue, $weightValue, $colorValue: $darkGrey, $opacityValue: 1) {
