@@ -85,8 +85,10 @@ class Modal extends Component {
 
                 {   // check prop to see which modal to show:
                     whichModal === "share" && // SHARE modal: 
-                    <div className="modal__instructions">
-                        <img src={imgIllustrations} alt="illustration of a person sharing ideas to the digital cloud"/>
+                    <div className="app__container__modal__modalInner modalShare">
+                        <div className="share__illustration">
+                            <img src={imgIllustrations} className="share__img" alt="illustration of a person sharing ideas to the digital cloud"/>
+                        </div>
                         <h2>Share your poem</h2>
                         <form className="share_inputs" action="" onSubmit={this.handleSubmit}>
                             <MuiThemeProvider theme={theme}>
@@ -96,8 +98,8 @@ class Modal extends Component {
                                 label="Title"
                                 placeholder=""
                                 margin="normal"
-                                helperText="Name your masterpiece"
-                                size="medium"
+                                // helperText="Name your masterpiece"
+                                size="small"
                                 id="poemTitle"
                                 value={inputTitle}
                                 onChange={this.bindInputTitle}
@@ -108,8 +110,8 @@ class Modal extends Component {
                                 label="Author"
                                 placeholder=""
                                 margin="normal"
-                                helperText="sign your masterpiece"
-                                size="medium"
+                                // helperText="sign your masterpiece"
+                                size="small"
                                 id="poemAuthor"
                                 value={inputAuthor}
                                 onChange={this.bindInputAuthor}

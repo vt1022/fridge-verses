@@ -8,7 +8,11 @@ const theme = createMuiTheme({
         primary: {
             main: '#1A4542',
         },
-    }
+    },
+    typography: {
+        fontSize: 28,
+        fontFamily: 'Kanit, Helvetica Neue Helvetica, Arial', 
+    },
 });
 
 let badwordsArray = require('badwords/array');
