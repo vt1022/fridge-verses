@@ -24,7 +24,6 @@ class ListElement extends Component {
 
     render() {
 
-        console.log(this.props)
         return (
             <button key={this.props.word.id} id={this.props.word.id}
                 className={"generated__item" + (this.state.disabled ? " disabled" : "")}

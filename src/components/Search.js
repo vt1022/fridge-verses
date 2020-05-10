@@ -101,12 +101,14 @@ export class Search extends Component {
         })
         this.props.setFunctionalWords(functionalWords)
         
-        if (this.state.userInput.trim() !== "") {
-            this.props.changePage('gameBoard')
-        } else {
+        if (this.state.userInput.trim() === "") {
             alert("You can't search for nothing!")
+        } else if (generatedWords.length < 5) {
+            alert("No results found, try adjusting your search term.") 
+        } else {
+            this.props.changePage('gameBoard')
         }
-    }    
+    }
 
     render() {
         const { userInput } = this.state

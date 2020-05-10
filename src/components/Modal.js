@@ -54,7 +54,7 @@ class Modal extends Component {
         } else if (sortedList.length > maxWordsInPoem ) {
             alert(`Your poem is too long! Nothing longer than ${maxWordsInPoem} please.`)
         } else {
-            alert("Safi, please stop bringing my shit again.")
+            alert("Safi, repeat after me: O K  B O O M E R")
         }
         this.hideModal()
     }
