@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Modal from './Modal.js'
+import ListElement from './ListElement'
 import { ListManager } from 'react-beautiful-dnd-grid';
 
 const sortList = (list) => list.slice().sort((first, second) => first.order - second.order)
 
-const ListElement = ({ item: { content } }) => 
-    <div className="app__container__gameBoard__dragbox__item">{content}</div>
+
 
 class GameBoard extends Component {
     constructor() {
@@ -56,13 +56,11 @@ class GameBoard extends Component {
             order: this.state.wordOrder, 
             content: content
         });
+        
         this.setState({
             sortedList: sortList(newList),
             wordOrder: this.state.wordOrder + 1
         })
-        // disable buttons after clicked
-        document.getElementById(wordObject.id).setAttribute("disabled", true)
-        document.getElementById(wordObject.id).classList.add("disabled")
     }
 
     saveToGalleryClick = () => {
@@ -89,11 +87,7 @@ class GameBoard extends Component {
                         {
                             this.props.generatedWords.map((word) => {
                                 return(
-                                    <button key={word.id} id={word.id}
-                                    className="app__container__gameBoard__generated__item"
-                                    onClick={() => this.generatedWordClick(word)}>
-                                        {word.content}
-                                    </button>
+                                    <ListElement word={word} generatedWordClick={this.generatedWordClick} />
                                 )
                             })
                         }
@@ -103,7 +97,7 @@ class GameBoard extends Component {
                         items={sortedList}
                         direction="horizontal"
                         maxItems={5}
-                        render={(item) => <ListElement item={item} />}
+                            render={(item) => <ListElement word={item} generatedWordClick={() => {}} />}
                         onDragEnd={this.reorderList} />
                         <button onClick={this.clearPoem}>Clear</button>
                         <button onClick={this.saveToGalleryClick}>Save to Gallery</button>
