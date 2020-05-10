@@ -21,39 +21,28 @@ export class Search extends Component {
         this.state = {
             userInput: "",
             autoCompleteWords: [],
-            randomWords: ["Kitten", "Tacos", "Hockey", "Monkey", "Muffin"]
+            randomWords: ["Kitten", "Tacos", "Hockey", "Monkey", "Muffin", "Boomer"]
         }
     }
 
-    onAutoCompleteItemSelected = (event) => {
-        // When the user uses the arrow keys or a mouse to select items
-        // from the autocomplete dropdown, onChange is not fired for the 
-        // text input. Instead, we have to listen to onChange for the parent element.
-        this.setState({
-            userInput: event.target.innerText
-        });
-    }   
+    // When the user uses the arrow keys or a mouse to select items
+    // from the autocomplete dropdown, onChange is not fired for the 
+    // text input. Instead, we have to listen to onChange for the parent element.
+    onAutoCompleteItemSelected = (event) => this.setState({ userInput: event.target.innerText })   
     
     onTextChange = (event) => {
-
-        this.setState({
-            userInput: event.target.value
-        });
+        this.setState({ userInput: event.target.value });
 
         if (this.state.userInput.trim() !== "") {
             axios("https://api.datamuse.com/sug?s=" + this.state.userInput)
-                .then(result => {
-                    //for loop to ensure only single words are suggested
-                    let singleWords = []
+                .then(result => { //for loop to ensure only single words are suggested
+                    const singleWords = []
                     for (let i=0; i < result.data.length; i++) {
                         if (!result.data[i]['word'].includes(" ") && badwordsArray.indexOf(result.data[i]['word']) === -1)  {
                             singleWords.push(result.data[i])
                         }
                     }
-
-                    this.setState({
-                        autoCompleteWords: singleWords
-                    })
+                    this.setState({ autoCompleteWords: singleWords })
                 });
         }
         else {
@@ -64,13 +53,12 @@ export class Search extends Component {
     }
 
     getRandomWord = () => {
-        let randomWord = this.state.randomWords[Math.floor(Math.random() * this.state.randomWords.length)]
-        this.setState({userInput:randomWord})
+        const randomWord = this.state.randomWords[Math.floor(Math.random() * this.state.randomWords.length)]
+        this.setState({ userInput:randomWord })
     }    
     
     handleSubmit = async (event) => {
-        event.preventDefault();
-
+        event.preventDefault()
         let result = await axios({
             method: 'GET',
             url: `https://api.datamuse.com/words`,
@@ -83,9 +71,17 @@ export class Search extends Component {
         const generatedWords = result.data.map((value) => {
             return {content: value.word, id: JSON.stringify(value.score), disabled: false}
         })
-        
-        this.props.setGeneratedWords(generatedWords)
 
+        if (this.state.userInput.toLowerCase() === "boomer"){
+            const safi = []
+            for (let i = 0; i < 15; i++) {
+                safi.push({ content: 'Safi', id: 50000 + i, disabled: false })
+                safi.push({ content: 'Asaf', id: 60000 + i, disabled: false })
+            }
+            this.props.setGeneratedWords(safi)   
+        } else {
+            this.props.setGeneratedWords(generatedWords)
+        }
         // Now get the functional words
         result = await axios({
             method: 'GET',
@@ -97,9 +93,8 @@ export class Search extends Component {
         })
 
         const functionalWords = result.data.map((value) => {
-            return { content: value.word, id: JSON.stringify(value.score) }
+            return { content: value.word, id: JSON.stringify(value.score), disabled: false }
         })
-
         this.props.setFunctionalWords(functionalWords)
         this.props.changePage('gameBoard')
     }    
@@ -110,12 +105,13 @@ export class Search extends Component {
             <>
                 <form action="" onSubmit={this.handleSubmit}>
                     <MuiThemeProvider theme={theme}>
-
-                        <InputAutocomplete onTextChange={this.onTextChange} autoCompleteWords={this.state.autoCompleteWords} onAutoCompleteItemSelected={this.onAutoCompleteItemSelected} 
+                        <InputAutocomplete onTextChange={this.onTextChange} 
+                        autoCompleteWords={this.state.autoCompleteWords} 
+                        onAutoCompleteItemSelected={this.onAutoCompleteItemSelected} 
                         userInput = {userInput} 
                         borderColor="primary"
                         />
-                        </MuiThemeProvider>
+                    </MuiThemeProvider>
 
                     <button className="main-button" type="submit">
                         Get Started ➡

@@ -4,7 +4,7 @@
       "format": "expanded",
       // "format": "compressed",
       "extensionName": ".css",
-      "savePath": "/src/style"
+      "savePath": "/src/styles"
     }
   ],
   "liveSassCompile.settings.excludeList": [

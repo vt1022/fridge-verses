@@ -23,8 +23,8 @@ class GameBoard extends Component {
         
     }
 
-    showModal = (modalShowBoolean) => this.setState({modal: modalShowBoolean})
-    sortList = () => this.setState({sortedList: sortList(this.state.sortedList)})
+    showModal = (modalShowBoolean) => this.setState({ modal: modalShowBoolean })
+    sortList = () => this.setState({ sortedList: sortList(this.state.sortedList) })
     
     reorderList = (sourceIndex, destinationIndex) => {
         if (destinationIndex === sourceIndex) {
@@ -53,30 +53,30 @@ class GameBoard extends Component {
     generatedWordClick = (wordObject) => {
         const { sortedList, wordOrder } = this.state
         const { id, content } = wordObject
-        // filter word out if it is already in sortedList
-        const newList = [...sortedList].filter((item) => item.content != wordObject.content)
+        const newList = [...sortedList]
+
         newList.push({
             id: id, 
             order: wordOrder, 
             content: content
         });
-        
+
+        this.props.disableWord(wordObject.id)
         this.setState({
             sortedList: sortList(newList),
             wordOrder: wordOrder + 1
         })
-
-        this.props.disableWord(wordObject.id);
     }
 
     saveToGalleryClick = () => {
         const { sortedList } = this.state
         const maxWordsInPoem = 20 // placeholder number for now
+
         if (sortedList.length <= maxWordsInPoem && sortedList.length > 5) {
-            this.setState({modalToShow: "share"})
+            this.setState({ modalToShow: "share" })
             this.showModal(true)
         // 1st level error handling:
-        } else if (this.state.sortedList.length < 6) {
+        } else if (sortedList.length < 6) {
             alert("You need more than 5 words in your poem.")
         } else if (sortedList.length > maxWordsInPoem ) {
             alert(`Your poem is too long! Nothing longer than ${maxWordsInPoem} please.`)
@@ -90,7 +90,6 @@ class GameBoard extends Component {
             sortedList: [],
             wordOrder: 0
         })
-
         // remove disabled and disabled style from words: 
         this.props.enableAllWords();
     }
@@ -102,6 +101,7 @@ class GameBoard extends Component {
 
     render() {
         const { sortedList, modal, modalToShow, wordOrder } = this.state
+        const { generatedWords, functionalWords } = this.props
         return(
             <>
                 <Modal show={modal} showModal={this.showModal} 
@@ -111,29 +111,43 @@ class GameBoard extends Component {
                     <div className="app__container__gameBoard__generated">
                         <h2>Themed words:</h2>
                         {
-                            this.props.generatedWords.map((word) => {
+                        generatedWords.map((word) => {
+                            return(
+                                <GeneratedWord key={word.id} word={word} 
+                                generatedWordClick={this.generatedWordClick} />
+                            )
+                        })
+                        }
+                    </div>
+                    <div className="app__container__gameBoard__dragbox">
+                        <div className="TEMPCLASS__functional">
+                            <h2>Function words:</h2>
+                            {
+                            functionalWords.map((word) => {
                                 return(
                                     <GeneratedWord key={word.id} word={word} 
                                     generatedWordClick={this.generatedWordClick} />
                                 )
                             })
-                        }
-                    </div>
-                    <div className="app__container__gameBoard__dragbox">
-                        <h2>Create a 6 - 20 words poem:</h2>
-                        <p>{wordOrder} / 20</p>
-                        <ListManager
-                        items={sortedList}
-                        direction="horizontal"
-                        maxItems={5}
-                        render={(item) => <ListElement item={item} />}
-                        onDragEnd={this.reorderList} />
-                        <button onClick={this.clearPoem}>Clear</button>
-                        <button onClick={this.saveToGalleryClick}>Save to Gallery</button>
-                        <TwitterShareButton url="https://bit.ly/2yHFNdM"
-                        title={`Check out my poem!\n${this.poemString()}\nCreate your own:`} >
-                            <button>Share <FontAwesomeIcon icon={faTwitter}/></button>
-                        </TwitterShareButton>
+                            }
+                        </div>
+                        <div className="TEMPCLASS__dragbox">
+                            <h2>Create a 6 - 20 words poem:</h2>
+                            <p>{wordOrder} / 20</p>
+                            <ListManager
+                            items={sortedList}
+                            direction="horizontal"
+                            maxItems={5} // change this mediaQs
+                            render={(item) => <ListElement item={item} />}
+                            onDragEnd={this.reorderList} 
+                            />
+                            <button className="clear-btn" onClick={this.clearPoem}>Clear</button>
+                            <button className="save-to-gall-btn" onClick={this.saveToGalleryClick}>Save to Gallery</button>
+                            <TwitterShareButton url="https://bit.ly/2yHFNdM"
+                            title={`Check out my magnet poem!\n"${this.poemString()}"\nCreate your own @`} >
+                                    Share <FontAwesomeIcon icon={faTwitter}/>
+                            </TwitterShareButton>
+                        </div>
                     </div>
                 </div>
             </>
