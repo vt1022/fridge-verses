@@ -33,18 +33,16 @@ class Gallery extends Component {
                             className="app__container__gallery__grid__poem">
                                 <h2>{title}</h2>
                                 <p>by: {author}</p>
-                                <div className="app__container__gallery__grid__poem__body">
-                                    {
-                                    poem.map((wordObj) => {
-                                        return( // fix below class name. just need temp styling for now
-                                            <div key={wordObj.order} 
-                                            className="app__container__gameBoard__dragbox__item">
-                                                {wordObj.content}
-                                            </div>
-                                        ) 
-                                    })
-                                    }
-                                </div>
+                                {
+                                poem.map((wordObj) => {
+                                    return( // fix below class name. just need temp styling for now
+                                        <div key={wordObj.order} 
+                                        className="app__container__gallery__grid__poem__word">
+                                            {wordObj.content}
+                                        </div>
+                                    ) 
+                                })
+                                }
                             </div>
                         )
                     })

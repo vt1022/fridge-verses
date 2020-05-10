@@ -7,7 +7,7 @@ class GeneratedWord extends Component {
         const { id, disabled, content } = this.props.word
         return (
             <button key={id} id={id}
-            className={"app__container__gameBoard__generated__item" + (disabled ? " disabled" : "")}
+            className={"generated__item" + (disabled ? " disabled" : "")}
             disabled={disabled}
             onClick={this.handleClick}>
                 {content}
