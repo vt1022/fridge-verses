@@ -18,22 +18,23 @@ class Gallery extends Component {
     render() { 
         const { firebaseDataObject } = this.state
         const { changePage } = this.props
-        console.log(firebaseDataObject)
         return (
             <div className="app__container__gallery">
                 <h1>Some Poetic Title for a Gallery</h1>
                 <div className="app__container__gallery__grid">
                     {/* map over array from firebase. slice to control how many results to show */
-                    Object.values(firebaseDataObject).slice(0, 6).map(({ title, author, poem }) => {
+                    Object.values(firebaseDataObject).slice(0, 6).map(({ title, author, poem }, index) => {
                         return(
-                            <div className="app__container__gallery__grid__poem">
+                            <div key={Object.keys(firebaseDataObject)[index]}
+                            className="app__container__gallery__grid__poem">
                                 <h2>{title}</h2>
                                 <h3>by: {author}</h3>
                                 <div className="app__container__gallery__grid__poem__body">
                                     {
                                     poem.map((wordObj) => {
                                         return( // fix below class name. just need temp styling for now
-                                            <div className="app__container__gameBoard__dragbox__item">
+                                            <div key={wordObj.id} 
+                                            className="app__container__gameBoard__dragbox__item">
                                                 {wordObj.content}
                                             </div>
                                         ) 
