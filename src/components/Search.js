@@ -68,26 +68,39 @@ export class Search extends Component {
         this.setState({userInput:randomWord})
     }    
     
-    handleSubmit = (event) => {
+    handleSubmit = async (event) => {
         event.preventDefault();
 
-        axios({
+        let result = await axios({
             method: 'GET',
             url: `https://api.datamuse.com/words`,
             params: {
-                rel_trg: this.state.userInput,
-                max: 50
+                topics: this.state.userInput,
+                max: 40
             }
         })
-        .then((res) => {
-            
-            const generatedWords = res.data.map((value) => {
-                return {content: value.word, id: JSON.stringify(value.score)}
-            })
-            
-            this.props.setGeneratedWords(generatedWords)
+        
+        const generatedWords = result.data.map((value) => {
+            return {content: value.word, id: JSON.stringify(value.score)}
+        })
+        
+        this.props.setGeneratedWords(generatedWords)
+
+        // Now get the functional words
+        result = await axios({
+            method: 'GET',
+            url: `https://api.datamuse.com/words`,
+            params: {
+                rel_bga: this.state.userInput,
+                max: 20
+            }
         })
 
+        const functionalWords = result.data.map((value) => {
+            return { content: value.word, id: JSON.stringify(value.score) }
+        })
+
+        this.props.setFunctionalWords(functionalWords)
         this.props.changePage('gameBoard')
     }    
 
