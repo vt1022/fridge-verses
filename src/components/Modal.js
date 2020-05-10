@@ -74,7 +74,7 @@ class Modal extends Component {
                         </div>
                         <div className="instructions__copy">
                             <h2 className="main-header">How it works</h2>
-                            <p className="main-paragraph">We've generated a bunch of words for you on the left. Simply drag and drop them into your canvas on the right!</p>
+                            <p className="main-paragraph">We've generated a bunch of words for you. Simply tap on the words you'd like to use and they'll be added to the canvas. Rearrange your choices on the canvas by dragging dropping!</p>
                         </div>
                         <button 
                         className="main-button"
