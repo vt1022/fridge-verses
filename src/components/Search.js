@@ -34,7 +34,7 @@ export class Search extends Component {
         this.setState({ userInput: event.target.value });
 
         if (this.state.userInput.trim() !== "") {
-            axios("https://api.datamuse.com/sug?s=" + this.state.userInput)
+            axios("https://cors-anywhere.herokuapp.com/https://api.datamuse.com/sug?s=" + this.state.userInput)
                 .then(result => { //for loop to ensure only single words are suggested
                     const singleWords = []
                     for (let i=0; i < result.data.length; i++) {
@@ -61,7 +61,7 @@ export class Search extends Component {
         event.preventDefault()
         let result = await axios({
             method: 'GET',
-            url: `https://api.datamuse.com/words`,
+            url: `https://cors-anywhere.herokuapp.com/https://api.datamuse.com/words`,
             params: {
                 topics: this.state.userInput,
                 max: 40
@@ -85,7 +85,7 @@ export class Search extends Component {
         // Now get the functional words
         result = await axios({
             method: 'GET',
-            url: `https://api.datamuse.com/words`,
+            url: `https://cors-anywhere.herokuapp.com/https://api.datamuse.com/words`,
             params: {
                 rel_bga: this.state.userInput,
                 max: 20
