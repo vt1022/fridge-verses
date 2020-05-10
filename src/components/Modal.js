@@ -4,6 +4,8 @@ import TextField from '@material-ui/core/TextField';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import imgInstruct from '../assets/illustrations--instruct.png'
 import imgIllustrations from '../assets/illustrations--save.png'
+import Swal from 'sweetalert2'
+
 
 import firebase from './firebase.js';
 
@@ -50,11 +52,20 @@ class Modal extends Component {
             dbRef.push(dataObjToFirebase)
         // 2nd level error handling:
         } else if (sortedList.length < 6) {
-            alert("You need more than 5 words in your poem.")
+            Swal.fire({
+                icon: 'error',
+                text: "You need more than 5 words in your poem.",
+            })
         } else if (sortedList.length > maxWordsInPoem ) {
-            alert(`Your poem is too long! Nothing longer than ${maxWordsInPoem} please.`)
+            Swal.fire({
+                icon: 'error',
+                text: `Your poem is too long! Nothing longer than ${maxWordsInPoem} please.`,
+            })
         } else {
-            alert("Safi, repeat after me: O K  B O O M E R")
+            Swal.fire({
+                icon: 'error',
+                text: "Safi, repeat after me: O K  B O O M E R",
+            })
         }
         this.hideModal()
     }
