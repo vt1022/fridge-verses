@@ -4,7 +4,7 @@ import GameBoard from './components/GameBoard'
 import Gallery from './components/Gallery.js';
 
 import './styles/styles.scss';
-/******** set poem max length at GameBoard.js ln 75 ********/
+/******** set poem max length at GameBoard.js ln 72 ********/
 class App extends Component {
     constructor() {
         super()
@@ -84,7 +84,7 @@ class App extends Component {
                     </ul>
                 </nav>
                 <div className="app__container">
-                    {
+                    { // && basically shorthand if statement
                     currentPage === 'landing' &&
                         <Landing changePage={this.changePage} 
                         setGeneratedWords={this.setGeneratedWords} 
