@@ -96,7 +96,12 @@ export class Search extends Component {
             return { content: value.word, id: JSON.stringify(value.score), disabled: false }
         })
         this.props.setFunctionalWords(functionalWords)
-        this.props.changePage('gameBoard')
+        
+        if (this.state.userInput.trim() !== "") {
+            this.props.changePage('gameBoard')
+        } else {
+            alert("You can't search for nothing!")
+        }
     }    
 
     render() {
