@@ -298,8 +298,60 @@ img {
   margin: 0 auto;
 }
 
+.app__container__gameBoard__generated__item, .app__container__gameBoard__dragbox__item {
+  font-family: 'Kanit', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
+  color: #1a4542;
+  letter-spacing: 0.05rem;
+  line-height: 1.4;
+  display: inline-block;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  padding: 4px 10px;
+  border: 3px solid #1A4542;
+  margin: 0 4px 4px 0;
+  background: #85FB83;
+  -webkit-transition: background box-shadow 0.2s ease-in;
+  transition: background box-shadow 0.2s ease-in;
+}
+
+.app__container__gameBoard__generated__item:hover, .app__container__gameBoard__dragbox__item:hover, .app__container__gameBoard__generated__item:focus, .app__container__gameBoard__dragbox__item:focus {
+  background: #FFFEB9;
+  -webkit-box-shadow: 2px 2px 1px #001021;
+          box-shadow: 2px 2px 1px #001021;
+  -webkit-transform: rotate(-2deg);
+          transform: rotate(-2deg);
+}
+
+button[style] {
+  font-family: 'Kanit', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  font-size: calc(.7rem + 0.59vw) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.12rem !important;
+  line-height: 1 !important;
+  color: #E6E7E9 !important;
+  height: calc(17px + 1.19vw) !important;
+  min-width: calc(80px + 2.5vw) !important;
+  background-color: #1DA1F2 !important;
+  border: 2px solid transparent !important;
+  cursor: pointer !important;
+  -webkit-transition: background-color 250ms ease !important;
+  transition: background-color 250ms ease !important;
+  border-radius: 8px !important;
+}
+
+button[style]:hover {
+  background-color: #dbdddf !important;
+  color: #1DA1F2 !important;
+  border: 2px solid #1DA1F2 !important;
+}
+
 .app {
   border: 1px solid red;
+  height: 100vh;
 }
 
 .app__container {
@@ -395,7 +447,7 @@ img {
   height: calc(20px + 1.19vw);
   width: calc(234px + 2.5vw);
   background-color: #1A4542;
-  border: none;
+  border: 2px solid transparent;
   cursor: pointer;
   -webkit-transition: background-color 250ms ease;
   transition: background-color 250ms ease;
@@ -462,7 +514,7 @@ img {
   height: calc(17px + 1.19vw);
   width: calc(100px + 2.5vw);
   background-color: #1A4542;
-  border: none;
+  border: 2px solid transparent;
   cursor: pointer;
   -webkit-transition: background-color 250ms ease;
   transition: background-color 250ms ease;
@@ -527,12 +579,49 @@ img {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 100%;
   width: 100%;
 }
 
-.app__container__gameBoard__column {
+.app__container__gameBoard .draggable-source--is-dragging {
+  visibility: hidden;
+}
+
+.app__container__gameBoard__generated {
   width: 40%;
+  background: #E6E7E9;
+}
+
+.app__container__gameBoard__generated .disabled {
+  background: #FFC15E;
+}
+
+.app__container__gameBoard__dragbox {
+  width: 60%;
+}
+
+.app__container__gameBoard__dragbox__item {
+  background: #E4FFE3;
+}
+
+.app__container__modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: rgba(0, 0, 0, 0.8);
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+}
+
+.app__container__modal__modalInner {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -540,42 +629,61 @@ img {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  height: auto;
+  width: 50%;
+  padding: 10px 15px;
+  border-radius: 1em;
+  margin: auto 0;
+  background: #fff;
 }
 
-.app__container__gameBoard__column__dropArea {
-  padding: 4px;
-  width: 100%;
-  height: 100%;
-  background-color: #000;
-}
-
-.app__container__gameBoard__column__dropArea__item {
-  font-family: 'Kanit', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 2rem;
-  font-weight: 400;
-  color: #1a4542;
-  letter-spacing: 0.05rem;
-  line-height: 1.4;
-  display: inline-block;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  padding: 4px 10px;
-  border: 3px solid #1A4542;
-  margin: 0 4px 4px 0;
-}
-
-.app__container__gameBoard__column:nth-of-type(2) {
+.app__container__modal__modalInner img {
+  margin: 0 auto;
   width: 60%;
+}
+
+.app__container__modal__modalInner h2 {
+  margin: 0;
+  margin-top: 5px;
+}
+
+.app__container__modal__modalInner .start_btn {
+  font-family: 'Kanit', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: calc(1.5rem + 0.4vw);
+  font-weight: 400;
+  letter-spacing: 0.12rem;
+  line-height: 1;
+  color: #E6E7E9;
+  height: calc(20px + 1.19vw);
+  width: calc(234px + 2.5vw);
+  background-color: #1A4542;
+  border: 2px solid transparent;
+  cursor: pointer;
+  -webkit-transition: background-color 250ms ease;
+  transition: background-color 250ms ease;
+  border-radius: 8px;
+  width: 150px;
+  margin-top: 5px;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
+
+.app__container__modal__modalInner .start_btn:hover {
+  background-color: #dbdddf;
+  color: #1A4542;
+  border: 2px solid #1A4542;
+}
+
+@media (max-width: 708px) {
+  .app__container__modal__modalInner .start_btn {
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+  }
 }
 
 .app__nav {
   height: 10%;
-  border: 1px solid black;
 }
 
 .app__nav ul {
@@ -648,7 +756,6 @@ img {
 }
 
 .container__form {
-  border: 1px solid black;
   width: 60%;
   height: 50%;
 }
@@ -699,7 +806,7 @@ img {
   height: calc(46px + 1.19vw);
   width: 100%;
   background-color: #1A4542;
-  border: none;
+  border: 2px solid transparent;
   cursor: pointer;
   -webkit-transition: background-color 250ms ease;
   transition: background-color 250ms ease;
@@ -737,7 +844,6 @@ img {
   background-color: #143634;
 }
 
-/* MagnetBoard.js ----*/
 /* animations */
 /* ----------------------------------------------
  * Generated by Animista on 2020-5-5 19:9:32
@@ -746,13 +852,13 @@ img {
  * w: http://animista.net, t: @cssanimista
  * ---------------------------------------------- */
 .slideRight {
-  -webkit-animation: slideRight 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-          animation: slideRight 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  -webkit-animation: slideRight 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+          animation: slideRight 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 .slideLeft {
-  -webkit-animation: slideLeft 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-          animation: slideLeft 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  -webkit-animation: slideLeft 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+          animation: slideLeft 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 @-webkit-keyframes slideLeft {
@@ -798,8 +904,3 @@ img {
             transform: translateX(0);
   }
 }
-
-Autocomplete {
-  background: red;
-}
-/*# sourceMappingURL=styles.css.map */

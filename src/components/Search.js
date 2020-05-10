@@ -97,7 +97,7 @@ export class Search extends Component {
         })
 
         const functionalWords = result.data.map((value) => {
-            return { content: value.word, id: JSON.stringify(value.score) }
+            return { content: value.word, id: JSON.stringify(value.score), disabled: false }
         })
 
         this.props.setFunctionalWords(functionalWords)
@@ -110,7 +110,9 @@ export class Search extends Component {
             <>
                 <form action="" onSubmit={this.handleSubmit}>
                     <MuiThemeProvider theme={theme}>
-                        <InputAutocomplete onTextChange={this.onTextChange} autoCompleteWords={this.state.autoCompleteWords} onAutoCompleteItemSelected={this.onAutoCompleteItemSelected} 
+                        <InputAutocomplete onTextChange={this.onTextChange} 
+                        autoCompleteWords={this.state.autoCompleteWords} 
+                        onAutoCompleteItemSelected={this.onAutoCompleteItemSelected} 
                         userInput = {userInput} 
                         borderColor="primary"
                         />

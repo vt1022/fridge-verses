@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 
 class GeneratedWord extends Component {
-    handleClick = (e) => {
-        this.props.generatedWordClick(this.props.word)
-    }
+    handleClick = (e) => this.props.generatedWordClick(this.props.word)
 
     render() {
         const { id, disabled, content } = this.props.word

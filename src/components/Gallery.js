@@ -5,7 +5,8 @@ class Gallery extends Component {
     constructor() {
         super()
         this.state = {
-            firebaseDataObject: []
+            firebaseDataObject: [],
+            poemsToShow: 6
         }
     }
 
@@ -15,25 +16,27 @@ class Gallery extends Component {
         dbRef.on( 'value', (result) => this.setState({ firebaseDataObject: result.val() }) )
     }
 
+    showMoreLessClick = (number) => this.setState({ poemsToShow: this.state.poemsToShow + number })
+
     render() { 
-        const { firebaseDataObject } = this.state
+        const { firebaseDataObject, poemsToShow } = this.state
         const { changePage } = this.props
         return (
             <div className="app__container__gallery">
                 <h1>Some Poetic Title for a Gallery</h1>
                 <div className="app__container__gallery__grid">
                     {/* map over array from firebase. slice to control how many results to show */
-                    Object.values(firebaseDataObject).slice(0, 6).map(({ title, author, poem }, index) => {
+                    Object.values(firebaseDataObject).slice(0, poemsToShow).map(({ title, author, poem }, index) => {
                         return(
                             <div key={Object.keys(firebaseDataObject)[index]}
                             className="app__container__gallery__grid__poem">
                                 <h2>{title}</h2>
-                                <h3>by: {author}</h3>
+                                <p>by: {author}</p>
                                 <div className="app__container__gallery__grid__poem__body">
                                     {
                                     poem.map((wordObj) => {
                                         return( // fix below class name. just need temp styling for now
-                                            <div key={wordObj.id} 
+                                            <div key={wordObj.order} 
                                             className="app__container__gameBoard__dragbox__item">
                                                 {wordObj.content}
                                             </div>
@@ -46,7 +49,8 @@ class Gallery extends Component {
                     })
                     }
                 </div>
-                <button>More v</button>
+                <button onClick={() =>this.showMoreLessClick(-10)}>Less -</button>
+                <button onClick={() =>this.showMoreLessClick(10)}>More +</button>
                 <button onClick={() => changePage('landing')}>Home</button>
             </div>
         )
