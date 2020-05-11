@@ -32,7 +32,6 @@ class Modal extends Component {
     }
 
     hideModal = () => this.setState({hide: true})
-    handleSubmit = (e) => e.preventDefault()
     bindInputAuthor = (e) => this.setState({inputAuthor: e.target.value})
     bindInputTitle = (e) => this.setState({inputTitle: e.target.value})
 
@@ -41,7 +40,8 @@ class Modal extends Component {
         this.setState({ hide: false })
     }
     
-    savePoemClick = () => {
+    savePoem = (e) => {
+        e.preventDefault()
         const { sortedList } = this.props
         const { inputTitle, inputAuthor } = this.state
         const maxWordsInPoem = 20 // placeholder number for now
@@ -109,6 +109,7 @@ class Modal extends Component {
                         <form className="copy-form__input" action="" onSubmit={this.handleSubmit}>
                             <MuiThemeProvider theme={theme}>
                                 <TextField 
+                                required
                                 className="share_title"
                                 variant="outlined"
                                 label="Title"
@@ -123,6 +124,7 @@ class Modal extends Component {
                                 borderColor="primary"
                                 />
                                 <TextField 
+                                required
                                 className="share_author"
                                 variant="outlined"
                                 label="Author"
