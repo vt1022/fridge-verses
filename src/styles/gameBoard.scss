@@ -1,30 +1,5 @@
 @import 'variables';
 
-.swal2-html-container {
-    font-size: 2rem;
-    margin-bottom: 30px;
-}
-
-.swal2-confirm.swal2-styled {
-    @include mainButton($fontSizeValue: 2rem, $widthValue: 40%)
-}
-
-.swal2-popup.swal2-modal.swal2-icon-error.swal2-show {
-    width: 40%;
-    padding: 20px;
-
-    @media (max-width: 1225px) {
-        width: 50%;
-    }
-
-    @media (max-width: 886px) {
-        width: 60%;
-    }
-
-    @media (max-width: 700px) {
-        width: 80%;
-    }
-}
 
 .container__game-board {
     display: flex;

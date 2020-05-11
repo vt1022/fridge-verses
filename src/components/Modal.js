@@ -16,8 +16,8 @@ const theme = createMuiTheme({
         },
     },
     typography: {
-        fontSize: 20,
-        fontFamily: 'Kanit, Helvetica Neue Helvetica, Arial', 
+        fontSize: 28,
+        fontFamily: 'Kanit, Helvetica Neue Helvetica, Arial',
     },
 });
 
@@ -32,7 +32,6 @@ class Modal extends Component {
     }
 
     hideModal = () => this.setState({hide: true})
-    handleSubmit = (e) => e.preventDefault()
     bindInputAuthor = (e) => this.setState({inputAuthor: e.target.value})
     bindInputTitle = (e) => this.setState({inputTitle: e.target.value})
 
@@ -82,33 +81,35 @@ class Modal extends Component {
             <div onAnimationEnd={() => this.animationEnd()}
             className={`container__modal ${hide ? "slideLeft" : ""} ${show ? "slideRight" : ""}`}>
 
-                {   // check prop to see which modal to show:
-                whichModal === "start" && // START modal:  
-                    <div className="modal__instructions">
-                        <div className="instructions__illustration">
-                            <img src={imgInstruct} className="illustration__img" alt="illustration of a person deep in thought"/>
-                        </div>
-                        <div className="instructions__copy">
-                            <h2 className="main-header">How it works</h2>
-                            <p className="main-paragraph">We've generated a bunch of words for you. Simply tap on the words you'd like to use and they'll be added to the canvas. Rearrange your choices on the canvas by dragging dropping!</p>
-                        </div>
-                        <button 
-                        className="main-button"
-                        onClick={this.hideModal}>Start</button>
-                        {/* Class was start_btn before, incase I broke anything */}
+            {   // check prop to see which modal to show:
+            whichModal === "start" && // START modal:  
+                <div className="modal__instructions">
+                    <div className="instructions__illustration">
+                        <img src={imgInstruct} className="illustration__img" alt="illustration of a person deep in thought"/>
                     </div>
+                    <div className="instructions__copy">
+                        <h2 className="main-header">How it works</h2>
+                        <p className="main-paragraph">We've generated a bunch of words for you. Simply tap on the words you'd like to use and they'll be added to the canvas. Rearrange your choices on the canvas by dragging dropping!</p>
+                    </div>
+                    <button 
+                    className="main-button"
+                    onClick={this.hideModal}>Start</button>
+                    {/* Class was start_btn before, incase I broke anything */}
+                </div>
                 }
 
                 {   // check prop to see which modal to show:
-                    whichModal === "share" && // SHARE modal: 
-                    <div className="app__container__modal__modalInner modalShare">
-                        <div className="share__illustration">
-                            <img src={imgIllustrations} className="share__img" alt="illustration of a person sharing ideas to the digital cloud"/>
-                        </div>
-                        <h2>Share your poem</h2>
-                        <form className="share_inputs" action="" onSubmit={this.handleSubmit}>
+                whichModal === "share" && // SHARE modal: 
+                <div className="modal__share">
+                    <div className="share__illustration">
+                        <img src={imgIllustrations} className="share__img" alt="illustration of a person sharing ideas to the digital cloud"/>
+                    </div>
+                    <div className="share__copy-form">
+                        <h2 className="main-header">Share your poem</h2>
+                        <form className="copy-form__input" action="" onSubmit={this.handleSubmit}>
                             <MuiThemeProvider theme={theme}>
                                 <TextField 
+                                required
                                 className="share_title"
                                 variant="outlined"
                                 label="Title"
@@ -118,8 +119,11 @@ class Modal extends Component {
                                 id="poemTitle"
                                 value={inputTitle}
                                 onChange={this.bindInputTitle}
+                                fullWidth
+                                borderColor="primary"
                                 />
                                 <TextField 
+                                required
                                 className="share_author"
                                 variant="outlined"
                                 label="Author"
@@ -129,21 +133,23 @@ class Modal extends Component {
                                 id="poemAuthor"
                                 value={inputAuthor}
                                 onChange={this.bindInputAuthor}
+                                fullWidth
+                                borderColor="primary"
                                 />
                             </MuiThemeProvider>
-                            <button className="gallery_btn" onClick={this.savePoemClick}>
+                            <button className="main-button main-button--share" onClick={this.savePoemClick}>
                                 Submit
                             </button>
-                            <button className="share_btn" onClick={this.hideModal}>
+                            <button className="secondary-button secondary-button--cancel" onClick={this.hideModal}>
                                 Cancel
                             </button>
                         </form>
                     </div>
-                    }
                 </div>
+                }
+            </div>
         )
     }
-
 }
                 
 export default Modal;
