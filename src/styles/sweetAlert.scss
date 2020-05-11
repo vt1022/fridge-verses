@@ -20,9 +20,10 @@
     transition: background-color 250ms ease !important;
     border-radius: 8px !important;
     
-    &:hover {
-        background-color: lighten($darkGreen, 3%);
-        border: 2px solid $darkGreen;
+    &:hover,
+    &:focus {
+        background-color: lighten($darkGreen, 3%) !important;
+        border: 2px solid $lightGreen !important;
     }
 }
 
