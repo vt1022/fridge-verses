@@ -94,12 +94,10 @@ class Modal extends Component {
                     <button 
                     className="main-button"
                     onClick={this.hideModal}>Start</button>
-                    {/* Class was start_btn before, incase I broke anything */}
                 </div>
-                }
-
-                {   // check prop to see which modal to show:
-                whichModal === "share" && // SHARE modal: 
+            }
+            {   // check prop to see which modal to show:
+            whichModal === "share" && // SHARE modal: 
                 <div className="modal__share">
                     <div className="share__illustration">
                         <img src={imgIllustrations} className="share__img" alt="illustration of a person sharing ideas to the digital cloud"/>
@@ -146,7 +144,7 @@ class Modal extends Component {
                         </form>
                     </div>
                 </div>
-                }
+            }
             </div>
         )
     }

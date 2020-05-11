@@ -68,6 +68,12 @@
             display: flex;
             justify-content: space-between;
             
+            .main-button:focus,
+            .secondary-button:focus,
+            button[style]:focus{
+                border: 5px solid $lightGreen !important;
+            }
+
             .main-button {
                 @include mainButton(calc(1.5rem + 0.4vw), calc(46px + 1.19vw), 32%);
                 margin: 0;
@@ -89,17 +95,20 @@
 
             .secondary-button {
                 @include secondaryButton(calc(1.5rem + 0.4vw), calc(46px + 1.19vw), 32%);
+                position: relative;
 
                 &::after {
                     font-family: 'Font Awesome 5 Pro';
                     font-size: calc(1.8rem + 0.25vw);
                     margin-left: 8px;
+                    position: relative;
+                    top: 2px;
                     content: '\f55a';
                 }    
 
                 @media (max-width: 525px) {
                     height: 40px !important;
-                    &::after{left: 2px;}
+                    &::after{left: -4px;}
                 }
             }
             
@@ -120,7 +129,8 @@
                 transition: background-color 250ms ease !important;
                 border-radius: 8px !important;
                 
-                &:hover {
+                &:hover, 
+                &:focus {
                     background-color: lighten(#1DA1F2, 8%) !important;
                 }    
 
@@ -168,15 +178,6 @@
             @extend %draggableItem;
             background: $offsetLightGreen;
             border: 3px solid $lightGreen;
-
-            &:hover,
-            &:focus {
-                color: $darkGreen;
-                @extend %draggableItem;
-                background: $offsetLightGreen;
-                border: 3px solid $lightGreen;
-                box-shadow: 3px 3px 0 0 $darkGreen;
-            }
         }
     }
 }

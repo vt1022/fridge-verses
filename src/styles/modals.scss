@@ -138,7 +138,9 @@
 
     .secondary-button--cancel::after {
         font-family: 'Font Awesome 5 Pro';
-        content: '\f410';
+        position: relative;
+        top: 1px;
+        content: '\f057';
     }
 }
 

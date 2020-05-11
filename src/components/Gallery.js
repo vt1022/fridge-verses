@@ -29,7 +29,6 @@ class Gallery extends Component {
 
     render() { 
         const { firebaseDataObject, poemsToShow } = this.state
-        const { changePage } = this.props
         return (
             <div className="app__container__gallery">
                 <h1>Verse By Magnet Poets</h1>
@@ -40,6 +39,7 @@ class Gallery extends Component {
                             <div key={Object.keys(firebaseDataObject)[index]}
                             className="app__container__gallery__grid__poem">
                                 <h2 className="verse__title">{title}</h2>
+                                <div className="verse__container">
                                 {
                                 poem.map((wordObj) => {
                                     return( 
@@ -50,6 +50,7 @@ class Gallery extends Component {
                                     )
                                 })
                                 }
+                                </div>
                                 <p className="verse__by">by, {author}</p>      
                             </div>
                         )
@@ -60,9 +61,7 @@ class Gallery extends Component {
                     <button onClick={() =>this.showMoreLessClick(-6)}
                     className="secondary-button">Less</button>
                     <button onClick={() =>this.showMoreLessClick(6)}
-                    className="secondary-button">More</button>
-                    <button onClick={() => changePage('landing')}
-                    className="main-button">Home</button>
+                    className="main-button">More</button>
                 </div>
             </div>
         )
