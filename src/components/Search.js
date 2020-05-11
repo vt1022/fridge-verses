@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import InputAutocomplete from './InputAutocomplete.js' 
 import axios from 'axios'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import Swal from 'sweetalert2';
 
 const theme = createMuiTheme({
     palette: {
@@ -102,9 +103,15 @@ export class Search extends Component {
         this.props.setFunctionalWords(functionalWords)
         
         if (this.state.userInput.trim() === "") {
-            alert("You can't search for nothing!")
+            Swal.fire({
+                icon: 'error',
+                text: "You can't search for nothing!",
+            })
         } else if (generatedWords.length < 5) {
-            alert("No results found, try adjusting your search term.") 
+            Swal.fire({
+                icon: 'error',
+                text: "No results found, try adjusting your search term.",
+            }) 
         } else {
             this.props.changePage('gameBoard')
         }
