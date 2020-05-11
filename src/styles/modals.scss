@@ -14,7 +14,8 @@
     transform: translateX(-100%);
 }
     
-.modal__instructions {
+.modal__instructions,
+.modal__share {
     display: flex;
     flex-direction: column;
     height: auto;
@@ -42,7 +43,8 @@
         width: 90%;
     }
 
-    .instructions__illustration {
+    .instructions__illustration,
+    .share__illustration {
         width: 40%;
         margin: 0 auto 10px;
 
@@ -50,7 +52,8 @@
             margin-bottom: 0;
         }
 
-        .illustration__img {
+        .illustration__img,
+        .share__img {
             display: block;
             width: 100%;
         }
@@ -93,7 +96,11 @@
         @media (max-width: 1130px) {
             width: 80%;
         }
+
+        @media (max-width: 400px) {
+        width: 95%;
     }
+}
 
     .main-button {
         margin: 0;
@@ -106,70 +113,32 @@
     }
 }  
 
-// inside share modal
-
-.app__container__modal__modalInner {
+.copy-form__input {
     display: flex;
     flex-direction: column;
-    height: auto;
-    min-height: 406px;
     width: 50%;
-    padding: 20px;
-    border-radius: 6px;
-    background: #fff;
+    margin: 0 auto;
 
-    @media (max-height: 618px) {
-        flex-direction: colum;
+    @media (max-width: 1510px) {
+        width: 60%;
     }
 
-        .share__illustration {
-            @media (max-height: 618px) {
-            margin-bottom: 0;
-        
-
-        .share__img {
-            display: block;
-            width: 100%;
-            height: auto;
-            min-height: 112.19px;
-            min-width: 116.5px;
-            }
-
-        
-        }
+    @media (max-width: 1300px) {
+        width: 75%;
     }
 
-}
-
-.share_inputs {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    align-content: center;
-
-    @media(max-width: 1181px){
-        width: 55%;
-        justify-content: space-around;
-        margin: 0 auto;
+    @media (max-width: 500px) {
+        width: 100%;
     }
 
-    @media(max-width: 1007px){
-        width: 80%;
+    .main-button--share {
+        width: 100%;
+        margin: 15px 0;
     }
 
-    .gallery_btn {
-        @include mainButton($fontSizeValue: calc(.7rem + 0.59vw), $heightValue: calc(17px + 1.19vw), $widthValue: calc(100px + 2.5vw));
-        margin-top: 16px;
-        width: 132px;
-        height: 32.86px;
-    }
-
-    .share_btn {
-        @include secondaryButton($fontSizeValue: calc(.8rem + 0.59vw), $heightValue: calc(17px + 1.19vw), $widthValue: calc(100px + 2.5vw));
-        margin-top: 16px;
-        width: 132px;
-        height: 32.86px;
+    .secondary-button--cancel::after {
+        font-family: 'Font Awesome 5 Pro';
+        content: '\f410';
     }
 }
 
