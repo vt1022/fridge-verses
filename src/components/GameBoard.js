@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Modal from './Modal.js'
 import GeneratedWord from './GeneratedWord.js'
+
 import { ListManager } from 'react-beautiful-dnd-grid';
 import { TwitterShareButton } from "react-share";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -24,8 +25,13 @@ class GameBoard extends Component {
             modalToShow: 'start',
             sortedList: [],
             wordOrder: 0,
+            matches: window.matchMedia("(min-width: 420px)").matches
         }
-        
+    }
+
+    componentDidMount() {
+        const handler = (e) => this.setState({ matches: e.matches });
+        window.matchMedia("(min-width: 420px)").addListener(handler);
     }
 
     showModal = (modalShowBoolean) => this.setState({ modal: modalShowBoolean })
@@ -120,30 +126,8 @@ class GameBoard extends Component {
         return rawWords.join(' ')
     }
 
-    savePoem = () => {
-        const { sortedList } = this.state // destructuring state for clean code
-        const maxWordsInPoem = 10 // placeholder number for now
-        if (sortedList.length <= maxWordsInPoem && sortedList.length > 2) {
-            const dbRef = this.database().ref()
-            // This was called on 'firedbase' but I'm being told it's undefined
-            dbRef.push(sortedList)
-        // error handling:
-        } else if (sortedList.length < 3) {
-            Swal.fire({
-                icon: 'error',
-                text: 'You need more than 2 words in your poem.',
-            })
-            
-        } else if (sortedList.length > maxWordsInPoem ) {
-            Swal.fire({
-                icon: 'error',
-                text: `Your poem is too long! Nothing longer than ${maxWordsInPoem} please.`,
-            })
-        }
-    }
-
     render() {
-        const { sortedList, modal, modalToShow, wordOrder } = this.state
+        const { sortedList, modal, modalToShow, wordOrder, matches } = this.state
         const { generatedWords, functionalWords } = this.props
         return(
             <>
@@ -180,13 +164,22 @@ class GameBoard extends Component {
                         <p>{wordOrder} / 20</p>
                         <div className="game-board__sandbox">
                             <div className="sandbox__droppable">
-                                <ListManager
+                                {matches &&
+                                    <ListManager
                                     items={sortedList}
                                     direction="horizontal"
-                                    maxItems={5} // change this mediaQs
+                                    maxItems={4} // change this mediaQs
                                     render={(item) => <ListElement item={item} />}
-                                    onDragEnd={this.reorderList} 
-                                />
+                                    onDragEnd={this.reorderList} />
+                                }
+                                {!matches &&
+                                    <ListManager
+                                    items={sortedList}
+                                    direction="horizontal"
+                                    maxItems={3} // change this mediaQs
+                                    render={(item) => <ListElement item={item} />}
+                                    onDragEnd={this.reorderList} />
+                                }
                             </div>
                             <div className="sandbox__buttons">
                                 <button className="secondary-button" onClick={this.clearPoem}>Clear</button>

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import '../styles/modals.scss'
+
 import TextField from '@material-ui/core/TextField';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import Swal from 'sweetalert2'
+import firebase from './firebase.js';
+
 import imgInstruct from '../assets/illustrations--instruct.png'
 import imgIllustrations from '../assets/illustrations--save.png'
-import Swal from 'sweetalert2'
-
-
-import firebase from './firebase.js';
+import '../styles/modals.scss'
 
 const theme = createMuiTheme({
     palette: {
@@ -40,11 +40,10 @@ class Modal extends Component {
         this.setState({ hide: false })
     }
     
-    savePoem = (e) => {
-        e.preventDefault()
-        const { sortedList } = this.props
+    savePoemClick = () => {
+        const { sortedList, changePage } = this.props
         const { inputTitle, inputAuthor } = this.state
-        const maxWordsInPoem = 20 // placeholder number for now
+        const maxWordsInPoem = 20
 
         if (sortedList.length <= maxWordsInPoem && sortedList.length > 5) {
             const dbRef = firebase.database().ref()
@@ -54,6 +53,7 @@ class Modal extends Component {
                 poem: sortedList
             }
             dbRef.push(dataObjToFirebase)
+            changePage('gallery')
         // 2nd level error handling:
         } else if (sortedList.length < 6) {
             Swal.fire({
@@ -115,7 +115,6 @@ class Modal extends Component {
                                 label="Title"
                                 placeholder=""
                                 margin="normal"
-                                // helperText="Name your masterpiece"
                                 size="small"
                                 id="poemTitle"
                                 value={inputTitle}
@@ -130,7 +129,6 @@ class Modal extends Component {
                                 label="Author"
                                 placeholder=""
                                 margin="normal"
-                                // helperText="sign your masterpiece"
                                 size="small"
                                 id="poemAuthor"
                                 value={inputAuthor}
@@ -152,7 +150,6 @@ class Modal extends Component {
             </div>
         )
     }
-
 }
                 
 export default Modal;
