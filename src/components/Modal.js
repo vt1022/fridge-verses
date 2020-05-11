@@ -38,7 +38,7 @@ class Modal extends Component {
     }
     
     savePoemClick = () => {
-        const { sortedList } = this.props
+        const { sortedList, changePage } = this.props
         const { inputTitle, inputAuthor } = this.state
         const maxWordsInPoem = 20 // placeholder number for now
 
@@ -50,6 +50,7 @@ class Modal extends Component {
                 poem: sortedList
             }
             dbRef.push(dataObjToFirebase)
+            changePage('gallery')
         // 2nd level error handling:
         } else if (sortedList.length < 6) {
             Swal.fire({
