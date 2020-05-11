@@ -47,6 +47,10 @@
             min-width: auto;
         }
 
+        @media (max-width: 768px) {
+            justify-content: flex-end;
+        }
+
         .main-header {
             @include headingType(calc(2.4rem + 0.96vw));
             text-align: center;
@@ -133,7 +137,6 @@
         align-items: center;
         justify-content: space-between;
         width: 80%;
-        height: 100%;
         margin: 0 auto;
 
         @media (max-width: 1198px) {
@@ -147,6 +150,7 @@
 
         @media (max-width: 768px) {
             width: 100%;
+            height: 100%;
         }
 
         .sandbox__droppable {
@@ -154,6 +158,10 @@
             flex-direction: column;
             align-items: center;
             max-width: 100%;
+
+            @media (max-width: 768px) {
+                margin: 40px 0;
+            }
         }
 
         .generated__item {
