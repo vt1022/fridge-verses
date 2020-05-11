@@ -6,11 +6,13 @@
     flex-wrap: wrap-reverse;
     width: 100%;
     min-height: 100vh;
+    border: 1px solid red;
 
     .game-board__generated {
         width: 40%;
         padding: 40px;
         background: $lightGrey;
+        border: 1px solid red;
 
         @media (max-width: 1198px) {
             width: 100%;
@@ -35,6 +37,7 @@
         min-width: 646px;
         display: flex;
         flex-direction: column;
+        border: 1px solid red;
 
         p {
             text-align: center;
@@ -45,6 +48,10 @@
             width: 100%;
             min-height: 55vh;
             min-width: auto;
+        }
+
+        @media (max-width: 768px) {
+            justify-content: flex-end;
         }
 
         .main-header {
@@ -128,12 +135,12 @@
     }
 
     .game-board__sandbox {
+        border: 1px solid red;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
         width: 80%;
-        height: 100%;
         margin: 0 auto;
 
         @media (max-width: 1198px) {
@@ -147,6 +154,7 @@
 
         @media (max-width: 768px) {
             width: 100%;
+            height: 100%;
         }
 
         .sandbox__droppable {
@@ -154,6 +162,10 @@
             flex-direction: column;
             align-items: center;
             max-width: 100%;
+
+            @media (max-width: 768px) {
+                margin: 40px 0;
+            }
         }
 
         .generated__item {
