@@ -12,7 +12,7 @@ export default class InputAutocomplete extends React.Component {
 render() {
     return (
     <div>
-        <Autocomplete className="test"
+        <Autocomplete
         value={this.props.userInput}
         onChange={this.props.onAutoCompleteItemSelected}
             options={this.props.autoCompleteWords}
