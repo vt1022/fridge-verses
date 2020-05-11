@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
-import '../styles/modals.scss'
+
 import TextField from '@material-ui/core/TextField';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import Swal from 'sweetalert2'
+import firebase from './firebase.js';
+
 import imgInstruct from '../assets/illustrations--instruct.png'
 import imgIllustrations from '../assets/illustrations--save.png'
-import Swal from 'sweetalert2'
-
-
-import firebase from './firebase.js';
+import '../styles/modals.scss'
 
 const theme = createMuiTheme({
     palette: {
         primary: {
             main: '#1A4542',
         },
-    }
+    },
+    typography: {
+        fontSize: 20,
+        fontFamily: 'Kanit, Helvetica Neue Helvetica, Arial', 
+    },
 });
 
 class Modal extends Component {

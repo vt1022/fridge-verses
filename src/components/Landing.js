@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Search from './Search.js'
+
 import imgPath from '../assets/illustrations--landing.png'
 import '../styles/landing.scss'
 
