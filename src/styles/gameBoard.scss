@@ -6,13 +6,11 @@
     flex-wrap: wrap-reverse;
     width: 100%;
     min-height: 100vh;
-    border: 1px solid red;
 
     .game-board__generated {
         width: 40%;
         padding: 40px;
         background: $lightGrey;
-        border: 1px solid red;
 
         @media (max-width: 1198px) {
             width: 100%;
@@ -37,7 +35,6 @@
         min-width: 646px;
         display: flex;
         flex-direction: column;
-        border: 1px solid red;
 
         p {
             text-align: center;
@@ -135,7 +132,6 @@
     }
 
     .game-board__sandbox {
-        border: 1px solid red;
         display: flex;
         flex-direction: column;
         align-items: center;
