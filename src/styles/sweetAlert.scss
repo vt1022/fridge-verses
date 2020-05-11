@@ -5,8 +5,25 @@
     margin-bottom: 30px;
 }
 
-.swal2-confirm.swal2-styled {
-    @include mainButton($fontSizeValue: 2rem, $widthValue: 40%)
+.swal2-actions button[style] {
+    font-family: 'Kanit', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+    font-size: 2rem !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.12rem !important;
+    line-height: 1 !important;
+    color: $lightGrey !important;
+    height: calc(56px + 1.19vw) !important;
+    width: 40% !important;
+    background-color: $darkGreen !important;
+    border: 2px solid transparent !important;
+    cursor: pointer !important;
+    transition: background-color 250ms ease !important;
+    border-radius: 8px !important;
+    
+    &:hover {
+        background-color: lighten($darkGreen, 3%);
+        border: 2px solid $darkGreen;
+    }
 }
 
 .swal2-popup.swal2-modal.swal2-icon-error.swal2-show {
