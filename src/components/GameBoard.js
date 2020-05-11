@@ -25,13 +25,13 @@ class GameBoard extends Component {
             modalToShow: 'start',
             sortedList: [],
             wordOrder: 0,
-            matches: window.matchMedia("(min-width: 420px)").matches
+            matches: window.matchMedia("(min-width: 570px)").matches
         }
     }
 
     componentDidMount() {
         const handler = (e) => this.setState({ matches: e.matches });
-        window.matchMedia("(min-width: 420px)").addListener(handler);
+        window.matchMedia("(min-width: 570px)").addListener(handler);
     }
 
     showModal = (modalShowBoolean) => this.setState({ modal: modalShowBoolean })
