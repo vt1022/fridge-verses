@@ -17,7 +17,14 @@ class Gallery extends Component {
         dbRef.on( 'value', (result) => this.setState({ firebaseDataObject: result.val() }) )
     }
 
-    showMoreLessClick = (number) => this.setState({ poemsToShow: this.state.poemsToShow + number })
+    showMoreLessClick = (number) => {
+        const { poemsToShow, firebaseDataObject } = this.state
+        if (poemsToShow <= 6 && number < 0) {
+        } else if (poemsToShow > Object.keys(firebaseDataObject).length && number > 0) {
+        } else {
+            this.setState({ poemsToShow: poemsToShow + number })
+        }
+    }
 
     render() { 
         const { firebaseDataObject, poemsToShow } = this.state
@@ -32,31 +39,26 @@ class Gallery extends Component {
                             <div key={Object.keys(firebaseDataObject)[index]}
                             className="app__container__gallery__grid__poem">
                                 <h2 className="verse__title">{title}</h2>
-                                
                                 {
                                 poem.map((wordObj) => {
-                                    return( // fix below class name. just need temp styling for now
-                                     
+                                    return( 
                                         <div key={wordObj.order} 
                                         className="app__container__gallery__grid__poem__word">
                                             {wordObj.content}
                                         </div>
-                                       
                                     )
-                                        
                                 })
-                                       
                                 }
-                                 <p className="verse__by">by, {author}</p>      
+                                <p className="verse__by">by, {author}</p>      
                             </div>
                         )
                     })
                     }
                 </div>
                 <div className="app__container__gallery__buttons">    
-                    <button onClick={() =>this.showMoreLessClick(-10)}
+                    <button onClick={() =>this.showMoreLessClick(-6)}
                     className="secondary-button">Less</button>
-                    <button onClick={() =>this.showMoreLessClick(10)}
+                    <button onClick={() =>this.showMoreLessClick(6)}
                     className="secondary-button">More</button>
                     <button onClick={() => changePage('landing')}
                     className="main-button">Home</button>
