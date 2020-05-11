@@ -28,7 +28,6 @@ class Modal extends Component {
     }
 
     hideModal = () => this.setState({hide: true})
-    handleSubmit = (e) => e.preventDefault()
     bindInputAuthor = (e) => this.setState({inputAuthor: e.target.value})
     bindInputTitle = (e) => this.setState({inputTitle: e.target.value})
 
@@ -37,7 +36,8 @@ class Modal extends Component {
         this.setState({ hide: false })
     }
     
-    savePoemClick = () => {
+    savePoem = (e) => {
+        e.preventDefault()
         const { sortedList } = this.props
         const { inputTitle, inputAuthor } = this.state
         const maxWordsInPoem = 20 // placeholder number for now
@@ -101,9 +101,10 @@ class Modal extends Component {
                             <img src={imgIllustrations} className="share__img" alt="illustration of a person sharing ideas to the digital cloud"/>
                         </div>
                         <h2>Share your poem</h2>
-                        <form className="share_inputs" action="" onSubmit={this.handleSubmit}>
+                        <form className="share_inputs" action="" onSubmit={this.savePoem}>
                             <MuiThemeProvider theme={theme}>
                                 <TextField 
+                                required
                                 className="share_title"
                                 variant="outlined"
                                 label="Title"
@@ -116,6 +117,7 @@ class Modal extends Component {
                                 onChange={this.bindInputTitle}
                                 />
                                 <TextField 
+                                required
                                 className="share_author"
                                 variant="outlined"
                                 label="Author"
@@ -128,9 +130,7 @@ class Modal extends Component {
                                 onChange={this.bindInputAuthor}
                                 />
                             </MuiThemeProvider>
-                            <button className="gallery_btn" onClick={this.savePoemClick}>
-                                Submit
-                            </button>
+                            <input type="submit" className="gallery_btn" text="Submit"/> 
                             <button className="share_btn" onClick={this.hideModal}>
                                 Cancel
                             </button>
