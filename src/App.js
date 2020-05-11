@@ -84,7 +84,7 @@ class App extends Component {
                             Fridge Verses
                         </li>
                         
-                        <li className="nav__link nav__link--desktop" 
+                        <li style={ {'display' : this.state.currentPage !== 'gallery' ? 'block' : 'none'} }className="nav__link nav__link--desktop" 
                         onClick={() => this.changePage('gallery')}>
                             Gallery
                         </li>

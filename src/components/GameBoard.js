@@ -174,7 +174,7 @@ class GameBoard extends Component {
                         </div>
                     </div>
                     <div className="sandbox__container">
-                        <h2 className="main-header">Create a 6 - 20 words poem:</h2>
+                        <h2 className="main-header">Create a 6 - 20 word poem:</h2>
                         <p>{wordOrder} / 20</p>
                         <div className="game-board__sandbox">
                             <div className="sandbox__droppable">
