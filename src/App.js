@@ -74,7 +74,10 @@ class App extends Component {
 
     render() {
         const { currentPage, generatedWords, functionalWords } = this.state
+        let emtpyStyle = {};
+        let displayNone = { 'display': 'none' };
         return (
+            
             <>
             <div className="app wrapper">
                 <nav className="app__nav">
@@ -83,8 +86,9 @@ class App extends Component {
                         onClick={() => this.changePage('landing')}>
                             Fridge Verses
                         </li>
-                        
-                        <li className="nav__link nav__link--desktop" 
+                        {/* fixing the gallery button styling */}
+                        <li style={ this.state.currentPage === 'gallery' ? displayNone : emtpyStyle } 
+                        className="nav__link nav__link--desktop" 
                         onClick={() => this.changePage('gallery')}>
                             Gallery
                         </li>
