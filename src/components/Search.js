@@ -16,7 +16,7 @@ const theme = createMuiTheme({
 });
 
 let badwordsArray = require('badwords/array');
-badwordsArray.push("fuckup", "bitchy", "bitchery", "bitchiness", "bitched", "bitchen","bitchily","bitchier","bitchiest", "shittah", "shittim", "shitfaced", "shittle", "nigget", "niggerhead", "niggerheads", "niggerling", "nigged", "niggery", "niggle","niggardly","niggling","niggard","niggly","niggler","niggardliness","niggish", "faggy", "fagged", "faggots", "faggoty", "faggotry", "faggoting", "faggoted", "cunty", "cunted", "cunting","cummingtonite", "wetback","wetbacks", "spunk", "whoremonger", "whoring", "whorehouse", "hooker", "whoredom","whoremaster","whoremasters","whoremasterly","whored", "whores", "porn", "pornography", "slutty", "sluttish", "sluttery", "sluttishness", "sluttishly", "fucked-up")
+badwordsArray.push("fuckup", "bitchy", "bitchery", "bitchiness", "bitched", "bitchen","bitchily","bitchier","bitchiest", "shittah", "shittim", "shitfaced", "shittle", "nigget", "niggerhead", "niggerheads", "niggerling", "nigged", "niggery", "niggle","niggardly","niggling","niggard","niggly","niggler","niggardliness","niggish", "faggy", "fagged", "faggots", "faggoty", "faggotry", "faggoting", "faggoted", "cunty", "cunted", "cunting","cummingtonite", "wetback","wetbacks", "spunk", "whoremonger", "whoring", "whorehouse", "hooker", "whoredom","whoremaster","whoremasters","whoremasterly","whored", "whores", "porn", "pornography", "slutty", "sluttish", "sluttery", "beaner", "sluttishness", "sluttishly", "fucked-up")
 
 
 export class Search extends Component {
@@ -72,9 +72,12 @@ export class Search extends Component {
             }
         })
         
-        const generatedWords = result.data.map((value) => {
+        let generatedWords = result.data.map((value) => {
             return {content: value.word, id: JSON.stringify(value.score), disabled: false}
         })
+
+        // filter out profanity
+        generatedWords = generatedWords.filter(word => !badwordsArray.includes(word.content));
 
         if (this.state.userInput.toLowerCase() === "boomer"){
             const safi = []
