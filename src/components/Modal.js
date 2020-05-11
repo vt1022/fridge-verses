@@ -40,7 +40,7 @@ class Modal extends Component {
     savePoemClick = () => {
         const { sortedList, changePage } = this.props
         const { inputTitle, inputAuthor } = this.state
-        const maxWordsInPoem = 20 // placeholder number for now
+        const maxWordsInPoem = 20
 
         if (sortedList.length <= maxWordsInPoem && sortedList.length > 5) {
             const dbRef = firebase.database().ref()
@@ -110,7 +110,6 @@ class Modal extends Component {
                                 label="Title"
                                 placeholder=""
                                 margin="normal"
-                                // helperText="Name your masterpiece"
                                 size="small"
                                 id="poemTitle"
                                 value={inputTitle}
@@ -122,7 +121,6 @@ class Modal extends Component {
                                 label="Author"
                                 placeholder=""
                                 margin="normal"
-                                // helperText="sign your masterpiece"
                                 size="small"
                                 id="poemAuthor"
                                 value={inputAuthor}
