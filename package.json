@@ -22,7 +22,6 @@
     "react-dnd-html5-backend": "^10.0.2",
     "react-dom": "^16.13.1",
     "react-frame-component": "^4.1.2",
-    "react-responsive": "^8.0.3",
     "react-scripts": "3.4.1",
     "react-share": "^4.1.0",
     "sweetalert2": "^9.10.12"
